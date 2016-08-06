@@ -6,8 +6,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "npm run build:client && npm run build:templates",
-    "build:client": "browserify src/js/Client.js -o pub/client.js -t [ babelify ]",
+    "build": "npm run build:editor && npm run build:templates",
+    "build:editor": "browserify src/js/Prodotype.js -o pub/prodotype.js -t [ babelify ]",
     "build:templates": "node src/js/BuildTemplates.js",
     "start": "http-server ."
   },
