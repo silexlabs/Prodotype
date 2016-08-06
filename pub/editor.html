@@ -14,8 +14,27 @@
 </head>
 <body>
   <section id="stage">
-    <div id="test1" data-template-name="test"></div>
-    <div id="test2" data-template-name="test"></div>
+    <div data-data="{&quot;title&quot;:&quot;test1&quot;,&quot;supplies&quot;:[&quot;test1 value1&quot;,&quot;test1 value2&quot;]}" id="test1" data-template-name="test">
+      <h1>test1</h1>
+      <ul>
+
+         <li>test1 value1</li>
+
+         <li>test1 value2</li>
+
+      </ul>
+    </div>
+    <div data-data="{&quot;title&quot;:&quot;test2&quot;,&quot;supplies&quot;:[&quot;test2 value1&quot;,&quot;test2 value2&quot;]}" id="test2" data-template-name="test">
+      <h1>test2</h1>
+      <ul>
+
+         <li>test2 value1</li>
+
+         <li>test2 value2</li>
+
+      </ul>
+    </div>
+
   </section>
 
   <section id="ui"></section>
@@ -27,9 +46,8 @@
     test1.onclick = function() {
       var data = JSON.parse(test1.getAttribute('data-data') || "{}");
       var templateName = test1.getAttribute('data-template-name');
-      prodotype.edit(data, templateName, function(data, html) {
-        console.log('test1 changed');
-        test1.setAttribute('data-data', data);
+      prodotype.edit(data, templateName, function(newData, html) {
+        test1.setAttribute('data-data', JSON.stringify(newData));
         test1.innerHTML = html;
       });
     }
@@ -37,9 +55,8 @@
     test2.onclick = function() {
       var data = JSON.parse(test2.getAttribute('data-data') || "{}");
       var templateName = test2.getAttribute('data-template-name');
-      prodotype.edit(data, templateName, function(data, html) {
-        console.log('test2 changed');
-        test2.setAttribute('data-data', data);
+      prodotype.edit(data, templateName, function(newData, html) {
+        test2.setAttribute('data-data', JSON.stringify(newData));
         test2.innerHTML = html;
       });
     }

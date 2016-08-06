@@ -2,12 +2,14 @@
 name: Test template
 description: A nice test template
 path: "/test.ejs"
-parameters:
+props:
 - name: title
   type: string
   default: ''
+  description: 'The title of your component'
 - name: supplies
   type: array
+  description: 'The supplies'
   default:
   - test
   - values

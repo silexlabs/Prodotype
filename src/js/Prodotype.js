@@ -1,21 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Editor from './Editor';
+import Renderer from './Renderer';
 
 export default class Prodotype {
-  rootPath = ''
-  componentsData = []
-  container = null
 
   constructor(element, rootPath = '') {
-    console.log('Prodotype starting', rootPath);
+    this.componentsDef = []
     this.container = element;
-    this.rootPath = rootPath;
-    this.loadComponentsData();
+    this.loadComponentsDef(rootPath);
+    this.renderer = new Renderer(rootPath);
   }
 
   ////////////////////
-  // ComponentsData loading, ready mechanism
+  // ComponentsDef loading, ready mechanism
   ////////////////////
   isReady = false
   readyCbk = []
@@ -42,17 +40,16 @@ export default class Prodotype {
   /**
    * load the components data
    */
-  loadComponentsData() {
+  loadComponentsDef(rootPath) {
     if(this.isReady) return;
     var oReq = new XMLHttpRequest();
-    oReq.open("GET", this.rootPath + '/components.json');
+    oReq.open("GET", rootPath + '/components.json');
     oReq.send();
     oReq.addEventListener("error", (e) => {
       this.onLoad(e);
     });
     oReq.addEventListener("load", () => {
-      this.componentsData = JSON.parse(oReq.responseText);
-      console.log('loaded', this.componentsData);
+      this.componentsDef = JSON.parse(oReq.responseText);
       this.onLoad();
     });
   }
@@ -60,12 +57,15 @@ export default class Prodotype {
   // edition of components
   ///////////////////
   edit(data, templateName, onChange) {
-    console.log('edit', data, templateName);
     ReactDOM.render(<Editor
+      ref={editor => this.editor = editor}
       data={data}
-      componentsData={this.componentsData}
-      templateName={templateName}
-      onChange={onChange}
+      definition={this.componentsDef[templateName]}
+      onChange={(value) => {
+        this.edit(value, templateName, onChange);
+        this.renderer.render(this.componentsDef[templateName], value, templateName)
+          .then(html => onChange(value, html));
+      }}
     />, this.container);
   }
 }

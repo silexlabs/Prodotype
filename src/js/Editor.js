@@ -1,21 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import * as MaterialUi from 'material-ui/';
+import ArrayEditor from './ArrayEditor';
+import StringEditor from './StringEditor';
 
 export default class Editor extends React.Component {
   render() {
-    console.log('xxx', this.props.componentsData, this.props.templateName, this.props.data);
-    if(this.props.data
-      && this.props.templateName
-      && this.props.componentsData
-      && this.props.componentsData[this.props.templateName]
-    ) {
+    if(this.props.data && this.props.definition) {
+      let editors = this.props.definition.props
+        .map((def, idx) => {
+          let itemData = JSON.parse(JSON.stringify(def));
+          itemData.value = this.props.data[itemData.name] || itemData.default;
+          let itemClass = null;
+          switch(itemData.type) {
+            case 'array':
+              itemClass = ArrayEditor;
+              break;
+            case 'string':
+              itemClass = StringEditor;
+              break;
+          }
+          return React.createElement(itemClass, {
+            key: idx++,
+            data: itemData,
+            onChange: (value) => {
+              this.props.data[itemData.name] = value;
+              this.props.onChange(this.props.data);
+            }
+          });
+        });
       return <MuiThemeProvider>
         <section>
-          <h1>Editing ({this.props.templateName})</h1>
-          <p>{JSON.stringify(this.props.componentsData[this.props.templateName])}</p>
-          <p>{JSON.stringify(this.props.data)}</p>
+          <h1>Editing ({this.props.definition.name})</h1>
+          <div>{editors}</div>
         </section>
       </MuiThemeProvider>;
 
