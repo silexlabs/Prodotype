@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prodotype demo: client</title>
+  <script type="text/javascript" src="../node_modules/ejs/ejs.min.js"></script>
+</head>
+<body>
+  <section id="test1" data-template-name="test" data-template-url="templates/test.ejs" data-data='{"supplies": ["a", "b", "c"], "title": ""}'>
+  </section>
+  <script type="text/javascript">
+    var test1 = document.getElementById('test1');
+    console.log(test1.getAttribute('data-data'));
+    var data = JSON.parse(test1.getAttribute('data-data'));
+    var url = test1.getAttribute('data-template-url');
+    var oReq = new XMLHttpRequest();
+    oReq.open("GET", url);
+    oReq.send();
+    oReq.addEventListener("load", function() {
+      var template = oReq.responseText;
+      console.log('loaded', template);
+      var html = ejs.render(template, data);
+      console.log(html);
+      // Vanilla JS:
+      test1.innerHTML = html;
+    });
+
+  </script>
+</body>
+</html>

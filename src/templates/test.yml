@@ -1,0 +1,13 @@
+---
+name: Test template
+description: A nice test template
+path: "/test.ejs"
+parameters:
+- name: title
+  type: string
+  default: ''
+- name: supplies
+  type: array
+  default:
+  - test
+  - values
