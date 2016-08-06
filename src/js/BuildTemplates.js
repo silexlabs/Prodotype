@@ -12,8 +12,8 @@ class BuilTemplates {
   static main() {
     console.log('Building...');
     let src = path.resolve(__dirname, '../templates');
-    let dst = path.resolve(__dirname, '../../pub/templates');
-    let allComponentsJson = [];
+    let dst = path.resolve(__dirname, '../../pub/components');
+    let allComponentsJson = {};
     fs.readdirSync(src).map(function (file) {
       return path.join(src, file);
     }).filter(function (file) {
@@ -23,7 +23,7 @@ class BuilTemplates {
       let name = path.basename(file, '.ejs');
       console.log("Building template", name);
       let json = yaml.safeLoad(fs.readFileSync(path.resolve(src, name + '.yml')));
-      allComponentsJson.push(json);
+      allComponentsJson[name] = json;
       fs.createReadStream(file).pipe(fs.createWriteStream(path.resolve(dst, name + '.ejs')));
     });
     console.log('writing', dst + '/components.json', JSON.stringify(allComponentsJson));

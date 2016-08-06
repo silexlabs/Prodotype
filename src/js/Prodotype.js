@@ -63,6 +63,7 @@ export default class Prodotype {
     console.log('edit', data, templateName);
     ReactDOM.render(<Editor
       data={data}
+      componentsData={this.componentsData}
       templateName={templateName}
       onChange={onChange}
     />, this.container);

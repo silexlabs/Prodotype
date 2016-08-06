@@ -4,20 +4,29 @@
   <title>Prodotype demo: editor</title>
   <script type="text/javascript" src="../node_modules/ejs/ejs.min.js"></script>
   <script type="text/javascript" src="./prodotype.js"></script>
+  <style type="text/css">
+    #stage > * {
+      min-width: 100px;
+      min-height: 100px;
+      border: 1px dashed #000;
+    }
+  </style>
 </head>
 <body>
-  <section id="test1" data-template-name="test"></section>
-  <section id="test2" data-template-name="test"></section>
+  <section id="stage">
+    <div id="test1" data-template-name="test"></div>
+    <div id="test2" data-template-name="test"></div>
+  </section>
 
   <section id="ui"></section>
 
   <script type="text/javascript">
     var ui = document.getElementById('ui');
-    var prodotype = new Prodotype(ui, './');
+    var prodotype = new Prodotype(ui, './components');
     var test1 = document.getElementById('test1');
     test1.onclick = function() {
-      var data = JSON.parse(test1.getAttribute('data-data'));
-      var templateName = JSON.parse(test1.getAttribute('data-template-name'));
+      var data = JSON.parse(test1.getAttribute('data-data') || "{}");
+      var templateName = test1.getAttribute('data-template-name');
       prodotype.edit(data, templateName, function(data, html) {
         console.log('test1 changed');
         test1.setAttribute('data-data', data);
@@ -26,8 +35,8 @@
     }
     var test2 = document.getElementById('test2');
     test2.onclick = function() {
-      var data = JSON.parse(test2.getAttribute('data-data'));
-      var templateName = JSON.parse(test2.getAttribute('data-template-name'));
+      var data = JSON.parse(test2.getAttribute('data-data') || "{}");
+      var templateName = test2.getAttribute('data-template-name');
       prodotype.edit(data, templateName, function(data, html) {
         console.log('test2 changed');
         test2.setAttribute('data-data', data);
