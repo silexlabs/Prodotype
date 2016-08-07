@@ -1,0 +1,42 @@
+---
+name: Dropdown list
+description: Let the user select an option among a list of options.
+path: "/dropdown.ejs"
+props:
+- name: autofocus
+  type: boolean
+  default: false
+  description: 'This attribute lets you specify that a form control should have input focus when the page loads, unless the user overrides it, for example by typing in a different control. Only one form element in a document can have the autofocus attribute, which is a Boolean.'
+- name: disabled
+  type: boolean
+  default: false
+  description: 'This Boolean attribute indicates that the user cannot interact with the control. If this attribute is not specified, the control inherits its setting from the containing element, for example fieldset; if there is no containing element with the disabled attribute set, then the control is enabled.'
+- name: multiple
+  type: boolean
+  default: false
+  description: 'This Boolean attribute indicates that multiple options can be selected in the list. If it is not specified, then only one option can be selected at a time.'
+- name: required
+  type: boolean
+  default: false
+  description: 'A Boolean attribute indicating that an option with a non-empty string value must be selected.'
+- name: form
+  type: string
+  default:
+  description: 'The form element that the select element is associated with (its "form owner"). If this attribute is specified, its value must be the ID of a form element in the same document. This enables you to place select elements anywhere within a document, not just as descendants of their form elements.'
+- name: name
+  type: string
+  default:
+  description: 'The name of the control.'
+- name: size
+  type: number
+  default: 0
+  description: 'If the control is presented as a scrolled list box, this attribute represents the number of rows in the list that should be visible at one time. Browsers are not required to present a select element as a scrolled list box. The default value is 0.'
+- name: onchange
+  type: action
+  default:
+  description: 'Action triggered when the user changes the selection.'
+- name: data
+  type: array
+  default:
+  - option 1
+  - option 2

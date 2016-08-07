@@ -1,0 +1,30 @@
+<select
+  class="theme-css-class"
+  <% if(autofocus) { %>autofocus<% } %>
+  <% if(disabled) { %>disabled<% } %>
+  <% if(multiple) { %>multiple<% } %>
+  <% if(required) { %>required<% } %>
+  <% if(form) { %>form="<%= form %>"<% } %>
+  <% if(name) { %>name="<%= name %>"<% } %>
+  <% if(size) { %>size="<%= size %>"<% } %>
+  <% if(onchange) { %>onchange="<%= onchange %>"<% } %>
+  >
+  <% for(var idx in data) { %>
+    <option
+    <% if(data[idx].disabled) { %>disabled<% } %>
+    <% if(data[idx].selected) { %>selected<% } %>
+    <% if(data[idx].label) {%>
+      label="<%= data[idx].label %>"
+      <% if(!data[idx].value) { %>value="<%= data[idx].label %>"<% } %>
+    <% } %>
+    <% if(data[idx].value) {%>value="<%= data[idx].value %>"<% } %>
+    <% if(!data[idx].label) { %>label="<%= data[idx].value %>"<% } %>
+    >
+      <% if(data[idx].label) { %>
+        <%= data[idx].label %>
+      <% } else { %>
+        <%= data[idx] %>
+      <% } %>
+    </option>
+  <% } %>
+</select>

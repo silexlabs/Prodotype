@@ -19,6 +19,9 @@ export default class Editor extends React.Component {
             case 'string':
               itemClass = StringEditor;
               break;
+            default:
+              console.error('Unknown property type:', itemData.type, itemData);
+              return null;
           }
           return React.createElement(itemClass, {
             key: idx++,
