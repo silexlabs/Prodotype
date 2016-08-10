@@ -1,0 +1,100 @@
+---
+name: Button
+description: Let the user select an option among a list of options.
+props:
+- name: label
+  type: string
+  default: Button
+  description: 'The label of the button.'
+- name: disabled
+  type: boolean
+  default: false
+  description: "This Boolean attribute indicates that the user cannot interact with the button."
+- name: autofocus
+  type: boolean
+  default: false
+  description: "This Boolean attribute lets you specify that the button should have input focus when the page loads, unless the user overrides it, for example by typing in a different control. Only one form-associated element in a document can have this attribute specified."
+- name: name
+  type: string
+  description: "The name of the button, which is submitted with the form data."
+- name: form
+  type: string
+  description: "The form element that the button is associated with (its form owner). The value of the attribute must be the id attribute of a <form> element in the same document."
+- name: formaction
+  type: string
+  description: "The URI of a program that processes the information submitted by the button. If specified, it overrides the action attribute of the button''s form owner."
+- name: formmethod
+  type: enum (post, get)
+  description: "If the button is a submit button, this attribute specifies the HTTP method that the browser uses to submit the form. Possible values are: post and get"
+- name: formnovalidate
+  type: boolean
+  description: "If the button is a submit button, this Boolean attribute specifies that the form is not to be validated when it is submitted. If this attribute is specified, it overrides the novalidate attribute of the button's form owner."
+- name: formtarget
+  type: string
+  description: "If the button is a submit button, this attribute is a name or keyword indicating where to display the response that is received after submitting the form. This is a name of, or keyword for, a browsing context (for example, tab, window, or inline frame). If this attribute is specified, it overrides the target attribute of the button's form owner. "
+- name: type
+  type: enum (submit, reset, button, menu)
+  description: "The type of the button. Possible values are: submit, reset, button, menu."
+- name: onclick
+  type: action
+  description: "Fires on a mouse click on the element"
+- name: ondblclick
+  type: action
+  description: "Fires on a mouse double-click on the element"
+- name: onmousedown
+  type: action
+  description: "Fires when a mouse button is pressed down on an element"
+- name: onmousemove
+  type: action
+  description: "Fires when the mouse pointer is moving while it is over an element"
+- name: onmouseout
+  type: action
+  description: "Fires when the mouse pointer moves out of an element"
+- name: onmouseover
+  type: action
+  description: "Fires when the mouse pointer moves over an element"
+- name: onmouseup
+  type: action
+  description: "Fires when a mouse button is released over an element"
+- name: onwheel
+  type: action
+  description: "Fires when the mouse wheel rolls up or down over an element"
+- name: onblur
+  type: action
+  description: "Fires the moment that the element loses focus"
+- name: onchange
+  type: action
+  description: "Fires the moment when the value of the element is changed"
+- name: oncontextmenu
+  type: action
+  description: "Script to be run when a context menu is triggered"
+- name: onfocus
+  type: action
+  description: "Fires the moment when the element gets focus"
+- name: oninput
+  type: action
+  description: "Script to be run when an element gets user input"
+- name: oninvalid
+  type: action
+  description: "Script to be run when an element is invalid"
+- name: onreset
+  type: action
+  description: "Fires when the Reset button in a form is clicked"
+- name: onsearch
+  type: action
+  description: "Fires when the user writes something in a search field (for <input=\"search\">)"
+- name: onselect
+  type: action
+  description: "Fires after some text has been selected in an element"
+- name: onsubmit
+  type: action
+  description: "Fires when a form is submitted"
+- name: onkeydown
+  type: action
+  description: "Fires when a user is pressing a key"
+- name: onkeypres
+  type: action
+  description: "Fires when a user presses a key"
+- name: onkeyup
+  type: action
+  description: "Fires when a user releases a key"

@@ -56,17 +56,33 @@ export default class Prodotype {
   ///////////////////
   // edition of components
   ///////////////////
+  /**
+   * build the ui for a component
+   * and notify me when user changes a property
+   */
   edit(data, templateName, onChange) {
     ReactDOM.render(<Editor
-      ref={editor => this.editor = editor}
       data={data}
       definition={this.componentsDef[templateName]}
       onChange={(value) => {
         this.edit(value, templateName, onChange);
-        this.renderer.render(this.componentsDef[templateName], value, templateName)
+        this.decorate(templateName, value)
           .then(html => onChange(value, html));
       }}
     />, this.container);
+  }
+  /**
+   * render the HTML for a component
+   * with the given data merged with defaults
+   */
+  decorate(templateName, data) {
+    return this.renderer.render(this.componentsDef[templateName], data, templateName);
+  }
+  /**
+   * reset the ui
+   */
+  reset() {
+    ReactDOM.render(<Editor />, this.container);
   }
 }
 

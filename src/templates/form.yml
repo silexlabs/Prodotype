@@ -1,0 +1,49 @@
+---
+name: Form component (<form>)
+description: Used to send form data to a server.
+props:
+- name: action
+  type: string
+  description: 'The URI of a program that processes the form information.'
+- name: target
+  type: string
+  description: 'Indicates where to display the response that is received after submitting the form. Possible values are: _self, _blank, _parent, _top, iframename.'
+- name: autocomplete
+  type: enum(off, on)
+  description: 'Indicates whether input elements can by default have their values automatically completed by the browser.'
+- name: name
+  type: string
+  description: 'The name of the form (must be unique).'
+- name: novalidate
+  type: boolean
+  description: 'Prevent the form to be validated when submitted.'
+- name: autocapitalize
+  type: enum(none, sentences, words, characters, on, off)
+  description: 'This is a nonstandard attribute used by iOS Safari Mobile which controls whether and how the text value for textual form control descendants should be automatically capitalized as it is entered/edited by the user.'
+- name: onblur
+  type: action
+  description: 'Fires the moment that the element loses focus'
+- name: onchange
+  type: action
+  description: 'Fires the moment when the value of the element is changed'
+- name: oncontextmenu
+  type: action
+  description: 'Fires when a context menu is triggered'
+- name: onfocus
+  type: action
+  description: 'Fires the moment when the element gets focus'
+- name: oninput
+  type: action
+  description: 'Fires when an element gets user input'
+- name: oninvalid
+  type: action
+  description: 'Fires when an element is invalid'
+- name: onreset
+  type: action
+  description: 'Fires when the Reset button in a form is clicked'
+- name: onselect
+  type: action
+  description: 'Fires after some text has been selected in an element'
+- name: onsubmit
+  type: action
+  description: 'Fires when a form is submitted'

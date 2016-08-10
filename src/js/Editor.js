@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import List from 'material-ui/List';
+import AppBar from 'material-ui/AppBar';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import ArrayEditor from './ArrayEditor';
 import StringEditor from './StringEditor';
+import MulitlineEditor from './MulitlineEditor';
+import BooleanEditor from './BooleanEditor';
+import NumberEditor from './NumberEditor';
 
 export default class Editor extends React.Component {
   render() {
@@ -19,6 +25,15 @@ export default class Editor extends React.Component {
             case 'string':
               itemClass = StringEditor;
               break;
+            case 'multiline':
+              itemClass = MulitlineEditor;
+              break;
+            case 'boolean':
+              itemClass = BooleanEditor;
+              break;
+            case 'number':
+              itemClass = NumberEditor;
+              break;
             default:
               console.error('Unknown property type:', itemData.type, itemData);
               return null;
@@ -34,15 +49,31 @@ export default class Editor extends React.Component {
         });
       return <MuiThemeProvider>
         <section>
-          <h1>Editing ({this.props.definition.name})</h1>
-          <div>{editors}</div>
+          <AppBar
+            title="Prodotype editor"
+          />
+          <Card>
+            <CardHeader
+              title={ this.props.definition.name }
+              subtitle={ this.props.definition.description }
+            />
+            <List>{editors}</List>
+          </Card>
         </section>
       </MuiThemeProvider>;
-
     }
     // nothing selected
     return <MuiThemeProvider>
-      <section>Please select a component</section>
+      <section>
+        <AppBar
+          title="Prodotype editor"
+        />
+        <Card>
+          <CardHeader
+            title="Please select a component"
+          />
+        </Card>
+      </section>
     </MuiThemeProvider>;
   }
 }

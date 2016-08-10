@@ -1,15 +1,14 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
 import PropEditorBase from './PropEditorBase'
 
-export default class StringEditor extends React.Component {
+export default class NumberEditor extends React.Component {
   render() {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
-      <TextField
-        value={ this.props.data.value || '' }
-        floatingLabelText={ this.props.data.name }
-        floatingLabelFixed={true}
+      <label>{ this.props.data.name }</label><br />
+      <input
+        type="number"
         name="InputValue"
+        value={ this.props.data.value || '' }
         onChange={(e) => this.props.onChange(e.target.value)}
       />
     </PropEditorBase>;

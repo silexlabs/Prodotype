@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import PropEditorBase from './PropEditorBase'
 
-export default class StringEditor extends React.Component {
+export default class MultilineEditor extends React.Component {
   render() {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
       <TextField
@@ -11,6 +11,8 @@ export default class StringEditor extends React.Component {
         floatingLabelFixed={true}
         name="InputValue"
         onChange={(e) => this.props.onChange(e.target.value)}
+        multiLine={true}
+        rows={2}
       />
     </PropEditorBase>;
   }
