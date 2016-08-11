@@ -11,6 +11,7 @@ import BooleanEditor from './BooleanEditor';
 import NumberEditor from './NumberEditor';
 import ActionEditor from './ActionEditor';
 import EnumEditor from './EnumEditor';
+import ActionInfo from 'material-ui/svg-icons/action/info';
 
 export default class Editor extends React.Component {
   render() {
@@ -65,7 +66,10 @@ export default class Editor extends React.Component {
           <Card>
             <CardHeader
               title={ this.props.definition.name }
-              subtitle={ this.props.definition.description }
+              subtitle={ <span>
+                <p>{ this.props.definition.description }</p>
+                <ActionInfo onClick={ () => window.open(this.props.definition.doc,'_blank') } />
+                </span> }
             />
             <List>{editors}</List>
           </Card>

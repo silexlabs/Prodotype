@@ -1,6 +1,7 @@
 ---
 name: Form component (<form>)
 description: Used to send form data to a server.
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
 props:
 - name: action
   type: string

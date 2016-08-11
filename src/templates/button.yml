@@ -1,6 +1,7 @@
 ---
 name: Button
 description: Let the user select an option among a list of options.
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
 props:
 - name: label
   type: string

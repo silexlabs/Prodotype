@@ -1,6 +1,7 @@
 ---
 name: Auto complete list (<datalist>)
 description: Let the user type text with suggestions.
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist
 props:
 - name: data
   type: array

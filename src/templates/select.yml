@@ -1,6 +1,7 @@
 ---
 name: Dropdown list (<select>)
 description: Let the user select an option among a list of options.
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
 props:
 - name: data
   type: array
