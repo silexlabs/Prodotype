@@ -9,7 +9,9 @@ props:
   type: string
   description: 'Indicates where to display the response that is received after submitting the form. Possible values are: _self, _blank, _parent, _top, iframename.'
 - name: autocomplete
-  type: enum(off, on)
+  type:
+  - off
+  - on
   description: 'Indicates whether input elements can by default have their values automatically completed by the browser.'
 - name: name
   type: string
@@ -18,7 +20,13 @@ props:
   type: boolean
   description: 'Prevent the form to be validated when submitted.'
 - name: autocapitalize
-  type: enum(none, sentences, words, characters, on, off)
+  type:
+  - none
+  - sentences
+  - words
+  - characters
+  - on
+  - off
   description: 'This is a nonstandard attribute used by iOS Safari Mobile which controls whether and how the text value for textual form control descendants should be automatically capitalized as it is entered/edited by the user.'
 - name: onblur
   type: action

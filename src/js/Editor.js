@@ -10,6 +10,7 @@ import MulitlineEditor from './MulitlineEditor';
 import BooleanEditor from './BooleanEditor';
 import NumberEditor from './NumberEditor';
 import ActionEditor from './ActionEditor';
+import EnumEditor from './EnumEditor';
 
 export default class Editor extends React.Component {
   render() {
@@ -19,28 +20,33 @@ export default class Editor extends React.Component {
           let itemData = JSON.parse(JSON.stringify(def));
           itemData.value = this.props.data[itemData.name] || itemData.default;
           let itemClass = null;
-          switch(itemData.type) {
-            case 'array':
-              itemClass = ArrayEditor;
-              break;
-            case 'string':
-              itemClass = StringEditor;
-              break;
-            case 'multiline':
-              itemClass = MulitlineEditor;
-              break;
-            case 'boolean':
-              itemClass = BooleanEditor;
-              break;
-            case 'number':
-              itemClass = NumberEditor;
-              break;
-            case 'action':
-              itemClass = ActionEditor;
-              break;
-            default:
-              console.error('Unknown property type:', itemData.type, itemData);
-              return null;
+          if(itemData.type instanceof Array) {
+            itemClass = EnumEditor;
+          }
+          else {
+            switch(itemData.type) {
+              case 'array':
+                itemClass = ArrayEditor;
+                break;
+              case 'string':
+                itemClass = StringEditor;
+                break;
+              case 'multiline':
+                itemClass = MulitlineEditor;
+                break;
+              case 'boolean':
+                itemClass = BooleanEditor;
+                break;
+              case 'number':
+                itemClass = NumberEditor;
+                break;
+              case 'action':
+                itemClass = ActionEditor;
+                break;
+              default:
+                console.error('Unknown property type:', itemData.type, itemData);
+                return null;
+            }
           }
           return React.createElement(itemClass, {
             key: idx++,

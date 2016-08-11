@@ -24,7 +24,9 @@ props:
   type: string
   description: "The URI of a program that processes the information submitted by the button. If specified, it overrides the action attribute of the button''s form owner."
 - name: formmethod
-  type: enum (post, get)
+  type:
+  - post
+  - get
   description: "If the button is a submit button, this attribute specifies the HTTP method that the browser uses to submit the form. Possible values are: post and get"
 - name: formnovalidate
   type: boolean
@@ -33,7 +35,11 @@ props:
   type: string
   description: "If the button is a submit button, this attribute is a name or keyword indicating where to display the response that is received after submitting the form. This is a name of, or keyword for, a browsing context (for example, tab, window, or inline frame). If this attribute is specified, it overrides the target attribute of the button's form owner. "
 - name: type
-  type: enum (submit, reset, button, menu)
+  type:
+  - submit
+  - reset
+  - button
+  - menu
   description: "The type of the button. Possible values are: submit, reset, button, menu."
 - name: onclick
   type: action
