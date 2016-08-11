@@ -9,6 +9,7 @@ import StringEditor from './StringEditor';
 import MulitlineEditor from './MulitlineEditor';
 import BooleanEditor from './BooleanEditor';
 import NumberEditor from './NumberEditor';
+import ActionEditor from './ActionEditor';
 
 export default class Editor extends React.Component {
   render() {
@@ -33,6 +34,9 @@ export default class Editor extends React.Component {
               break;
             case 'number':
               itemClass = NumberEditor;
+              break;
+            case 'action':
+              itemClass = ActionEditor;
               break;
             default:
               console.error('Unknown property type:', itemData.type, itemData);

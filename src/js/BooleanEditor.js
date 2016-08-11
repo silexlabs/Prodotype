@@ -6,7 +6,7 @@ export default class BooleanEditor extends React.Component {
   render() {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
       <Toggle
-        name="InputValue"
+        name={ "InputValue" + (PropEditorBase.idx++) }
         label={ this.props.data.name }
         labelPosition="right"
         value={ this.props.data.value || false }

@@ -9,7 +9,7 @@ export default class StringEditor extends React.Component {
         value={ this.props.data.value || '' }
         floatingLabelText={ this.props.data.name }
         floatingLabelFixed={true}
-        name="InputValue"
+        name={ "InputValue" + (PropEditorBase.idx++) }
         onChange={(e) => this.props.onChange(e.target.value)}
       />
     </PropEditorBase>;

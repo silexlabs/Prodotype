@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
 
 export default class PropEditorBase extends React.Component {
+  static idx = 0;
   state = {}
   render() {
     return <ListItem>

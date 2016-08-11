@@ -34,12 +34,9 @@ props:
 - name: form
   type: string
   description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
-- name: onclick
+- name: onchange
   type: action
-  description: "Fires on a mouse click on the element"
-- name: ondblclick
-  type: action
-  description: "Fires on a mouse double-click on the element"
+  description: "Fires the moment when the value of the element is changed"
 - name: onmousedown
   type: action
   description: "Fires when a mouse button is pressed down on an element"
@@ -61,9 +58,6 @@ props:
 - name: onblur
   type: action
   description: "Fires the moment that the element loses focus"
-- name: onchange
-  type: action
-  description: "Fires the moment when the value of the element is changed"
 - name: oncontextmenu
   type: action
   description: "Script to be run when a context menu is triggered"

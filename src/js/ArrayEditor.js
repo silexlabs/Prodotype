@@ -9,7 +9,7 @@ export default class ArrayEditor extends React.Component {
         value={ this.props.data.value.join('\n') }
         floatingLabelText={ this.props.data.name }
         floatingLabelFixed={true}
-        name="InputValue"
+        name={ "InputValue" + (PropEditorBase.idx++) }
         onChange={(e) => this.props.onChange(e.target.value.split('\n').map(row => {
           try { return JSON.parse(row); } catch(e) { return row; };
         }))}
