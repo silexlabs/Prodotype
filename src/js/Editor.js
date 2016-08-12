@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import List from 'material-ui/List';
-import AppBar from 'material-ui/AppBar';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import ArrayEditor from './ArrayEditor';
 import StringEditor from './StringEditor';
@@ -60,9 +59,6 @@ export default class Editor extends React.Component {
         });
       return <MuiThemeProvider>
         <section>
-          <AppBar
-            title="Prodotype editor"
-          />
           <Card>
             <CardHeader
               title={ this.props.definition.name }
@@ -79,13 +75,7 @@ export default class Editor extends React.Component {
     // nothing selected
     return <MuiThemeProvider>
       <section>
-        <AppBar
-          title="Prodotype editor"
-        />
         <Card>
-          <CardHeader
-            title="Please select a component"
-          />
         </Card>
       </section>
     </MuiThemeProvider>;

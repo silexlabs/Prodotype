@@ -1,8 +1,6 @@
 import React from 'react';
 import PropEditorBase from './PropEditorBase'
 import AceEditor from 'react-ace';
-import brace from 'brace';
-import 'brace/mode/javascript';
 
 export default class ActionEditor extends React.Component {
   render() {

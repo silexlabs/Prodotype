@@ -26,7 +26,7 @@ class BuilTemplates {
       allComponentsJson[name] = json;
       fs.createReadStream(file).pipe(fs.createWriteStream(path.resolve(dst, name + '.ejs')));
     });
-    console.log('writing', dst + '/components.json', JSON.stringify(allComponentsJson));
+    console.log('writing', dst + '/components.json');
     fs.writeFileSync(dst + '/components.json', JSON.stringify(allComponentsJson));
   }
 }
