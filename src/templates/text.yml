@@ -1,11 +1,19 @@
 ---
-name: URL input component (<input type="url">)
+name: Text input component (<input type="text|url|password|email">)
 description: 'Let the user select a color. Note: It is not supported in Internet Explorer or Safari.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
 props:
 - name: value
   description: The current value
   type: string
+- name: type
+  description: The type of textual data (text, url, password, email)
+  type:
+  - text
+  - url
+  - password
+  - email
+  default: text
 - name: maxLength
   description: The maximum acceptable length
   type: number
