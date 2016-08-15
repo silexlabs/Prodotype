@@ -1,6 +1,6 @@
 ---
-name: Checkbox component (<input type="checkbox">)
-description: 'Let the user select a boolean option.'
+name: Checkbox component (<input type="checkbox|radio">)
+description: 'Let the user select an option. Use the "name" property to group the radio buttons.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
 props:
 - name: checked
@@ -9,6 +9,12 @@ props:
 - name: label
   description: The label of the component
   type: multiline
+- name: type
+  description: The type of the component (radio or checkbox)
+  type:
+  - checkbox
+  - radio
+  default: checkbox
 - name: required
   description: Whether the component must be filled out before submitting a form
   type: boolean
