@@ -1,0 +1,89 @@
+---
+name: Button
+description: A control that lets the user select a file. Use the accept attribute to define the types of files that the control can select.
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+props:
+- name: value
+  description: The path or the name of the selected file
+  type: string
+- name: accept
+  description: Indicates the types of files that the server accepts. The value must be a comma-separated list of unique content type specifiers.
+  type: string
+- name: disabled
+  description: Whether the component is disabled, or not
+  type: boolean
+- name: multiple
+  type: boolean
+  default: false
+  description: Indicates whether the user is allowed to select more than one file.
+- name: required
+  type: boolean
+  default: false
+  description: 'A Boolean attribute indicating that an option with a non-empty string value must be selected.'
+- name: autofocus
+  type: boolean
+  default: false
+  description: 'This attribute lets you specify that a form control should have input focus when the page loads, unless the user overrides it, for example by typing in a different control. Only one form element in a document can have the autofocus attribute, which is a Boolean.'
+- name: name
+  type: string
+  description: 'The name of the control, which will be sent to the server when the user validates the form.'
+- name: form
+  type: string
+  description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
+- name: onchange
+  type: action
+  description: "Fires the moment when the value of the element is changed"
+- name: onmousedown
+  type: action
+  description: "Fires when a mouse button is pressed down on an element"
+- name: onmousemove
+  type: action
+  description: "Fires when the mouse pointer is moving while it is over an element"
+- name: onmouseout
+  type: action
+  description: "Fires when the mouse pointer moves out of an element"
+- name: onmouseover
+  type: action
+  description: "Fires when the mouse pointer moves over an element"
+- name: onmouseup
+  type: action
+  description: "Fires when a mouse button is released over an element"
+- name: onwheel
+  type: action
+  description: "Fires when the mouse wheel rolls up or down over an element"
+- name: onblur
+  type: action
+  description: "Fires the moment that the element loses focus"
+- name: oncontextmenu
+  type: action
+  description: "Script to be run when a context menu is triggered"
+- name: onfocus
+  type: action
+  description: "Fires the moment when the element gets focus"
+- name: oninput
+  type: action
+  description: "Script to be run when an element gets user input"
+- name: oninvalid
+  type: action
+  description: "Script to be run when an element is invalid"
+- name: onreset
+  type: action
+  description: "Fires when the Reset button in a form is clicked"
+- name: onsearch
+  type: action
+  description: "Fires when the user writes something in a search field (for <input=\"search\">)"
+- name: onselect
+  type: action
+  description: "Fires after some text has been selected in an element"
+- name: onsubmit
+  type: action
+  description: "Fires when a form is submitted"
+- name: onkeydown
+  type: action
+  description: "Fires when a user is pressing a key"
+- name: onkeypres
+  type: action
+  description: "Fires when a user presses a key"
+- name: onkeyup
+  type: action
+  description: "Fires when a user releases a key"
