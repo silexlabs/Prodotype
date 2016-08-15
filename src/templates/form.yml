@@ -6,6 +6,9 @@ props:
 - name: action
   type: string
   description: 'The URI of a program that processes the form information.'
+- name: name
+  type: string
+  description: 'The name of the form (must be unique).'
 - name: target
   type: string
   description: 'Indicates where to display the response that is received after submitting the form. Possible values are: _self, _blank, _parent, _top, iframename.'
@@ -14,9 +17,6 @@ props:
   - off
   - on
   description: 'Indicates whether input elements can by default have their values automatically completed by the browser.'
-- name: name
-  type: string
-  description: 'The name of the form (must be unique).'
 - name: novalidate
   type: boolean
   description: 'Prevent the form to be validated when submitted.'

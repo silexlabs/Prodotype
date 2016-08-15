@@ -1,7 +1,8 @@
-<input list="<%= id %>" name="myBrowser" /></label>
-<datalist id="<%= id %>"
-  <% if(autofocus) { %>autofocus<% } %>
+<input list="<%= id %>" name="myBrowser" />
+<datalist
+  id="<%= id %>"
   <% if(disabled) { %>disabled<% } %>
+  <% if(autofocus) { %>autofocus<% } %>
   <% if(multiple) { %>multiple<% } %>
   <% if(required) { %>required<% } %>
   <% if(form) { %>form="<%= form %>"<% } %>
