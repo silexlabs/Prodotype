@@ -1,0 +1,107 @@
+---
+name: Number input component (<input type="number|range">)
+description: 'Let the user select a numeric value. Note: It is not supported in Internet Explorer 9 and earlier versions..'
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+props:
+- name: value
+  description: The current value
+  type: number
+- name: label
+  description: The label of the component
+  type: multiline
+- name: required
+  description: Whether the component must be filled out before submitting a form
+  type: boolean
+- name: disabled
+  description: Whether the component is disabled, or not
+  type: boolean
+- name: readOnly
+  description: Whether the component is read only, or not
+  type: boolean
+- name: min
+  description: min value
+  type: string
+- name: max
+  description: max value
+  type: string
+- name: step
+  description: step to increment or decrement the value with up/down arrow
+  type: number
+- name: form
+  description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
+  type: string
+- name: name
+  description: Name of the component
+  type: string
+- name: type
+  description: Type of component
+  type:
+  - number
+  - range
+  default: number
+- name: readOnly
+  description: The component is read-only, or not
+  type: boolean
+- name: autocomplete
+  description: Enable the autocomplete feature of the browser
+  type: boolean
+- name: autofocus
+  description: The component should automatically get focus when the page loads
+  type: boolean
+- name: onchange
+  type: action
+  description: "Fires the moment when the value of the element is changed"
+- name: onmousedown
+  type: action
+  description: "Fires when a mouse button is pressed down on an element"
+- name: onmousemove
+  type: action
+  description: "Fires when the mouse pointer is moving while it is over an element"
+- name: onmouseout
+  type: action
+  description: "Fires when the mouse pointer moves out of an element"
+- name: onmouseover
+  type: action
+  description: "Fires when the mouse pointer moves over an element"
+- name: onmouseup
+  type: action
+  description: "Fires when a mouse button is released over an element"
+- name: onwheel
+  type: action
+  description: "Fires when the mouse wheel rolls up or down over an element"
+- name: onblur
+  type: action
+  description: "Fires the moment that the element loses focus"
+- name: oncontextmenu
+  type: action
+  description: "Script to be run when a context menu is triggered"
+- name: onfocus
+  type: action
+  description: "Fires the moment when the element gets focus"
+- name: oninput
+  type: action
+  description: "Script to be run when an element gets user input"
+- name: oninvalid
+  type: action
+  description: "Script to be run when an element is invalid"
+- name: onreset
+  type: action
+  description: "Fires when the Reset button in a form is clicked"
+- name: onsearch
+  type: action
+  description: "Fires when the user writes something in a search field (for <input=\"search\">)"
+- name: onselect
+  type: action
+  description: "Fires after some text has been selected in an element"
+- name: onsubmit
+  type: action
+  description: "Fires when a form is submitted"
+- name: onkeydown
+  type: action
+  description: "Fires when a user is pressing a key"
+- name: onkeypres
+  type: action
+  description: "Fires when a user presses a key"
+- name: onkeyup
+  type: action
+  description: "Fires when a user releases a key"
