@@ -42,6 +42,7 @@ props:
   - button
   - menu
   description: "The type of the button. Possible values are: submit, reset, button, menu."
+  default: button
 - name: onclick
   type: action
   description: "Fires on a mouse click on the element"

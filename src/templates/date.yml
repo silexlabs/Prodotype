@@ -5,7 +5,6 @@ doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
 props:
 - name: value
   description: The current value
-  defalut: 2014-02-09
   type: string
 - name: required
   description: Whether the component must be filled out before submitting a form
@@ -28,6 +27,15 @@ props:
 - name: name
   description: Sets or returns the value of the name attribute of a date field
   type: string
+- name: type
+  description: Type of date field
+  type:
+  - date
+  - month
+  - week
+  - time
+  - datetime
+  - datetime-local
 - name: readOnly
   description: Sets or returns whether the date field is read-only, or not
   type: boolean
