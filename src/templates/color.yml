@@ -1,6 +1,6 @@
 ---
-name: Date component (<input type="date">)
-description: 'Let the user select a date. Note: It does not show as any date field/calendar in Firefox.'
+name: Color component (<input type="color">)
+description: 'Let the user select a color. Note: It is not supported in Internet Explorer or Safari.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
 props:
 - name: value
@@ -13,29 +13,14 @@ props:
 - name: disabled
   description: Whether the component is disabled, or not
   type: boolean
-- name: min
-  description: Sets or returns the value of the min attribute of the date field
-  type: string
-- name: max
-  description: Sets or returns the value of the max attribute of the date field
-  type: string
-- name: step
-  description: Sets or returns the value of the step attribute of the date field
-  type: number
 - name: form
   description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
   type: string
 - name: name
-  description: Sets or returns the value of the name attribute of a date field
+  description: Sets the value of the name attribute of a date field
   type: string
-- name: readOnly
-  description: Sets or returns whether the date field is read-only, or not
-  type: boolean
-- name: autocomplete
-  description: Sets or returns the value of the autocomplete attribute of a date field
-  type: boolean
 - name: autofocus
-  description: Sets or returns whether a date field should automatically get focus when the page loads
+  description: Whether the component should automatically get focus when the page loads
   type: boolean
 - name: onchange
   type: action
