@@ -18,7 +18,11 @@ export default class Editor extends React.Component {
       let editors = this.props.definition.props
         .map((def, idx) => {
           let itemData = JSON.parse(JSON.stringify(def));
+          // compute the value
           itemData.value = this.props.data[itemData.name] || itemData.default;
+          // add an id to be used in the template to link several elements together
+          itemData.uid = `${Date.now()}-${Math.round(Math.random() * 99999)}`;
+          // det which editor for this property
           let itemClass = null;
           if(itemData.type instanceof Array) {
             itemClass = EnumEditor;

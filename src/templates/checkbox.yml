@@ -6,6 +6,9 @@ props:
 - name: checked
   description: The current value
   type: boolean
+- name: label
+  description: The label of the component
+  type: multiline
 - name: required
   description: Whether the component must be filled out before submitting a form
   type: boolean
