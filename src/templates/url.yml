@@ -1,39 +1,39 @@
 ---
-name: Dropdown list (<select>)
-description: Let the user select an option among a list of options.
-doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+name: URL input component (<input type="url">)
+description: 'Let the user select a color. Note: It is not supported in Internet Explorer or Safari.'
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
 props:
-- name: data
-  type: array
-  description: 'The options (1 per line).'
-  default:
-  - option 1
-  - option 2
+- name: value
+  description: The current value
+  type: string
+- name: maxLength
+  description: The maximum acceptable length
+  type: number
+- name: placeholder
+  description: The short hint that describes the expected value of an URL field
+  type: string
+- name: pattern
+  description: The regular expression that the URL field's value is checked against
+  type: string
+  default: "https?://.+"
+- name: required
+  description: Whether the component must be filled out before submitting a form
+  type: boolean
 - name: disabled
   description: Whether the component is disabled, or not
   type: boolean
-- name: multiple
+- name: readOnly
+  description: Whether the component is read only, or not
   type: boolean
-  default: false
-  description: 'This Boolean attribute indicates that multiple options can be selected in the list. If it is not specified, then only one option can be selected at a time.'
-- name: size
-  type: number
-  default: 0
-  description: 'If the control is presented as a scrolled list box, this attribute represents the number of rows in the list that should be visible at one time. Browsers are not required to present a select element as a scrolled list box. The default value is 0.'
-- name: required
-  type: boolean
-  default: false
-  description: 'A Boolean attribute indicating that an option with a non-empty string value must be selected.'
-- name: autofocus
-  type: boolean
-  default: false
-  description: 'This attribute lets you specify that a form control should have input focus when the page loads, unless the user overrides it, for example by typing in a different control. Only one form element in a document can have the autofocus attribute, which is a Boolean.'
-- name: name
-  type: string
-  description: 'The name of the control, which will be sent to the server when the user validates the form.'
 - name: form
-  type: string
   description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
+  type: string
+- name: name
+  description: Sets the value of the name attribute of a date field
+  type: string
+- name: autofocus
+  description: Whether the component should automatically get focus when the page loads
+  type: boolean
 - name: onchange
   type: action
   description: "Fires the moment when the value of the element is changed"

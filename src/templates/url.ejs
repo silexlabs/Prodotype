@@ -1,15 +1,12 @@
-<input type="<%= type %>"
-  <% if(autocomplete) { %>autocomplete<% } %>
+<input type="url"
   <% if(autofocus) { %>autofocus<% } %>
   <% if(disabled) { %>disabled<% } %>
   <% if(readOnly) { %>readOnly<% } %>
+  <% if(maxLength) { %>maxLength="<%= maxLength %>"<% } %>
+  <% if(placeholder) { %>placeholder="<%= placeholder %>"<% } %>
+  <% if(pattern) { %>pattern="<%= pattern %>"<% } %>
   <% if(form) { %>form="<%= form %>"<% } %>
-  <% if(max) { %>max="<%= max %>"<% } %>
-  <% if(min) { %>min="<%= min %>"<% } %>
   <% if(name) { %>name="<%= name %>"<% } %>
-  <% if(readOnly) { %>readOnly<% } %>
-  <% if(required) { %>required<% } %>
-  <% if(step) { %>step="<%= step %>"<% } %>
   <% if(value) { %>value="<%= value %>"<% } %>
   <% if(onchange) { %>onchange="<%= onchange %>"<% } %>
   <% if(onmousedown) { %>onmousedown="<%= onmousedown %>"<% } %>

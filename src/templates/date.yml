@@ -12,6 +12,9 @@ props:
 - name: disabled
   description: Whether the component is disabled, or not
   type: boolean
+- name: readOnly
+  description: Whether the component is read only, or not
+  type: boolean
 - name: min
   description: Sets or returns the value of the min attribute of the date field
   type: string
