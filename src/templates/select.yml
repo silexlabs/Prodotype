@@ -39,8 +39,10 @@ props:
   type: string
   description: 'The name of the control, which will be sent to the server when the user validates the form.'
 - name: form
-  type: string
-  description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
+  type: component
+  accept:
+  - form
+  description: "The form element that the component is associated with (its form owner)."
 - name: onchange
   type: action
   description: "Fires the moment when the value of the element is changed"

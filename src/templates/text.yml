@@ -41,8 +41,10 @@ props:
   description: Whether the component is read only, or not
   type: boolean
 - name: form
-  description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
-  type: string
+  type: component
+  accept:
+  - form
+  description: "The form element that the component is associated with (its form owner)."
 - name: name
   description: Sets the value of the name attribute of a date field
   type: string

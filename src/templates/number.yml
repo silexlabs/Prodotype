@@ -35,8 +35,10 @@ props:
   description: step to increment or decrement the value with up/down arrow
   type: number
 - name: form
-  description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
-  type: string
+  type: component
+  accept:
+  - form
+  description: "The form element that the component is associated with (its form owner)."
 - name: name
   description: Name of the component
   type: string

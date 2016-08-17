@@ -29,7 +29,7 @@ props:
   type: component
   accept:
   - form
-  description: "The form element that the button is associated with (its form owner). The value of the attribute must be the id attribute of a <form> element in the same document."
+  description: "The form element that the component is associated with (its form owner)."
 - name: formaction
   type: string
   description: "The URI of a program that processes the information submitted by the button. If specified, it overrides the action attribute of the button''s form owner."

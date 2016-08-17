@@ -32,8 +32,10 @@ props:
   description: Sets or returns the value of the step attribute of the date field
   type: number
 - name: form
-  description: 'The form element that the select element is associated with. The value must be the ID of a form element in the same document.'
-  type: string
+  type: component
+  accept:
+  - form
+  description: "The form element that the component is associated with (its form owner)."
 - name: name
   description: Sets or returns the value of the name attribute of a date field
   type: string
