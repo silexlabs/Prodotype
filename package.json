@@ -7,6 +7,8 @@
   "license": "ISC",
   "scripts": {
     "build": "npm run build:editor && npm run build:templates",
+    "watch": "nodemon --watch 'src' --exec 'npm run build'",
+    "reload": "reload -v -b -d pub/ -p 8081",
     "build:editor": "browserify src/js/Prodotype.js -o pub/prodotype.js -t [ babelify ] && cat node_modules/ejs/ejs.min.js >> pub/prodotype.js",
     "build:templates": "node src/js/BuildTemplates.js",
     "start": "http-server ."
@@ -19,12 +21,16 @@
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "ejs": "^2.5.1",
-    "http-server": "^0.9.0",
     "js-yaml": "^3.6.1",
     "material-ui": "^0.15.2",
     "react": "^15.2.0",
     "react-ace": "^3.5.0",
     "react-dom": "^15.2.0",
+    "http-server": "^0.9.0",
     "react-tap-event-plugin": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0",
+    "reload": "^1.0.1"
   }
 }
