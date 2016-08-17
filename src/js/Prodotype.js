@@ -60,14 +60,16 @@ export default class Prodotype {
    * build the ui for a component
    * and notify me when user changes a property
    */
-  edit(data, templateName, onChange) {
+  edit(data, templateName, options) {
+    options = options || {};
     ReactDOM.render(<Editor
-      data={data}
-      definition={this.componentsDef[templateName]}
-      onChange={(value) => {
-        this.edit(value, templateName, onChange);
+      onBrowse = {options.onBrowse}
+      data = {data}
+      definition = {this.componentsDef[templateName]}
+      onChange = {(value) => {
+        this.edit(value, templateName, options);
         this.decorate(templateName, value)
-          .then(html => onChange(value, html));
+          .then(html => options.onChange(value, html));
       }}
     />, this.container);
   }

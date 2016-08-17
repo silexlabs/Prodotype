@@ -47,6 +47,7 @@
     }
     #stage > * > * {
       width: 100%;
+      height: 250px;
     }
     #stage > .selected {
       border-color: orange;
@@ -81,13 +82,14 @@
     var addBtn = document.getElementById('add-btn');
     var rmBtn = document.getElementById('rm-btn');
     var componentSelect = document.getElementById('components');
-    addBtn.onclick = add;
+    addBtn.onclick = function(e) {add();};
     rmBtn.onclick = rm;
-    function add() {
+    function add(compName) {
+      var compName = compName || componentSelect.value;
       var element = document.createElement('div');
-      prodotype.decorate(componentSelect.value, {})
+      prodotype.decorate(compName, {})
         .then(html => element.innerHTML = html);
-      element.setAttribute('data-template-name', componentSelect.value);
+      element.setAttribute('data-template-name', compName);
 
       element.onclick = function() {
         select(element);
@@ -98,7 +100,6 @@
     function rm() {
       stage.removeChild(document.querySelector('.selected'));
       prodotype.reset();
-      console.log('rm');
     }
     function select(element) {
       var selection = document.querySelectorAll('.selected');
@@ -110,9 +111,14 @@
 
       var data = JSON.parse(element.getAttribute('data-data') || '{}');
       var templateName = element.getAttribute('data-template-name');
-      prodotype.edit(data, templateName, function(newData, html) {
-        element.setAttribute('data-data', JSON.stringify(newData));
-        element.innerHTML = html;
+      prodotype.edit(data, templateName, {
+        onChange: function(newData, html) {
+          element.setAttribute('data-data', JSON.stringify(newData));
+          element.innerHTML = html;
+        },
+        onBrowse: function(e) {
+          // e.preventDefault();
+        }
       });
     }
 
@@ -124,6 +130,7 @@
         option.value = option.innerHTML = name;
         componentSelect.appendChild(option);
       }
+      add('card');
     });
 
   </script>

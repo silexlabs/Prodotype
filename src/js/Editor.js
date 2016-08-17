@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import List from 'material-ui/List';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import ActionInfo from 'material-ui/svg-icons/action/info';
 import ArrayEditor from './ArrayEditor';
 import StringEditor from './StringEditor';
 import MulitlineEditor from './MulitlineEditor';
@@ -10,7 +11,7 @@ import BooleanEditor from './BooleanEditor';
 import NumberEditor from './NumberEditor';
 import ActionEditor from './ActionEditor';
 import EnumEditor from './EnumEditor';
-import ActionInfo from 'material-ui/svg-icons/action/info';
+import FileEditor from './FileEditor';
 
 export default class Editor extends React.Component {
   render() {
@@ -47,6 +48,9 @@ export default class Editor extends React.Component {
               case 'action':
                 itemClass = ActionEditor;
                 break;
+              case 'file':
+                itemClass = FileEditor;
+                break;
               default:
                 console.error('Unknown property type:', itemData.type, itemData);
                 return null;
@@ -55,6 +59,7 @@ export default class Editor extends React.Component {
           return React.createElement(itemClass, {
             key: idx++,
             data: itemData,
+            onBrowse: this.props.onBrowse,
             onChange: (value) => {
               this.props.data[itemData.name] = value;
               this.props.onChange(this.props.data);
@@ -80,6 +85,9 @@ export default class Editor extends React.Component {
     return <MuiThemeProvider>
       <section>
         <Card>
+          <CardHeader
+            title='Select a component'
+          />
         </Card>
       </section>
     </MuiThemeProvider>;
