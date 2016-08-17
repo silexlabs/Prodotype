@@ -13,6 +13,7 @@ import ActionEditor from './ActionEditor';
 import EnumEditor from './EnumEditor';
 import FileEditor from './FileEditor';
 import ColorEditor from './ColorEditor';
+import ComponentEditor from './ComponentEditor';
 
 export default class Editor extends React.Component {
   render() {
@@ -55,6 +56,9 @@ export default class Editor extends React.Component {
               case 'color':
                 itemClass = ColorEditor;
                 break;
+              case 'component':
+                itemClass = ComponentEditor;
+                break;
               default:
                 console.error('Unknown property type:', itemData.type, itemData);
                 return null;
@@ -63,6 +67,7 @@ export default class Editor extends React.Component {
           return React.createElement(itemClass, {
             key: idx++,
             data: itemData,
+            componentNames: this.props.componentNames,
             onBrowse: this.props.onBrowse,
             onChange: (value) => {
               this.props.data[itemData.name] = value;

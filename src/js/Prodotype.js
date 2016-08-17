@@ -59,20 +59,28 @@ export default class Prodotype {
   /**
    * build the ui for a component
    * and notify me when user changes a property
+   * @param {Object} data the component's data to edit
+   * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
+   * @param {string} temlateName the type of the component to edit
+   * @param {onChange:function, ?onBrowse:function} events
    */
-  edit(data, templateName, options) {
-    options = options || {};
+  edit(data, componentNames, templateName, events) {
+    console.log('edit', data, componentNames, templateName, events);
+    events = events || {};
     ReactDOM.render(<Editor
-      onBrowse = {options.onBrowse}
+      componentNames = {componentNames}
+      onBrowse = {events.onBrowse}
       data = {data}
       definition = {this.componentsDef[templateName]}
       onChange = {(value) => {
-        this.edit(value, templateName, options);
+        this.edit(value, componentNames, templateName, events);
         this.decorate(templateName, value)
-          .then(html => options.onChange(value, html));
+          .then(html => events.onChange(value, html));
       }}
     />, this.container);
   }
+
+
   /**
    * render the HTML for a component
    * with the given data merged with defaults
@@ -80,11 +88,24 @@ export default class Prodotype {
   decorate(templateName, data) {
     return this.renderer.render(this.componentsDef[templateName], data, templateName);
   }
+
+
   /**
    * reset the ui
    */
   reset() {
     ReactDOM.render(<Editor />, this.container);
+  }
+
+
+  /**
+   * create a name
+   */
+  createName(templateName, componentNames) {
+    let idx = 0;
+    while(componentNames.map(compData => compData.name).includes(templateName + (++idx))) {
+    }
+    return templateName + idx;
   }
 }
 

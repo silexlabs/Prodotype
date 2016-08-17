@@ -26,7 +26,9 @@ props:
   type: string
   description: "The name of the button, which is submitted with the form data."
 - name: form
-  type: string
+  type: component
+  accept:
+  - form
   description: "The form element that the button is associated with (its form owner). The value of the attribute must be the id attribute of a <form> element in the same document."
 - name: formaction
   type: string

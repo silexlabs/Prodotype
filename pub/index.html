@@ -87,9 +87,13 @@
     function add(compName) {
       var compName = compName || componentSelect.value;
       var element = document.createElement('div');
-      prodotype.decorate(compName, {})
+      var name = prodotype.createName(compName, getCompList());
+      prodotype.decorate(compName, {
+        name: name
+      })
         .then(html => element.innerHTML = html);
       element.setAttribute('data-template-name', compName);
+      element.setAttribute('data-name', name);
 
       element.onclick = function() {
         select(element);
@@ -101,6 +105,16 @@
       stage.removeChild(document.querySelector('.selected'));
       prodotype.reset();
     }
+    function getCompList() {
+      var comps = document.querySelectorAll('[data-template-name]');
+      var compArr = [];
+      for(idx=0; idx < comps.length; idx++) compArr.push({
+        name: comps[idx].getAttribute('data-name'),
+        displayName: (comps[idx].getAttribute('data-name') || 'No name') + ' (' + comps[idx].getAttribute('data-template-name') + ')',
+        templateName: comps[idx].getAttribute('data-template-name')
+      });
+      return compArr;
+    }
     function select(element) {
       var selection = document.querySelectorAll('.selected');
       for(var idx=0; idx < selection.length; idx++) {
@@ -111,7 +125,7 @@
 
       var data = JSON.parse(element.getAttribute('data-data') || '{}');
       var templateName = element.getAttribute('data-template-name');
-      prodotype.edit(data, templateName, {
+      prodotype.edit(data, getCompList(), templateName, {
         onChange: function(newData, html) {
           element.setAttribute('data-data', JSON.stringify(newData));
           element.innerHTML = html;
@@ -130,7 +144,7 @@
         option.value = option.innerHTML = name;
         componentSelect.appendChild(option);
       }
-      add('card');
+      add('button');
     });
 
   </script>
