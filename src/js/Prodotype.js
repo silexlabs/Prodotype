@@ -65,7 +65,6 @@ export default class Prodotype {
    * @param {onChange:function, ?onBrowse:function} events
    */
   edit(data, componentNames, templateName, events) {
-    console.log('edit', data, componentNames, templateName, events);
     events = events || {};
     ReactDOM.render(<Editor
       componentNames = {componentNames}
@@ -99,7 +98,7 @@ export default class Prodotype {
 
 
   /**
-   * create a name
+   * create a unique meaningful name
    */
   createName(templateName, componentNames) {
     let idx = 0;
@@ -107,6 +106,71 @@ export default class Prodotype {
     }
     return templateName + idx;
   }
+
+
+  /**
+   * get the dependencies for the list of components
+   */
+  getDependencies(componentNames) {
+    return componentNames
+      .reduce((prev, current) => {
+        var dependencies = this.componentsDef[current.templateName].dependencies;
+        for(var depType in dependencies) {
+          prev[depType] = prev[depType] || [];
+          prev[depType] = prev[depType].concat(dependencies[depType]);
+        }
+        return prev;
+      }, {});
+  }
+
+  /**
+   *
+   */
+  updateDependencies(container, componentNames) {
+    var dependencies = this.getDependencies(componentNames);
+    // remove what is not needed
+    for(var elIdx = 0; elIdx < container.childNodes.length; elIdx++) {
+      var el = container.childNodes[elIdx];
+      if(el.nodeType === Node.ELEMENT_NODE) {
+        var tagName = el.tagName.toLowerCase();
+        if(dependencies[tagName]) {
+          var found = dependencies[tagName].find(function(dep) {
+            for(var attrName in dep)
+              if(el.getAttribute(attrName) === dep[attrName])
+                return true;
+            return false;
+          });
+          if(!found) {
+            console.log('remove 1', el);
+            container.removeChild(el);
+          }
+        }
+        else {
+          console.log('remove 2', el);
+          container.removeChild(el);
+        }
+      }
+    }
+    // add what is missing
+    for(var type in dependencies) {
+      var depType = dependencies[type];
+      for(var idxDep in depType) {
+        var dep = depType[idxDep];
+        var attributes = [];
+        for(var attrName in dep) attributes.push(attrName + '="' + dep[attrName] + '"');
+        var selector = type + '[' + attributes.join('][') + ']';
+        var existing = container.querySelector(selector);
+        if(!existing) {
+          var el = document.createElement(type);
+          for(var attrName in dep) el.setAttribute(attrName, dep[attrName]);
+          container.appendChild(el);
+          console.log('add', el);
+        }
+      }
+    }
+  }
+
+
 }
 
 window.Prodotype = Prodotype;

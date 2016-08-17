@@ -1,5 +1,5 @@
 ---
-name: Button
+name: Card
 description: Wide card with share menu button.
 doc: https://getmdl.io/components/#cards-section
 category: custom css
@@ -8,17 +8,14 @@ tags:
 - image
 - custom
 dependencies:
-- script:
-  -
-    - src: https://code.getmdl.io/1.2.0/material.min.js
-    - defer: ''
-- link:
-  -
-    - rel: stylesheet
-    - href: https://fonts.googleapis.com/icon?family=Material+Icons
-  -
-    - rel: stylesheet
-    - href: https://code.getmdl.io/1.2.0/material.indigo-pink.min.css
+  script:
+  - src: https://code.getmdl.io/1.2.0/material.min.js
+    defer: ''
+  link:
+  - rel: stylesheet
+    href: https://fonts.googleapis.com/icon?family=Material+Icons
+  - rel: stylesheet
+    href: https://code.getmdl.io/1.2.0/material.indigo-pink.min.css
 props:
 - name: title
   type: string
