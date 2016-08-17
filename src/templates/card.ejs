@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
 <!-- Wide card with share menu button -->
 <style>
 .demo-card-wide.mdl-card {
@@ -19,7 +16,9 @@
   </div>
   <div class="mdl-card__supporting-text"><%= text %></div>
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+      <% if(onclick) { %>onclick="<%= onclick %>"<% } %>
+    >
       <%= buttonLabel %>
     </a>
   </div>

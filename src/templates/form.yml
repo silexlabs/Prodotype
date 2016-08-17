@@ -2,6 +2,12 @@
 name: Form component (<form>)
 description: Used to send form data to a server.
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+category: form input
+tags:
+- form
+- input
+- dropdown
+dependencies:
 props:
 - name: action
   type: string

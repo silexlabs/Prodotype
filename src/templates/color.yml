@@ -2,6 +2,13 @@
 name: Color component (<input type="color">)
 description: 'Let the user select a color. Note: It is not supported in Internet Explorer or Safari.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+category: form input
+tags:
+- form
+- input
+- dropdown
+- color
+dependencies:
 props:
 - name: value
   description: The current value

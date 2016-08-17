@@ -1,7 +1,24 @@
 ---
 name: Button
-description: Let the user select an option among a list of options.
-doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+description: Wide card with share menu button.
+doc: https://getmdl.io/components/#cards-section
+category: custom css
+tags:
+- material
+- image
+- custom
+dependencies:
+- script:
+  -
+    - src: https://code.getmdl.io/1.2.0/material.min.js
+    - defer: ''
+- link:
+  -
+    - rel: stylesheet
+    - href: https://fonts.googleapis.com/icon?family=Material+Icons
+  -
+    - rel: stylesheet
+    - href: https://code.getmdl.io/1.2.0/material.indigo-pink.min.css
 props:
 - name: title
   type: string
@@ -33,3 +50,6 @@ props:
   accept: 'image/*'
   multiple: false
   default:
+- name: onclick
+  type: action
+  description: "Fires on a mouse click on the element"

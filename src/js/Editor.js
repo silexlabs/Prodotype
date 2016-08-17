@@ -12,6 +12,7 @@ import NumberEditor from './NumberEditor';
 import ActionEditor from './ActionEditor';
 import EnumEditor from './EnumEditor';
 import FileEditor from './FileEditor';
+import ColorEditor from './ColorEditor';
 
 export default class Editor extends React.Component {
   render() {
@@ -50,6 +51,9 @@ export default class Editor extends React.Component {
                 break;
               case 'file':
                 itemClass = FileEditor;
+                break;
+              case 'color':
+                itemClass = ColorEditor;
                 break;
               default:
                 console.error('Unknown property type:', itemData.type, itemData);

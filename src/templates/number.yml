@@ -2,6 +2,13 @@
 name: Number input component (<input type="number|range">)
 description: 'Let the user select a numeric value. Note: It is not supported in Internet Explorer 9 and earlier versions..'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+category: form input
+tags:
+- form
+- input
+- dropdown
+- number
+dependencies:
 props:
 - name: value
   description: The current value

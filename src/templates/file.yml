@@ -1,7 +1,14 @@
 ---
-name: Button
+name: File (<input type="file">)
 description: A control that lets the user select a file. Use the accept attribute to define the types of files that the control can select.
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+category: form input
+tags:
+- form
+- input
+- dropdown
+- file
+dependencies:
 props:
 - name: value
   description: The path or the name of the selected file

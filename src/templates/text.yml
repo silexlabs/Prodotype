@@ -1,7 +1,14 @@
 ---
 name: Text input component (<input type="text|url|password|email">)
-description: 'Let the user select a color. Note: It is not supported in Internet Explorer or Safari.'
+description: 'Let the user type a text.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+category: form input
+tags:
+- form
+- input
+- dropdown
+- text
+dependencies:
 props:
 - name: value
   description: The current value

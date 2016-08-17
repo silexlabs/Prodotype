@@ -2,6 +2,13 @@
 name: Date component (<input type="date">)
 description: 'Let the user select a date. Note: It does not show as any date field/calendar in Firefox.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+category: form input
+tags:
+- form
+- input
+- dropdown
+- date
+dependencies:
 props:
 - name: value
   description: The current value

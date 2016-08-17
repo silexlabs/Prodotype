@@ -2,6 +2,14 @@
 name: Checkbox component (<input type="checkbox|radio">)
 description: 'Let the user select an option. Use the "name" property to group the radio buttons.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+category: form input
+tags:
+- form
+- input
+- dropdown
+- checkbox
+- radio
+dependencies:
 props:
 - name: checked
   description: The current value

@@ -13,7 +13,7 @@ import FlatButton from 'material-ui/FlatButton';
  *   "type": string indicating the MIME type of the data contained in the Blob. If the type is unknown, this string is empty.
  * }
  */
-export default class ActionEditor extends React.Component {
+export default class FileEditor extends React.Component {
   changed() {
     const files = this.input.files;
     if(files.length > 0) {
