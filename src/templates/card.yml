@@ -1,0 +1,35 @@
+---
+name: Button
+description: Let the user select an option among a list of options.
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+props:
+- name: title
+  type: string
+  default: Welcome
+  description: 'The title of the card.'
+- name: titleColor
+  type: color
+  default: "#FFFFFF"
+  description: 'The title of the card.'
+- name: headerHeight
+  type: number
+  default: 176
+  description: 'The height of the header.'
+- name: headerColor
+  type: color
+  default: "#EEEEEE"
+  description: 'The background color of the header.'
+- name: text
+  type: multiline
+  default: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  description: 'The text of the card.'
+- name: buttonLabel
+  type: string
+  default: Get started
+  description: 'The label on the button.'
+- name: image
+  type: file
+  description: 'The image of the card.'
+  accept: 'image/*'
+  multiple: false
+  default:
