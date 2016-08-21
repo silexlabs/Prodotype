@@ -42,7 +42,7 @@ export default class Prodotype {
    */
   loadComponentsDef(rootPath) {
     if(this.isReady) return;
-    var oReq = new XMLHttpRequest();
+    let oReq = new XMLHttpRequest();
     oReq.open("GET", rootPath + '/components.json');
     oReq.send();
     oReq.addEventListener("error", (e) => {
@@ -110,12 +110,13 @@ export default class Prodotype {
 
   /**
    * get the dependencies for the list of components
+   * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    */
   getDependencies(componentNames) {
     return componentNames
       .reduce((prev, current) => {
-        var dependencies = this.componentsDef[current.templateName].dependencies;
-        for(var depType in dependencies) {
+        const dependencies = this.componentsDef[current.templateName].dependencies;
+        for(let depType in dependencies) {
           prev[depType] = prev[depType] || [];
           prev[depType] = prev[depType].concat(dependencies[depType]);
         }
@@ -124,53 +125,64 @@ export default class Prodotype {
   }
 
   /**
-   *
+   * find the missing dependencies for a given set of components
+   * @param {Array.<Element>} the element containing the dependencies (scripts and style sheets)
+   * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
+   * @return {Array.<Element>} the elements to be added to the site
    */
-  updateDependencies(container, componentNames) {
-    var dependencies = this.getDependencies(componentNames);
-    // remove what is not needed
-    for(var elIdx = 0; elIdx < container.childNodes.length; elIdx++) {
-      var el = container.childNodes[elIdx];
-      if(el.nodeType === Node.ELEMENT_NODE) {
-        var tagName = el.tagName.toLowerCase();
-        if(dependencies[tagName]) {
-          var found = dependencies[tagName].find(function(dep) {
-            for(var attrName in dep)
-              if(el.getAttribute(attrName) === dep[attrName])
-                return true;
-            return false;
-          });
-          if(!found) {
-            console.log('remove 1', el);
-            container.removeChild(el);
-          }
-        }
-        else {
-          console.log('remove 2', el);
-          container.removeChild(el);
-        }
-      }
-    }
-    // add what is missing
-    for(var type in dependencies) {
-      var depType = dependencies[type];
-      for(var idxDep in depType) {
-        var dep = depType[idxDep];
-        var attributes = [];
-        for(var attrName in dep) attributes.push(attrName + '="' + dep[attrName] + '"');
-        var selector = type + '[' + attributes.join('][') + ']';
-        var existing = container.querySelector(selector);
+  getMissingDependencies(container, componentNames) {
+    console.log('getMissingDependencies', container, componentNames);
+    let result = [];
+    const dependencies = this.getDependencies(componentNames);
+    for(let type in dependencies) {
+      let depType = dependencies[type];
+      for(let idxDep in depType) {
+        let dep = depType[idxDep];
+        let attributes = [];
+        for(let attrName in dep) attributes.push(attrName + '="' + dep[attrName] + '"');
+        let selector = type + '[' + attributes.join('][') + ']';
+        let existing = container.querySelector(selector);
         if(!existing) {
-          var el = document.createElement(type);
-          for(var attrName in dep) el.setAttribute(attrName, dep[attrName]);
-          container.appendChild(el);
-          console.log('add', el);
+          let el = document.createElement(type);
+          for(let attrName in dep) el.setAttribute(attrName, dep[attrName]);
+          result.push(el);
         }
       }
     }
+    return result;
   }
 
 
+  /**
+   * find the missing dependencies for a given set of components
+   * @param {Array.<Element>} depencies, i.e. scripts and style sheets
+   * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
+   */
+  getUnusedDependencies(dependencyElements, componentNames) {
+    console.log('getUnusedDependencies', dependencyElements, componentNames);
+    const result = [];
+    const dependencies = this.getDependencies(componentNames);
+    // remove what is not needed
+    for(let elIdx = 0; elIdx < dependencyElements.length; elIdx++) {
+      const el = dependencyElements[elIdx];
+      const tagName = el.tagName.toLowerCase();
+      if(dependencies[tagName]) {
+        let found = dependencies[tagName].find(function(dep) {
+          for(let attrName in dep)
+            if(el.getAttribute(attrName) === dep[attrName])
+              return true;
+          return false;
+        });
+        if(!found) {
+          result.push(el);
+        }
+      }
+      else {
+        result.push(el);
+      }
+    }
+    return result;
+  }
 }
 
 window.Prodotype = Prodotype;

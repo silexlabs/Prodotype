@@ -105,12 +105,27 @@
       }
       select(element);
       stage.appendChild(element);
-      prodotype.updateDependencies(dependenciesElement, getCompList());
+      updateDependencies();
+    }
+    function updateDependencies() {
+      // removed unused dependencies (scripts and style sheets)
+      var unused = prodotype.getUnusedDependencies(document.head.querySelectorAll('[data-dependency]'), getCompList());
+      for(var idx=0; idx < unused.length; idx++) {
+        var el = unused[idx];
+        document.head.removeChild(el);
+      };
+      // add missing dependencies (scripts and style sheets)
+      var missing = prodotype.getMissingDependencies(document.head, getCompList());
+      for(var idx=0; idx < missing.length; idx++) {
+        var el = missing[idx];
+        el.setAttribute('data-dependency', '')
+        document.head.appendChild(el);
+      };
     }
     function rm() {
       stage.removeChild(document.querySelector('.selected'));
       prodotype.reset();
-      prodotype.updateDependencies(dependenciesElement, getCompList());
+      updateDependencies();
     }
     function getCompList() {
       var comps = document.querySelectorAll('[data-template-name]');
