@@ -30,6 +30,11 @@ export default class Editor extends React.Component {
           if(itemData.type instanceof Array) {
             itemClass = EnumEditor;
           }
+          else if(itemData.type instanceof Object) {
+            console.error('TODO: array', itemData.type);
+            // itemClass = ArrayEditor; (different from StringArrayEditor ?)
+            return;
+          }
           else {
             switch(itemData.type) {
               case 'array':

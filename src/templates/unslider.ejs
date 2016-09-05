@@ -1,0 +1,28 @@
+<script>
+  jQuery(document).ready(function($) {
+    var slider = $('#<%= uid %>').unslider({
+      "autoplay": <%= autoplay %>,
+      "speed": <%= speed %>,
+      "delay": <%= delay %>,
+      "index": <%= index %>,
+      "nav": <%= nav %>,
+      "arrows": <%= arrows %>,
+      "activeClass": "<%= activeClass %>"
+    });
+    //  Listen to slide changes
+    <% if(onchange) { %>
+    slider.on('unslider.change', function(event, index, slide) {
+      <%= onchange %>
+    });
+    <% } %>
+  };
+</script>
+<div id="<%= uid %>">
+  <ul>
+  <% for(var idx in slides) { %>
+    <li style="<% if(slides[idx].bgColor) { %>background-color: <%= slides[idx].bgColor %>; <% } %> <% if(slides[idx].color) { %>color:<%= slides[idx].color %>; <% } %><% if(image) { %>background-image:<%= slides[idx].image %>;<% } %>">
+      <% if(text) { %><%= slides[idx].text %><% } %>
+    </li>
+  <% } %>
+  </ul>
+</div>

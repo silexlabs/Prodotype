@@ -29,6 +29,8 @@ export default class Renderer {
     });
   }
   doRender(data, template, resolve, reject) {
+    // uid
+    if(!data.uid) data.uid = Date.now() + '-' + Math.round(Math.random() * 1000);
     try {
       resolve(ejs.render(template, data));
     }

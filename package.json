@@ -8,7 +8,7 @@
   "scripts": {
     "build": "npm run build:editor && npm run build:templates",
     "watch": "nodemon --watch 'src' --exec 'npm run build'",
-    "reload": "reload -v -b -d pub/ -p 8081",
+    "reload": "reload -v -b -d pub/ -p 8080",
     "build:editor": "browserify src/js/Prodotype.js -o pub/prodotype.js -t [ babelify ] && cat node_modules/ejs/ejs.min.js >> pub/prodotype.js",
     "build:templates": "node src/js/BuildTemplates.js",
     "start": "http-server ."

@@ -1,0 +1,76 @@
+---
+name: Unslider slideshow
+description: 'Display a series of texts and images.'
+doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+category: form input
+tags:
+- form
+- input
+- dropdown
+- text
+dependencies:
+  script:
+  - src: //code.jquery.com/jquery-2.1.4.min.js
+    defer: ''
+  - src: https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js
+    defer: ''
+  link:
+  - rel: stylesheet
+    href:   https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/css/unslider.css
+props:
+- name: slides
+  description: images and texts
+  type:
+    image:
+      type: file
+      description: image of the slide
+    text:
+      type: multiline
+      default: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      description: text to display in the slide
+    bgColor:
+      type: color
+      default: red
+      description: "the slide's background color"
+    color:
+      type: color
+      default: green
+      description: color of the text
+- name: animation
+  default: 'horizontal'
+  description: How should Unslider animate each slide? Right now, there's three different animation types
+  type:
+  - horizontal
+  - vertical
+  - fade
+- name: autoplay
+  type: boolean
+  default: false
+  description: Should the slider move by itself or only be triggered manually?
+- name: speed
+  type: number
+  default: 750
+  description: How fast (in milliseconds) Unslider should animate between slides.
+- name: delay
+  type: number
+  default: 3000
+  description: If autoplay is set to true, how many milliseconds should pass between moving the slides?
+- name: index
+  type: number
+  default: 0
+  description: "If this is set to an integer, 'first' or 'last', it'll set the default slide to that position rather than the first slide."
+- name: nav
+  type: boolean
+  default: true
+  description: Do you want to generate an automatic clickable navigation for each slide in your slider?
+- name: arrows
+  type: boolean
+  default: true
+  description: Do you want to add left/right arrows to your slider?
+- name: activeClass
+  type: string
+  default: 'unslider-active'
+  description: What class should Unslider set to the active slides and navigation items? Use this if you want to match your CSS.
+- name: onchange
+  type: action
+  description: "Fires the moment when the slide changes"
