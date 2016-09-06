@@ -20,8 +20,8 @@
 <div id="<%= uid %>">
   <ul>
   <% for(var idx in slides) { %>
-    <li style="<% if(slides[idx].bgColor) { %>background-color: <%= slides[idx].bgColor %>; <% } %> <% if(slides[idx].color) { %>color:<%= slides[idx].color %>; <% } %><% if(image) { %>background-image:<%= slides[idx].image %>;<% } %>">
-      <% if(text) { %><%= slides[idx].text %><% } %>
+    <li style="<% if(slides[idx].bgColor) { %>background-color: <%= slides[idx].bgColor %>; <% } %> <% if(slides[idx].color) { %>color:<%= slides[idx].color %>; <% } %><% if(slides[idx].image) { %>background-image:<%= slides[idx].image %>;<% } %>">
+      <% if(slides[idx].text) { %><%= slides[idx].text %><% } %>
     </li>
   <% } %>
   </ul>

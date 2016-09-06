@@ -21,18 +21,18 @@ props:
 - name: slides
   description: images and texts
   type:
-    image:
+    - name: image
       type: file
       description: image of the slide
-    text:
+    - name: text
       type: multiline
       default: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       description: text to display in the slide
-    bgColor:
+    - name: bgColor
       type: color
       default: red
       description: "the slide's background color"
-    color:
+    - name: color
       type: color
       default: green
       description: color of the text

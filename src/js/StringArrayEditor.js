@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import PropEditorBase from './PropEditorBase'
 
-export default class ArrayEditor extends React.Component {
+export default class StringArrayEditor extends React.Component {
   render() {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
       <TextField
