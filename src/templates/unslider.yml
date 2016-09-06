@@ -10,10 +10,8 @@ tags:
 - text
 dependencies:
   script:
-  - src: //code.jquery.com/jquery-2.1.4.min.js
-    defer: ''
+  - src: https://code.jquery.com/jquery-2.1.4.min.js
   - src: https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js
-    defer: ''
   link:
   - rel: stylesheet
     href:   https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/css/unslider.css
@@ -30,11 +28,11 @@ props:
       description: text to display in the slide
     - name: bgColor
       type: color
-      default: red
+      default: #FF0000
       description: "the slide's background color"
     - name: color
       type: color
-      default: green
+      default: #00FF00
       description: color of the text
 - name: animation
   default: 'horizontal'
