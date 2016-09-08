@@ -12,6 +12,7 @@ export default class ObjectArrayEditor extends React.Component {
         const itemData = JSON.parse(JSON.stringify(subType));
         // compute the value
         itemData.value = subData[itemData.name] || itemData.default;
+        console.log('aaa', itemData.value)
         // create the editor
         return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
           subData[itemData.name] = value;

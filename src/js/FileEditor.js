@@ -14,6 +14,13 @@ import FlatButton from 'material-ui/FlatButton';
  * }
  */
 export default class FileEditor extends React.Component {
+  /**
+   * a custom script has intercepted the browse command
+   * this happens when onBrowse is set and calls e.preventDefault()
+   */
+  changedCustom(fileLikeObjects) {
+    this.props.onChange(fileLikeObjects);
+  }
   changed() {
     const files = this.input.files;
     if(files.length > 0) {
@@ -61,7 +68,9 @@ export default class FileEditor extends React.Component {
         label="Browse"
         labelPosition="before"
         onClick={e => {
-          this.props.onBrowse(e)
+          this.props.onBrowse(e, url => {
+            this.changedCustom(url);
+          });
           if(!e.defaultPrevented) this.input.click();
         }}
       >

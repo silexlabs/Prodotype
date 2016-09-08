@@ -1,5 +1,5 @@
 .sublime*
-pub/**/*.js
+pub/prodotype.js
 pub/**/*.ejs
 pub/**/*.json
 node_modules

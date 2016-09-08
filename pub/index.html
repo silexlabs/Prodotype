@@ -3,177 +3,24 @@
 <head>
   <title>Prodotype demo: editor</title>
   <script type="text/javascript" src="./prodotype.js"></script>
-  <style type="text/css">
-    body {
-        background-color: #006775;
-    }
-    button:hover {
-      background-color: lightgrey;
-    }
-    input, textarea, keygen, select, button {
-      padding: 7px;
-      border-radius: 5px;
-      min-width: 35px;
-      font-size: medium;
-      font-family: Roboto, sans-serif;
-    }
-    #info {
-      color: white;
-      padding: 17px;
-      font-family: Roboto, sans-serif;
-    }
-    #tools {
-      left: 45%;
-      position: fixed;
-      margin: 20px 30px;
-      z-index: 10;
-    }
-    #stage {
-      float: right;
-      left: 45%;
-      right: 0;
-      top: 160px;
-      bottom: 0;
-      position: fixed;
-      margin: 70px 18px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-    }
-    #stage > * {
-      min-width: 100px;
-      min-height: 100px;
-      border: 1px dashed #000;
-      margin: 10px;
-      padding: 10px;
-      cursor: pointer;
-    }
-    #stage > * > * {
-      width: 100%;
-      height: 250px;
-    }
-    #stage > .selected {
-      border-color: orange;
-      border-left-width: 5px;
-      border-left-style: double;
-    }
-    #ui {
-      width: 45%;
-      float: left;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="./demo.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <article id="info">
-    <p>On this page:</p>
-    <ul>
-      <li>On the left the "Prodotype" editor</li>
-      <li>On the right, an app which uses the "Prodotype" editor to create components</li>
-    </ul>
-    <p>More info <a href="https://github.com/lexoyo/Prodotype">on github</a></p>
-  </article>
-  <div id="dependencies"></div>
-  <div id="ui"></div>
   <div id="tools">
+    <article id="info">
+      <p>On this page:</p>
+      <ul>
+        <li>On the left the "Prodotype" editor</li>
+        <li>On the right, an app which uses the "Prodotype" editor to create components</li>
+      </ul>
+      <p>More info <a href="https://github.com/lexoyo/Prodotype">on github</a></p>
+    </article>
     <select id="components"></select>
-    <button id="add-btn">+</button>
-    <button id="rm-btn">-</button>
+    <div id="ui"></div>
   </div>
   <div id="stage"></div>
-
-  <script type="text/javascript">
-    var stage = document.getElementById('stage');
-    var addBtn = document.getElementById('add-btn');
-    var rmBtn = document.getElementById('rm-btn');
-    var componentSelect = document.getElementById('components');
-    var dependenciesElement = document.getElementById('dependencies');
-    addBtn.onclick = function(e) {add();};
-    rmBtn.onclick = rm;
-    function add(compName) {
-      var compName = compName || componentSelect.value;
-      var element = document.createElement('div');
-      var name = prodotype.createName(compName, getCompList());
-      prodotype.decorate(compName, {
-        name: name
-      })
-        .then(html => element.innerHTML = html);
-      element.setAttribute('data-template-name', compName);
-      element.setAttribute('data-name', name);
-
-      element.onclick = function() {
-        select(element);
-        return false;
-      }
-      select(element);
-      stage.appendChild(element);
-      updateDependencies();
-    }
-    function updateDependencies() {
-      // removed unused dependencies (scripts and style sheets)
-      var unused = prodotype.getUnusedDependencies(document.head.querySelectorAll('[data-dependency]'), getCompList());
-      for(var idx=0; idx < unused.length; idx++) {
-        var el = unused[idx];
-        document.head.removeChild(el);
-      };
-      // add missing dependencies (scripts and style sheets)
-      var missing = prodotype.getMissingDependencies(document.head, getCompList());
-      for(var idx=0; idx < missing.length; idx++) {
-        var el = missing[idx];
-        el.setAttribute('data-dependency', '')
-        document.head.appendChild(el);
-      };
-    }
-    function rm() {
-      stage.removeChild(document.querySelector('.selected'));
-      prodotype.reset();
-      updateDependencies();
-    }
-    function getCompList() {
-      var comps = document.querySelectorAll('[data-template-name]');
-      var compArr = [];
-      for(idx=0; idx < comps.length; idx++) compArr.push({
-        name: comps[idx].getAttribute('data-name'),
-        displayName: (comps[idx].getAttribute('data-name') || 'No name') + ' (' + comps[idx].getAttribute('data-template-name') + ')',
-        templateName: comps[idx].getAttribute('data-template-name')
-      });
-      return compArr;
-    }
-    function select(element) {
-      var selection = document.querySelectorAll('.selected');
-      for(var idx=0; idx < selection.length; idx++) {
-        var el = selection[idx];
-        el.classList.remove('selected');
-      };
-      element.classList.add('selected');
-
-      var data = JSON.parse(element.getAttribute('data-data') || '{}');
-      var templateName = element.getAttribute('data-template-name');
-      prodotype.edit(data, getCompList(), templateName, {
-        onChange: function(newData, html) {
-          element.setAttribute('data-data', JSON.stringify(newData));
-          element.innerHTML = html;
-        },
-        onBrowse: function(e) {
-          // e.preventDefault();
-        }
-      });
-    }
-
-    var ui = document.getElementById('ui');
-    var prodotype = new Prodotype(ui, './components');
-    prodotype.ready(function(err) {
-      for(var name in prodotype.componentsDef) {
-        var option = document.createElement('option')
-        option.value = option.innerHTML = name;
-        componentSelect.appendChild(option);
-      }
-      add('unslider');
-      // add('card');
-      // add('button');
-      // add('form');
-      // add('color');
-    });
-
-  </script>
-<a href="https://github.com/lexoyo/Prodotype"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  <script type="text/javascript" src="./demo.js"></script>
+  <a href="https://github.com/lexoyo/Prodotype"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 </body>
 </html>
