@@ -8,7 +8,6 @@ import 'brace/theme/github';
 export default class ActionEditor extends React.Component {
   render() {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
-      <label>{ this.props.data.name }</label>
       <AceEditor
         mode="javascript"
         onChange={(value) => this.props.onChange(value)}

@@ -9,7 +9,6 @@ export default class BooleanEditor extends React.Component {
         checked={ this.props.data.value ? 'checked' : '' }
         onChange={(e) => this.props.onChange(e.target.checked)}
       />
-      <label>{ this.props.data.name }</label>
     </PropEditorBase>;
   }
 }

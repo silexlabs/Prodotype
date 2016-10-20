@@ -40,3 +40,17 @@ div#ui {
 }
 #stage > .selected {
 }
+
+/* ******* */
+/* editors */
+/* ******* */
+
+#ui .prop-editor-base {
+  display: flex;
+  border-bottom: 1px solid;
+}
+#ui .prop-editor-base > * {
+  flex: 1 1 auto;
+  margin: 10px;
+  text-align: left;
+}

@@ -11,7 +11,6 @@ export default class EnumEditor extends React.Component {
         value = {  name  }
       >{  name  }</option>);
     return <PropEditorBase data = { this.props.data } >
-        <label>{ this.props.data.name }</label>
         <select
           id = {  "InputValue" + (PropEditorBase.idx++) }
           defaultValue = { this.props.data.value }

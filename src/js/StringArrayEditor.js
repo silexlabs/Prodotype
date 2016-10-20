@@ -4,7 +4,6 @@ import PropEditorBase from './PropEditorBase'
 export default class StringArrayEditor extends React.Component {
   render() {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
-      <label>{ this.props.data.name }</label>
       <textarea
         id={ "InputValue" + (PropEditorBase.idx++) }
         value={ this.props.data.value.join('\n') }

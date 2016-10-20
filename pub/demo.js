@@ -69,6 +69,9 @@ function select(element) {
 var ui = document.getElementById('ui');
 var prodotype = new Prodotype(ui, './components');
 prodotype.ready(function(err) {
+  var option = document.createElement('option')
+  option.value = option.innerHTML = '-';
+  componentSelect.appendChild(option);
   for(var name in prodotype.componentsDef) {
     var option = document.createElement('option')
     option.value = option.innerHTML = name;
@@ -77,7 +80,7 @@ prodotype.ready(function(err) {
   componentSelect.onchange = function (e) {
     add(componentSelect.value);
   }
-  var initValue = 'button';
+  var initValue = '';
   componentSelect.value = initValue;
   setTimeout(add, 1000);
 });
