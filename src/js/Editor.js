@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import List from 'material-ui/List';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import ActionInfo from 'material-ui/svg-icons/action/info';
 import StringArrayEditor from './StringArrayEditor';
 import ObjectArrayEditor from './ObjectArrayEditor';
 import StringEditor from './StringEditor';
@@ -82,37 +78,29 @@ export default class Editor extends React.Component {
           // clone the definition
           const itemData = JSON.parse(JSON.stringify(def));
           // compute the value
-          itemData.value = this.props.data[itemData.name] || itemData.default;
+          if(typeof this.props.data[itemData.name] === 'undefined')
+            itemData.value = itemData.default;
+          else
+            itemData.value = this.props.data[itemData.name];
           // create the editor
           return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
             this.props.data[itemData.name] = value;
             this.props.onChange(this.props.data);
           }, idx);
         });
-      return <MuiThemeProvider>
-        <section>
-          <Card>
-            <CardHeader
-              title={ this.props.definition.name }
-              subtitle={ <span>
-                <p>{ this.props.definition.description }</p>
-                <ActionInfo onClick={ () => window.open(this.props.definition.doc,'_blank') } />
-                </span> }
-            />
-            <List>{editors}</List>
-          </Card>
-        </section>
-      </MuiThemeProvider>;
+      return <section>
+        <h1>{ this.props.definition.name }</h1>
+        <div>{ <span>
+          <p>{ this.props.definition.description }</p>
+          <button onClick={ () => window.open(this.props.definition.doc,'_blank') }>?</button>
+        </span> }
+        </div>
+        <ul>{ editors }</ul>
+      </section>;
     }
     // nothing selected
-    return <MuiThemeProvider>
-      <section>
-        <Card>
-          <CardHeader
-            title='Select a component'
-          />
-        </Card>
-      </section>
-    </MuiThemeProvider>;
+    return <section>
+      <h1>'Select a component'</h1>
+    </section>;
   }
 }

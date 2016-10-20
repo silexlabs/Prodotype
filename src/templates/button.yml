@@ -1,6 +1,6 @@
 ---
 name: Button
-description: Let the user select an option among a list of options.
+description: HTML button tag for your forms.
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
 category: form input
 tags:

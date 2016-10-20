@@ -8,7 +8,10 @@ export default class Renderer {
   render(def, data, templateName) {
     return new Promise((resolve, reject) => {
       let dataWithDefaults = def.props.reduce((prev, cur) => {
-        prev[cur.name] = data[cur.name] || cur.default;
+        if(typeof data[cur.name] === 'undefined')
+          prev[cur.name] = cur.default;
+        else
+          prev[cur.name] = data[cur.name];
         return prev;
       }, {});
       if(this.templates[templateName]) {
@@ -32,6 +35,7 @@ export default class Renderer {
     // uid
     if(!data.uid) data.uid = Date.now() + '-' + Math.round(Math.random() * 1000);
     try {
+      console.log('render', data);
       resolve(ejs.render(template, data));
     }
     catch(e) {

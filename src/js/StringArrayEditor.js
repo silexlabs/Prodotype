@@ -1,20 +1,17 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
 import PropEditorBase from './PropEditorBase'
 
 export default class StringArrayEditor extends React.Component {
   render() {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
-      <TextField
+      <label>{ this.props.data.name }</label>
+      <textarea
+        id={ "InputValue" + (PropEditorBase.idx++) }
         value={ this.props.data.value.join('\n') }
-        floatingLabelText={ this.props.data.name }
-        floatingLabelFixed={true}
-        name={ "InputValue" + (PropEditorBase.idx++) }
         onChange={(e) => this.props.onChange(e.target.value.split('\n').map(row => {
           try { return JSON.parse(row); } catch(e) { return row; };
         }))}
-        multiLine={true}
-        rows={2}
+        rows={5}
       />
     </PropEditorBase>;
   }

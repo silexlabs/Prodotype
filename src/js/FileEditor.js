@@ -1,6 +1,5 @@
 import React from 'react';
 import PropEditorBase from './PropEditorBase'
-import FlatButton from 'material-ui/FlatButton';
 
 /**
  * onChange will be called with an array of File data, e.g.
@@ -64,9 +63,7 @@ export default class FileEditor extends React.Component {
     });
     return <PropEditorBase data={this.props.data}>
       {imagesPreview}
-      <FlatButton
-        label="Browse"
-        labelPosition="before"
+      <div
         onClick={e => {
           this.props.onBrowse(e, url => {
             this.changedCustom(url);
@@ -81,7 +78,7 @@ export default class FileEditor extends React.Component {
           type="file"
           onChange={e => this.changed()}
         />
-      </FlatButton>
+      </div>
     </PropEditorBase>;
   }
 }

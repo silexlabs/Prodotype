@@ -6,8 +6,8 @@ export default class NumberEditor extends React.Component {
     return <PropEditorBase onChange={this.props.onChange} data={this.props.data}>
       <label>{ this.props.data.name }</label><br />
       <input
+        id={ "InputValue" + (PropEditorBase.idx++) }
         type="number"
-        name={ "InputValue" + (PropEditorBase.idx++) }
         value={ this.props.data.value || '' }
         onChange={(e) => this.props.onChange(e.target.value)}
       />

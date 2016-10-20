@@ -1,0 +1,57 @@
+<style>
+  #_<%= uid %> th {
+    border: 1px solid lightgrey;
+    padding: 20px;
+    font-weight: 100;
+  }
+</style>
+<table id="_<%= uid %>">
+  <caption>Rendered values</caption>
+  <tr>
+    <th>uid</th>
+    <th><%= uid %></th>
+  </tr>
+    <th>enumval</th>
+    <th><%= enumval %></th>
+  </tr>
+  <tr>
+    <th>boolval</th>
+    <th><%= boolval %></th>
+  </tr>
+  <tr>
+    <th>stringarrayval</th>
+    <th>[<%= stringarrayval.join(', ') %>]</th>
+  </tr>
+  <tr>
+    <th>arrayofobjects</th>
+    <th>{<%= arrayofobjects ? JSON.stringify(arrayofobjects) : '' %>}</th>
+  </tr>
+  <tr>
+    <th>stringval</th>
+    <th>{<%= stringval %>}</th>
+  </tr>
+  <tr>
+    <th>multilineval</th>
+    <th>{<%= multilineval %>}</th>
+  </tr>
+  <tr>
+    <th>numberval</th>
+    <th>{<%= numberval %>}</th>
+  </tr>
+  <tr>
+    <th>actionval</th>
+    <th>{<%= actionval %>}</th>
+  </tr>
+  <tr>
+    <th>fileval</th>
+    <th>{<%= fileval %>}</th>
+  </tr>
+  <tr>
+    <th>colorval</th>
+    <th>{<%= colorval %>}</th>
+  </tr>
+  <tr>
+    <th>componentval</th>
+    <th>{<%= componentval %>}</th>
+  </tr>
+</table>

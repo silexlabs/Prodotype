@@ -77,7 +77,7 @@ prodotype.ready(function(err) {
   componentSelect.onchange = function (e) {
     add(componentSelect.value);
   }
-  var initValue = 'unslider';
+  var initValue = 'button';
   componentSelect.value = initValue;
   setTimeout(add, 1000);
 });

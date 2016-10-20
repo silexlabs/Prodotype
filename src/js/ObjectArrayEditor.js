@@ -1,5 +1,4 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
 import Editor from './Editor'
 import PropEditorBase from './PropEditorBase'
 
@@ -11,8 +10,10 @@ export default class ObjectArrayEditor extends React.Component {
         // clone the definition
         const itemData = JSON.parse(JSON.stringify(subType));
         // compute the value
-        itemData.value = subData[itemData.name] || itemData.default;
-        console.log('aaa', itemData.value)
+        if(typeof this.props.data[itemData.name] === 'undefined')
+          itemData.value = itemData.default;
+        else
+          itemData.value = this.props.data[itemData.name];
         // create the editor
         return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
           subData[itemData.name] = value;
