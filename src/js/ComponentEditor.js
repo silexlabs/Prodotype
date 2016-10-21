@@ -16,7 +16,6 @@ export default class ComponentEditor extends React.Component {
     });
     return <PropEditorBase data = { this.props.data } >
         <select
-          id = {  "InputValue" + (PropEditorBase.idx++) }
           value = { this.props.data.value }
         >
           { options }

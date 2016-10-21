@@ -35,7 +35,6 @@ export default class Renderer {
     // uid
     if(!data.uid) data.uid = Date.now() + '-' + Math.round(Math.random() * 1000);
     try {
-      console.log('render', data);
       resolve(ejs.render(template, data));
     }
     catch(e) {
