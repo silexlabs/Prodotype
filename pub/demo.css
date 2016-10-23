@@ -15,6 +15,7 @@ body, html {
 }
 div#tools {
   width: 550px;
+  max-width: 50%;
   display: flex;
   flex-direction: column;
 }
@@ -27,6 +28,7 @@ select#components {
 div#ui {
   width: 100%;
   overflow: auto;
+  background-color: #333;
 }
 #stage {
   flex: 1 1 auto;
@@ -34,17 +36,23 @@ div#ui {
   align-items: center;
   justify-content: center;
 }
-#stage > * {
-}
-#stage > * > * {
-}
-#stage > .selected {
-}
 
 /* ******* */
-/* editors */
+/* editor */
 /* ******* */
 
+/* header */
+#ui .description-container {
+  display: flex;
+}
+#ui .description-container .description  {
+  flex: 1 1 auto;
+}
+#ui .description-container .help  {
+  padding: 15px;
+  border-radius: 50%;
+}
+/* properties */
 #ui .prop-editor-base {
   display: flex;
   border-bottom: 1px solid;
@@ -53,4 +61,11 @@ div#ui {
   flex: 1 1 auto;
   margin: 10px;
   text-align: left;
+}
+#ui .prop-editor-base .image-preview {
+  min-width: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border: 1px solid;
 }

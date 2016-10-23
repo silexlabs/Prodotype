@@ -53,10 +53,10 @@ export default class FileEditor extends React.Component {
     let idx = 0;
     const imagesPreview = this.props.data.value.map(file => {
       if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
-        return <img
+        return <div className="image-preview"
           key = {idx++}
           title = {file.name}
-          src = {file.url}
+          style = {{backgroundImage: 'url(' + file.url + ')'}}
         />
       }
       return null;
@@ -68,7 +68,8 @@ export default class FileEditor extends React.Component {
           this.props.onBrowse(e, url => {
             this.changedCustom(url);
           });
-          if(!e.defaultPrevented) this.input.click();
+          // here the e.preventDefault might have been called
+          // (case of custom browse dialog)
         }}
       >
         <input

@@ -88,11 +88,11 @@ export default class Editor extends React.Component {
             this.props.onChange(this.props.data);
           }, idx);
         });
-      return <section>
-        <h1>{ this.props.definition.name }</h1>
-        <div>{ <span>
-          <p>{ this.props.definition.description }</p>
-          <button onClick={ () => window.open(this.props.definition.doc,'_blank') }>?</button>
+      return <section className="editor">
+        <h1 className="name">{ this.props.definition.name }</h1>
+        <div>{ <span className="description-container">
+          <p className="description">{ this.props.definition.description }</p>
+          <button className="help" onClick={ () => window.open(this.props.definition.doc,'_blank') }>?</button>
         </span> }
         </div>
         <ul>{ editors }</ul>
