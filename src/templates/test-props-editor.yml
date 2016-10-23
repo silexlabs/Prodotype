@@ -33,7 +33,6 @@ props:
   - third-value
 - name: arrayofobjects
   description: array of objects
-  default:
   type:
     - name: field1
       type: boolean

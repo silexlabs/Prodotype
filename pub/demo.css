@@ -53,6 +53,9 @@ div#ui {
   border-radius: 50%;
 }
 /* properties */
+#ui .editor > ul {
+  padding: 0;
+}
 #ui .prop-editor-base {
   display: flex;
   border-bottom: 1px solid;
@@ -61,6 +64,9 @@ div#ui {
   flex: 1 1 auto;
   margin: 10px;
   text-align: left;
+}
+#ui .prop-editor-base .sub-editors-container .add-btn {
+  width: 100%;
 }
 #ui .prop-editor-base .image-preview {
   min-width: 100px;

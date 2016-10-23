@@ -27,12 +27,19 @@ export default class ObjectArrayEditor extends React.Component {
             this.props.data.value.splice(idx, 1);
             this.props.onChange(this.props.data.value);
           }}>-</button>
-          {subEditors}
+          <div className="sub-editors">
+            {subEditors}
+          </div>
         </div>;
     });
-    return <PropEditorBase>
-      { editors }
-      <button onClick={e => this.props.onChange(this.props.data.value.concat([{}]))}>+</button>
+    return <PropEditorBase data={this.props.data}>
+      <div className="sub-editors-container">
+        { editors }
+        <button
+          className="add-btn"
+          onClick={e => this.props.onChange(this.props.data.value.concat([{}]))}
+        >+</button>
+      </div>
     </PropEditorBase>;
   }
 }
