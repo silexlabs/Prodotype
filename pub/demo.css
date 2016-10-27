@@ -3,14 +3,12 @@ body, html {
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   background-color: #006775;
-  color: white;
-  display: flex;
-  flex-direction: row;
+  color: #DDD;
   height: 100%;
   width: 100%;
+  display: flex;
 }
 #info, #info a {
-  color: white;
   padding: 17px;
 }
 div#tools {
@@ -28,13 +26,12 @@ select#components {
 div#ui {
   width: 100%;
   overflow: auto;
-  background-color: #333;
+  background-color: #444;
 }
 #stage {
-  flex: 1 1 auto;
-  display: flex;
   align-items: center;
   justify-content: center;
+  margin: auto;
 }
 
 /* ******* */
@@ -51,8 +48,8 @@ div#ui {
 #ui .description-container .help {
   border-radius: 50%;
   background: none;
-  color: white;
-  border: 1px solid white;
+  color: #DDD;
+  border: 1px solid #DDD;
   margin: 5px;
   width: 25px;
   height: 25px;
@@ -61,32 +58,66 @@ div#ui {
 #ui .description-container .help:hover {
   background-color: darkgrey;
 }
+/* ******* */
 /* properties */
+/* ******* */
 #ui .editor > ul {
+  border-bottom: 1px solid #2F2F2F;
+  margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 #ui .prop-editor-base {
-  display: flex;
-  border-bottom: 1px solid;
+  border-top: 1px solid #2F2F2F;
 }
-#ui .prop-editor-base > label {
-  flex: 1 1 auto;
+#ui .prop-editor-base.prop-editor-expand {
+  margin-bottom: 20px;
 }
-#ui .prop-editor-base > * {
-  margin: 10px;
-  text-align: left;
-  width: 300px;
+#ui .prop-editor-base .prop-editor-container > * {
+  margin: auto;
+  width: 95%;
+  display: block;
 }
-#ui .prop-editor-base > input[type=color] {
+#ui .prop-editor-base .prop-editor-description .fa {
+  cursor: pointer;
+}
+#ui .prop-editor-base .prop-editor-description {
+  display: block;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+#ui .prop-editor-base .prop-editor-container > input[type=number],
+#ui .prop-editor-base .prop-editor-container > input[type=color] {
   width: 50px;
-}
-#ui .prop-editor-base .sub-editors-container .add-btn {
-  width: 100%;
 }
 #ui .prop-editor-base .image-preview {
   min-width: 100px;
-  background-size: cover;
+  min-height: 100px;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: 50%;
   border: 1px solid;
+}
+/* array of object editor */
+#ui .prop-editor-base .sub-editors-container .sub-editors {
+  border-bottom: 1px solid #2F2F2F;
+  margin-bottom: 9px;
+
+}
+#ui .prop-editor-base .sub-editors-container {
+  width: 90%;
+  border-bottom: 1px solid #2F2F2F;
+  border-left: 1px solid #2F2F2F;
+  border-right: 1px solid #2F2F2F;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+#ui .prop-editor-base .sub-editors-container .remove-btn {
+  width: 90%;
+  margin: auto;
+  display: block;
+}
+#ui .prop-editor-base .add-btn,
+#ui .prop-editor-base .sub-editors-container .remove-btn {
+  cursor: pointer;
 }
