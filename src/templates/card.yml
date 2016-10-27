@@ -23,7 +23,7 @@ props:
   description: 'The title of the card.'
 - name: titleColor
   type: color
-  default: "#FFFFFF"
+  default: "#333333"
   description: 'The title of the card.'
 - name: headerHeight
   type: number
@@ -41,12 +41,12 @@ props:
   type: string
   default: Get started
   description: 'The label on the button.'
+- name: onclick
+  type: action
+  description: Javascript code executed when the button is clicked.
 - name: image
   type: file
   description: 'The image of the card.'
   accept: 'image/*'
   multiple: false
   default:
-- name: onclick
-  type: action
-  description: "Fires on a mouse click on the element"
