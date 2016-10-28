@@ -10,10 +10,10 @@ export default class ObjectArrayEditor extends React.Component {
         // clone the definition
         const itemData = JSON.parse(JSON.stringify(subType));
         // compute the value
-        if(typeof this.props.data[itemData.name] === 'undefined')
+        if(typeof subData[itemData.name] === 'undefined')
           itemData.value = itemData.default;
         else
-          itemData.value = this.props.data[itemData.name];
+          itemData.value = subData[itemData.name];
         // create the editor
         return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
           subData[itemData.name] = value;
@@ -27,19 +27,33 @@ export default class ObjectArrayEditor extends React.Component {
           <div className="sub-editors">
             {subEditors}
           </div>
-          <div
-            className="remove-btn fa fa-inverse fa-trash-o"
+          <span
+            className="btn remove-btn fa fa-trash-o"
             onClick={e => {
               this.props.data.value.splice(idx, 1);
               this.props.onChange(this.props.data.value);
             }}
-          ></div>
+          ></span>
+          <span
+            className="btn up-btn fa fa-angle-up"
+            onClick={e => {
+              this.props.data.value.splice(Math.max(0, idx - 1), 0, this.props.data.value.splice(idx, 1)[0]);
+              this.props.onChange(this.props.data.value);
+            }}
+          ></span>
+          <span
+            className="btn up-btn fa fa-angle-down"
+            onClick={e => {
+              this.props.data.value.splice(Math.min(this.props.data.value.length, idx + 1), 0, this.props.data.value.splice(idx, 1)[0]);
+              this.props.onChange(this.props.data.value);
+            }}
+          ></span>
         </div>;
     });
     return <PropEditorBase data={this.props.data}>
       { editors }
       <div
-        className="add-btn fa fa-2x fa-inverse fa-plus-square-o"
+        className="btn add-btn fa fa-2x fa-plus-square-o"
         onClick={e => this.props.onChange(this.props.data.value.concat([{}]))}
       ></div>
     </PropEditorBase>;

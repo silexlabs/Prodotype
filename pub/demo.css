@@ -112,12 +112,15 @@ div#ui {
   margin-bottom: 20px;
   padding-bottom: 10px;
 }
-#ui .prop-editor-base .sub-editors-container .remove-btn {
+#ui .prop-editor-base .btn {
   width: 90%;
-  margin: auto;
-  display: block;
-}
-#ui .prop-editor-base .add-btn,
-#ui .prop-editor-base .sub-editors-container .remove-btn {
   cursor: pointer;
+  display: inline;
+  margin: 10px;
+  opacity: .8;
+}
+#ui .prop-editor-base .btn:hover {
+  opacity: 1;
+}
+#ui .prop-editor-base .add-btn {
 }
