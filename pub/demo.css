@@ -78,10 +78,13 @@ div#ui {
   width: 95%;
   display: block;
 }
-#ui .prop-editor-base .prop-editor-description .fa {
+#ui .prop-editor-base .prop-editor-description {
+  padding: 12px
+}
+#ui .prop-editor-base .prop-editor-name .fa {
   cursor: pointer;
 }
-#ui .prop-editor-base .prop-editor-description {
+#ui .prop-editor-base .prop-editor-name {
   display: block;
   padding: 10px 5px;
   cursor: pointer;
