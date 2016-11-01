@@ -1,7 +1,7 @@
 <div id="<%= uid %>">
   <ul>
   <% for(var idx in slides) { %>
-    <li style="<% if(slides[idx].bgColor) { %>background-color: <%= slides[idx].bgColor %>; <% } %> <% if(slides[idx].color) { %>color:<%= slides[idx].color %>; <% } %><% if(slides[idx].image) { %>background-image:<%= slides[idx].image %>;<% } %>">
+    <li style="<% if(slides[idx].bgColor) { %>background-color: <%= slides[idx].bgColor %>; <% } %> <% if(slides[idx].color) { %>color:<%= slides[idx].color %>; <% } %><% if(slides[idx].image && slides[idx].image[0]) { %>background-image:url("<%= slides[idx].image[0].url %>");<% } %>">
       <% if(slides[idx].text) { %><%= slides[idx].text %><% } %>
     </li>
   <% } %>
