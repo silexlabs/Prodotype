@@ -2,7 +2,8 @@
 name: test-props-editor
 description: 'test-props-editor'
 doc: https://duckduckgo.com
-category: tests
+category: Tests
+isPrivate: true
 tags:
 - test
 - debug

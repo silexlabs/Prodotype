@@ -1,8 +1,8 @@
 ---
-name: File (<input type="file">)
+name: File Input
 description: A control that lets the user select a file. Use the accept attribute to define the types of files that the control can select.
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-category: form input
+category: Form Input
 tags:
 - form
 - input

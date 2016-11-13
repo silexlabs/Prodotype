@@ -2,7 +2,7 @@
 name: Button
 description: HTML button tag for your forms.
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
-category: form input
+category: Form Input
 tags:
 - form
 - input

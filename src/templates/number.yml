@@ -1,8 +1,8 @@
 ---
-name: Number input component (<input type="number|range">)
+name: Number input component
 description: 'Let the user select a numeric value. Note: It is not supported in Internet Explorer 9 and earlier versions..'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-category: form input
+category: Form Input
 tags:
 - form
 - input
@@ -13,9 +13,6 @@ props:
 - name: value
   description: The current value
   type: number
-- name: label
-  description: The label of the component
-  type: multiline
 - name: required
   description: Whether the component must be filled out before submitting a form
   type: boolean

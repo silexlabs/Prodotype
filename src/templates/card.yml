@@ -1,8 +1,8 @@
 ---
-name: Card
+name: Flat Design Card Component
 description: Wide card with share menu button.
 doc: https://getmdl.io/components/#cards-section
-category: custom css
+category: Design Element
 tags:
 - material
 - image

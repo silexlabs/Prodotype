@@ -1,8 +1,8 @@
 ---
-name: Date component (<input type="date">)
+name: Date Component
 description: 'Let the user select a date. Note: It does not show as any date field/calendar in Firefox.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-category: form input
+category: Form Input
 tags:
 - form
 - input

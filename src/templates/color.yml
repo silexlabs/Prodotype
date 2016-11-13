@@ -1,8 +1,8 @@
 ---
-name: Color component (<input type="color">)
+name: Color Component
 description: 'Let the user select a color. Note: It is not supported in Internet Explorer or Safari.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-category: form input
+category: Form Input
 tags:
 - form
 - input
