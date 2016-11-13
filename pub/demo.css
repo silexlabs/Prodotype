@@ -28,10 +28,30 @@ div#ui {
   overflow: auto;
   background-color: #444;
 }
+/* **************************** */
+/* stage and rendered component */
+/* **************************** */
+
 #stage {
   align-items: center;
   justify-content: center;
   margin: auto;
+}
+#stage .prodotype-preview {
+  display: none;
+}
+.show-preview #stage .prodotype-preview {
+  display: block;
+}
+.show-preview #stage .prodotype-runtime {
+  display: none;
+}
+#stage .prodotype-force-size {
+  position: absolute;
+  top: 25%;
+  left: 62%;
+  width: 25%;
+  height: 50%;
 }
 
 /* ******* */

@@ -66,6 +66,11 @@ function select(element) {
   });
 }
 
+var showPreview = document.getElementById('showPreview');
+showPreview.onclick = function(e) {
+  document.body.classList.toggle('show-preview');
+}
+
 var ui = document.getElementById('ui');
 var prodotype = new Prodotype(ui, './components');
 prodotype.ready(function(err) {
@@ -80,7 +85,7 @@ prodotype.ready(function(err) {
   componentSelect.onchange = function (e) {
     add(componentSelect.value);
   }
-  var initValue = 'test-props-editor';
+  var initValue = 'unslider';
   componentSelect.value = initValue;
   setTimeout(add, 1000);
 });
