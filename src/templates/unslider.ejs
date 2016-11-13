@@ -1,4 +1,12 @@
-<div id="<%= uid %>">
+<!-- preview -->
+<div class="prodotype-preview">
+  <% if(slides.length) { %>
+    <div style="<% if(slides[idx].bgColor) { %>background-color: <%= slides[idx].bgColor %>; <% } %> <% if(slides[idx].color) { %>color:<%= slides[idx].color %>; <% } %><% if(slides[idx].image && slides[idx].image[0]) { %>background-image:url("<%= slides[idx].image[0].url %>");<% } %>">
+    </div>
+  <% } %>
+</div>
+<!-- runtime -->
+<div class="prodotype-runtime" id="<%= uid %>">
   <ul>
   <% for(var idx in slides) { %>
     <li style="<% if(slides[idx].bgColor) { %>background-color: <%= slides[idx].bgColor %>; <% } %> <% if(slides[idx].color) { %>color:<%= slides[idx].color %>; <% } %><% if(slides[idx].image && slides[idx].image[0]) { %>background-image:url("<%= slides[idx].image[0].url %>");<% } %>">
@@ -17,9 +25,9 @@
       "nav": <%= nav %>,
       "arrows": <%= arrows %>,
       "activeClass": "<%= activeClass %>"
-    }
-    //  Listen to slide changes
+    });
     <% if(onchange) { %>
+    //  Listen to slide changes
     slider.on('unslider.change', function(event, index, slide) {
       <%= onchange %>
     });
