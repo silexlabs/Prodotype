@@ -1,7 +1,7 @@
 <!-- Wide card with share menu button -->
 <style>
 .card-<%= uid %>.mdl-card {
-  width: 512px;
+  width: auto;
 }
 .card-<%= uid %> > .mdl-card__title {
   color: <%= titleColor %>;
@@ -16,7 +16,7 @@
   </div>
   <div class="mdl-card__supporting-text"><%= text %></div>
   <div class="mdl-card__actions mdl-card--border">
-    <a class="button<%= idx+1 %> mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+    <a class="button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
       <% if(onclick) { %>onclick="<%= onclick %>"<% } %>
     >
       <%= buttonLabel %>
