@@ -169,9 +169,9 @@ export default class Prodotype {
       if(dependencies[tagName]) {
         let found = dependencies[tagName].find(function(dep) {
           for(let attrName in dep)
-            if(el.getAttribute(attrName) === dep[attrName])
-              return true;
-          return false;
+            if(el.getAttribute(attrName) !== dep[attrName])
+              return false;
+          return true;
         });
         if(!found) {
           result.push(el);
