@@ -1,0 +1,53 @@
+---
+name: Navbar
+description: This is a navigation bar.
+doc: https://bootswatch.com/slate/
+category: Slate CSS components
+tags:
+- list
+- ui
+- ux
+- navbar
+dependencies:
+  link:
+  - rel: stylesheet
+    href: https://bootswatch.com/slate/bootstrap.css
+props:
+- name: brand
+  description: Logo or brand name
+  type: multiline
+  default: Brand
+- name: items
+  description: Items of the menu
+  type:
+    - name: text
+      type: string
+      description: text of the item
+    - name: active
+      type: boolean
+      default: false
+      description: is the item selected?
+    - name: href
+      type: string
+      description: URL to open
+    - name: onclick
+      type: action
+      description: Fires when the user selects this element
+- name: links
+  description: Links of the menu
+  type:
+    - name: text
+      type: string
+      description: text of the item
+    - name: href
+      type: string
+      description: URL to open
+    - name: onclick
+      type: action
+      description: Fires when the user selects this element
+- name: onchange
+  type: action
+  description: Fires when the selection changes
+- name: onbrand
+  type: action
+  description: Click on the brand or logo

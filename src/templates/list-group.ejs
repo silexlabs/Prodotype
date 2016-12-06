@@ -1,0 +1,24 @@
+<style type="text/css">
+    .list-group {
+      width: 100%;
+      cursor: pointer;
+    }
+</style>
+<ul class="list-group"
+  <% if(onchange) { %>onclick="<%= onchange %>"<% } %>
+>
+  <% for(var idx in items) { %>
+  <li class="list-group-item<% if(items[idx].active) { %> active<% } %>"
+    <% if(items[idx].onclick) { %>onclick="<%= items[idx].onclick %>"<% } %>
+  >
+    <% if(items[idx].badge) { %>
+    <span class="badge"><%= items[idx].badge %></span>
+    <% } %>
+    <% if(items[idx].text) { %>
+    <p href="#" class="list-group-item-text">
+      <%- items[idx].text %>
+    </p>
+    <% } %>
+  </li>
+  <% } %>
+</ul>

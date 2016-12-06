@@ -1,0 +1,9 @@
+<div class="jumbotron"
+  style="border: none;<% if(bgColor) { %> background-color: <%= bgColor %>;<% } %>"
+>
+  <% if(title) { %><h1><%= title %></h1><% } %>
+  <% if(text) { %><p><%- text %></p><% } %>
+  <% if(buttonLabel) { %><p><a class="btn btn-primary btn-lg"
+    <% if(onclick) { %>onclick="<%= onclick %>"<% } %>
+  ><%= buttonLabel %></a></p><% } %>
+</div>

@@ -2,7 +2,7 @@
 name: Unslider slideshow
 description: 'Display a series of texts and images.'
 doc: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-category: Form Input
+category: Design Element
 tags:
 - form
 - input

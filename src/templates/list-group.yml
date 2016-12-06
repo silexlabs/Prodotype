@@ -1,0 +1,32 @@
+---
+name: List group
+description: This is a simple list.
+doc: https://bootswatch.com/slate/
+category: Slate CSS components
+tags:
+- list
+- ui
+- ux
+dependencies:
+  link:
+  - rel: stylesheet
+    href: https://bootswatch.com/slate/bootstrap.css
+props:
+- name: items
+  description: Items of the list
+  type:
+    - name: text
+      type: multiline
+      description: label of the item
+    - name: badge
+      type: string
+      description: text to display as a badge or notification
+    - name: active
+      type: boolean
+      description: is the item selected?
+    - name: onclick
+      type: action
+      description: Fires when the user selects this element
+- name: onchange
+  type: action
+  description: Fires when the selection changes

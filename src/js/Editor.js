@@ -99,8 +99,6 @@ export default class Editor extends React.Component {
       </section>;
     }
     // nothing selected
-    return <section>
-      <h1>'Select a component'</h1>
-    </section>;
+    return <section></section>;
   }
 }

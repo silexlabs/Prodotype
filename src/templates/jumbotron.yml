@@ -1,0 +1,33 @@
+---
+name: Jumbotron
+description: This is a hero unit for calling extra attention to featured content or information.
+doc: https://bootswatch.com/slate/
+category: Slate CSS components
+tags:
+- ui
+- ux
+dependencies:
+  link:
+  - rel: stylesheet
+    href: https://bootswatch.com/assets/css/custom.min.css
+  - rel: stylesheet
+    href: https://bootswatch.com/slate/bootstrap.css
+props:
+- name: title
+  type: string
+  default: Jumbotron
+  description: The title
+- name: text
+  type: multiline
+  default: This is a simple hero unit for calling extra attention to featured content or information.
+  description: The paragraph of text.
+- name: buttonLabel
+  type: string
+  default: Learn more
+  description: The label of the button.
+- name: onclick
+  type: action
+  description: Fires when the user clicks on the button
+- name: bgColor
+  type: color
+  description: "the container background color"
