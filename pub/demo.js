@@ -85,7 +85,7 @@ prodotype.ready(function(err) {
   componentSelect.onchange = function (e) {
     add(componentSelect.value);
   }
-  var initValue = 'navbar';
+  var initValue = 'test-props-editor';
   componentSelect.value = initValue;
   setTimeout(add, 1000);
 });
