@@ -19,21 +19,25 @@
   </ul>
 </div>
 <script type="text/javascript">
-  $(document).ready(function () {
-    var slider = $('#<%= uid %>').unslider({
-      "autoplay": <%= autoplay %>,
-      "speed": <%= speed %>,
-      "delay": <%= delay %>,
-      "index": <%= index %>,
-      "nav": <%= nav %>,
-      "arrows": <%= arrows %>,
-      "activeClass": "<%= activeClass %>"
-    });
-    <% if(onchange) { %>
-    //  Listen to slide changes
-    slider.on('unslider.change', function(event, index, slide) {
-      <%= onchange %>
-    });
+  (function() {
+    function initUnslider() {
+      var slider = $('#<%= uid %>').unslider({
+        "autoplay": <%= autoplay %>,
+        "speed": <%= speed %>,
+        "delay": <%= delay %>,
+        "index": <%= index %>,
+        "nav": <%= nav %>,
+        "arrows": <%= arrows %>,
+        "activeClass": "<%= activeClass %>"
+      }
+      //  Listen to slide changes
+      <% if(onchange) { %>
+      slider.on('unslider.change', function(event, index, slide) {
+        <%= onchange %>
+      });
     <% } %>
-  });
+    }
+    initUnslider();
+  })();
+  // TODO: expose initUnslider and use it each time we refresh
 </script>
