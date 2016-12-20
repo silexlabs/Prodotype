@@ -5,7 +5,11 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "scripts": {
+   "engines": {
+    "node": "~0.12.0",
+    "npm": "~2.7.3"
+  },
+ "scripts": {
     "build": "npm run build:editor && npm run build:templates",
     "watch": "nodemon --watch 'src' --exec 'npm run build'",
     "reload": "reload -v -b -d pub/ -p 8080",
