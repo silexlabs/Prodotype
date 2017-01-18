@@ -8,9 +8,14 @@ var path = require('path');
 var fs = require('fs');
 var yaml = require("js-yaml");
 
-console.log('Building...');
-var src = path.resolve(__dirname, '../templates');
-var dst = path.resolve(__dirname, '../../pub/components');
+var srcFolder = process.argv[2];
+var dstFolder = process.argv[3];
+
+var src = path.resolve(__dirname, '..', srcFolder || 'sample'); 
+var dst = path.resolve(__dirname, '..', dstFolder || 'pub/components');
+
+console.log('Building', srcFolder, 'to', dstFolder);
+
 var allComponentsJson = {};
 fs.readdirSync(src).map(function (file) {
   return path.join(src, file);
@@ -26,3 +31,4 @@ fs.readdirSync(src).map(function (file) {
 });
 console.log('writing', dst + '/components.json');
 fs.writeFileSync(dst + '/components.json', JSON.stringify(allComponentsJson));
+

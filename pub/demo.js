@@ -72,7 +72,7 @@ showPreview.onclick = function(e) {
 }
 
 var ui = document.getElementById('ui');
-var prodotype = new Prodotype(ui, './components');
+var prodotype = new Prodotype(ui, './sample');
 prodotype.ready(function(err) {
   var option = document.createElement('option')
   option.value = option.innerHTML = '-';
