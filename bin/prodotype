@@ -11,10 +11,10 @@ var yaml = require("js-yaml");
 var srcFolder = process.argv[2];
 var dstFolder = process.argv[3];
 
-var src = path.resolve(__dirname, '..', srcFolder || 'sample'); 
-var dst = path.resolve(__dirname, '..', dstFolder || 'pub/components');
+var src = path.resolve(process.cwd(), srcFolder || 'sample');
+var dst = path.resolve(process.cwd(), dstFolder || 'pub/components');
 
-console.log('Building', srcFolder, 'to', dstFolder);
+console.log('Building', src, 'to', dst, 'in current dir:', process.cwd());
 
 var allComponentsJson = {};
 fs.readdirSync(src).map(function (file) {

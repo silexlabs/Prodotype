@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var path = require('path');
+var src = path.resolve('node_modules', 'ejs', 'ejs.min.js');
+var dst = path.resolve('pub', 'prodotype.js');
+
+var contents = fs.readFileSync(src).toString();
+fs.appendFileSync(dst, contents);
