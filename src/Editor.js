@@ -59,7 +59,7 @@ export default class Editor extends React.Component {
   }
   static createPropEditors(itemData, componentNames, onBrowse, onChange, idx) {
     // add an id to be used in the template to link several elements together
-    itemData.uid = `${Date.now()}-${Math.round(Math.random() * 99999)}`;
+    itemData.uid = `${Date.now()}_${Math.round(Math.random() * 99999)}`;
     // det which editor for this property
     const itemClass = Editor.getItemClass(itemData);
     // build the editor
