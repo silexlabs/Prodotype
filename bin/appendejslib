@@ -2,8 +2,19 @@
 
 var fs = require('fs');
 var path = require('path');
-var src = path.resolve('node_modules', 'ejs', 'ejs.min.js');
-var dst = path.resolve('pub', 'prodotype.js');
+var nmp = require('npm-module-path');
 
-var contents = fs.readFileSync(src).toString();
-fs.appendFileSync(dst, contents);
+nmp.resolveOne('ejs').then((filepath) => {
+  if(filepath) {
+    var src = path.resolve(filepath, 'ejs.min.js');
+    var dst = path.resolve(__dirname, '..', 'pub', 'prodotype.js');
+
+    var contents = fs.readFileSync(src).toString();
+    fs.appendFileSync(dst, contents);
+
+    console.info('Info: ejs lib append to prodotype lib');
+  }
+  else {
+    console.error('Error: ejs module not found');
+  }
+});
