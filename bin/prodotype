@@ -1,34 +1,55 @@
 #!/usr/bin/env node
 
-// this script loads all templates (ejs and yml file)
-// copies all ejs in the dest folder
+// this script loads all templates (yml files and optional ejs files)
+// copies all ejs files in the dest folder
 // and creates a json file for all the templates configs
 
+// modules
 var path = require('path');
 var fs = require('fs');
 var yaml = require("js-yaml");
 
+// get the paths from the script inputs
 var srcFolder = process.argv[2];
 var dstFolder = process.argv[3];
-
 var src = path.resolve(process.cwd(), srcFolder || 'sample');
 var dst = path.resolve(process.cwd(), dstFolder || 'pub/components');
 
 console.log('Building', src, 'to', dst, 'in current dir:', process.cwd());
 
+// start the process
 var allComponentsJson = {};
 fs.readdirSync(src).map(function (file) {
+  // full path (folder + file name)
   return path.join(src, file);
 }).filter(function (file) {
+  // keep only .yml files
+  // and not folders
   return fs.statSync(file).isFile()
-    && path.extname(file) === '.ejs';
+    && path.extname(file) === '.yml';
 }).forEach(function (file) {
-  var name = path.basename(file, '.ejs');
+  // paths
+  var name = path.basename(file, '.yml');
+  var ymlSrcFile = path.resolve(src, name + '.yml');
+  var ejsSrcFile = path.resolve(src, name + '.ejs');
+  var ejsDstFile = path.resolve(dst, name + '.ejs');
+
   console.log("Building template", name);
-  var json = yaml.safeLoad(fs.readFileSync(path.resolve(src, name + '.yml')));
+
+  // get the component's json definition
+  // out of the yml file
+  var json = yaml.safeLoad(fs.readFileSync(ymlSrcFile));
   allComponentsJson[name] = json;
-  fs.createReadStream(file).pipe(fs.createWriteStream(path.resolve(dst, name + '.ejs')));
+
+  // create the ejs template
+  if(fs.existsSync(ejsSrcFile)) {
+    fs.createReadStream(ejsSrcFile).pipe(fs.createWriteStream(ejsDstFile));
+  }
+  else {
+    fs.writeFileSync(ejsDstFile, '');
+  }
 });
+
+// save the components json definitions
 console.log('writing', dst + '/components.json');
 fs.writeFileSync(dst + '/components.json', JSON.stringify(allComponentsJson));
-
