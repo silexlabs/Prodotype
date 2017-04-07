@@ -8,7 +8,6 @@ export default class ComponentEditor extends React.Component {
       if(!this.props.data.accept || this.props.data.accept.includes(compData.templateName)) {
         return <option
           key = { idx++ }
-          onClick = { e => this.props.onChange(compData.name) }
           value = {  compData.name  }
         >{  compData.displayName  }</option>
       }
@@ -16,6 +15,7 @@ export default class ComponentEditor extends React.Component {
     });
     return <PropEditorBase data = { this.props.data } >
         <select
+          onChange={(e) => this.props.onChange(e.target.value)}
           value = { this.props.data.value }
         >
           { options }

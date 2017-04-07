@@ -7,11 +7,11 @@ export default class EnumEditor extends React.Component {
     const options = this.props.data
       .type.map(name => <option
         key = { idx++ }
-        onClick = { e => this.props.onChange(name) }
         value = {  name  }
       >{  name  }</option>);
     return <PropEditorBase data = { this.props.data } >
         <select
+          onChange={(e) => this.props.onChange(e.target.value)}
           id = {  "InputValue" + (PropEditorBase.idx++) }
           defaultValue = { this.props.data.value }
           >
