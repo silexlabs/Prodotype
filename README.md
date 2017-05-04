@@ -54,7 +54,7 @@ Create a folder with a `.yaml` file and a `.ejs` file - see [the `sample/` folde
 Then build your templates with this command line, which will generate a `components.json` in the destination folder (`pub/sample/` in this example):
 
 ```sh
-$ bin/prodotype sample/ pub/sample
+$ npm run build:templates
 ```
 
 
