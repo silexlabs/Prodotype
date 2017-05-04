@@ -40,7 +40,7 @@ export default class Renderer {
 
 function loadDefaults(props, data) {
   return props.reduce((prev, cur) => {
-    if(typeof data[cur.name] === 'undefined' && !Array.isArray(cur.type))
+    if(typeof data[cur.name] === 'undefined')
       prev[cur.name] = cur.default;
     else if(Array.isArray(data[cur.name]) && Array.isArray(cur.type))
       prev[cur.name] = data[cur.name].map((d) => {
