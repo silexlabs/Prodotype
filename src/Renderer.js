@@ -7,13 +7,7 @@ export default class Renderer {
   }
   render(def, data, templateName) {
     return new Promise((resolve, reject) => {
-      let dataWithDefaults = def.props.reduce((prev, cur) => {
-        if(typeof data[cur.name] === 'undefined')
-          prev[cur.name] = cur.default;
-        else
-          prev[cur.name] = data[cur.name];
-        return prev;
-      }, {});
+      let dataWithDefaults = loadDefaults(def.props, data);
       if(this.templates[templateName]) {
         this.doRender(dataWithDefaults, this.templates[templateName], resolve, reject);
       }
@@ -42,4 +36,18 @@ export default class Renderer {
       reject(e);
     }
   }
+}
+
+function loadDefaults(props, data) {
+  return props.reduce((prev, cur) => {
+    if(typeof data[cur.name] === 'undefined')
+      prev[cur.name] = cur.default;
+    else if(Array.isArray(data[cur.name]) && Array.isArray(cur.type))
+      prev[cur.name] = data[cur.name].map((d) => {
+        return loadDefaults(cur.type, d);
+      });
+    else
+      prev[cur.name] = data[cur.name];
+    return prev;
+  }, {});
 }
