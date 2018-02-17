@@ -39,7 +39,7 @@ prodotype.ready(function(err) {
       stage.innerHTML = html;
     }
   });
-}
+});
 
 ```
 
