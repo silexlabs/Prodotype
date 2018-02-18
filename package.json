@@ -18,7 +18,7 @@
     "build": "npm run build:editor && npm run build:templates",
     "watch": "nodemon --watch 'src' --exec 'npm run build'",
     "reload": "reload -v -b -d pub/ -p 8080",
-    "build:editor": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify ] && bin/appendejslib",
+    "build:editor": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify ] && cat `node_modules`/ejs/ejs.min.js >> pub/prodotype.js",
     "build:templates": "bin/prodotype sample/ pub/sample",
     "start": "http-server ."
   },
@@ -35,7 +35,7 @@
     "browserify": "^13.0.1",
     "ejs": "^2.5.5",
     "js-yaml": "^3.6.1",
-    "npm-module-path": "^2.0.2",
+    "node_modules-path": "^1.0.5",
     "react": "^15.2.0",
     "react-ace": "^3.5.0",
     "react-dom": "^15.2.0",
