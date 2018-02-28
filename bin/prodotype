@@ -28,6 +28,11 @@ fs.readdirSync(src).map(function (file) {
   return fs.statSync(file).isFile()
     && path.extname(file) === '.yml';
 }).forEach(function (file) {
+  // create dest folder
+  if(!fs.existsSync(dst)) {
+    fs.mkdirSync(dst);
+  }
+
   // paths
   var name = path.basename(file, '.yml');
   var ymlSrcFile = path.resolve(src, name + '.yml');
