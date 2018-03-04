@@ -52,7 +52,7 @@ export default class FileEditor extends React.Component {
     this.props.data.value = this.props.data.value || [];
     let idx = 0;
     const imagesPreview = this.props.data.value.map(file => {
-      if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      if ( /\.(jpe?g|png|gif)$/i.test(file.name) || (file.type && file.type.startsWith('image')) ) {
         return <div className="image-preview"
           key = {idx++}
           title = {file.name}
