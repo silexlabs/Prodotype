@@ -6,7 +6,7 @@ export default class PropEditorBase extends React.Component {
     expand: false
   }
   render() {
-    return <div className={"prop-editor-base " + (this.state.expand ? "prop-editor-expand" : "")}>
+    return <div className={"prop-editor-base " + (this.state.expand ? "prop-editor-expand " : " ") + (this.props.className ? this.props.className : "")}>
       <label
         className="prop-editor-name"
         onClick={e => this.setState({expand:!this.state.expand})}

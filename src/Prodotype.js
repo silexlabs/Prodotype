@@ -131,7 +131,6 @@ export default class Prodotype {
    * @return {Array.<Element>} the elements to be added to the site
    */
   getMissingDependencies(container, componentNames) {
-    console.log('getMissingDependencies', container, componentNames);
     let result = [];
     const dependencies = this.getDependencies(componentNames);
     for(let type in dependencies) {
@@ -159,7 +158,6 @@ export default class Prodotype {
    * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    */
   getUnusedDependencies(dependencyElements, componentNames) {
-    console.log('getUnusedDependencies', dependencyElements, componentNames);
     const result = [];
     const dependencies = this.getDependencies(componentNames);
     // remove what is not needed

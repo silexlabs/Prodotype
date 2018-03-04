@@ -5,6 +5,10 @@ import PropEditorBase from './PropEditorBase'
 export default class ObjectArrayEditor extends React.Component {
   render() {
     this.props.data.value = this.props.data.value || [];
+    if(!this.props.data.value.map) {
+      console.error('ObjectArrayEditor: the property needs to be an array but it is not (', typeof this.props.data.value, ')');
+      return null;
+    }
     const editors = this.props.data.value.map((subData, idx) => {
       const subEditors = this.props.data.type.map((subType, subIdx) => {
         // clone the definition

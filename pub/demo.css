@@ -93,11 +93,14 @@ div#ui {
 #ui .prop-editor-base.prop-editor-expand {
   margin-bottom: 20px;
 }
-#ui .prop-editor-base .prop-editor-container > * {
-  margin: auto;
-  width: 95%;
-  display: block;
+/* all inputs centered */
+#ui .prop-editor-base .prop-editor-container {
+  text-align: center;
 }
+#ui .prop-editor-base .prop-editor-container .sub-editors .prop-editor-name {
+  text-align: left;
+}
+/* */
 #ui .prop-editor-base .prop-editor-description {
   padding: 12px
 }
@@ -109,9 +112,23 @@ div#ui {
   padding: 10px 5px;
   cursor: pointer;
 }
-#ui .prop-editor-base .prop-editor-container > input[type=number],
+#ui .prop-editor-base .prop-editor-container > input,
+#ui .prop-editor-base .prop-editor-container > select {
+  background-color: #2F2F2F;
+  border: 1px solid #2A2A2A;
+  box-shadow: 1px 1px 0 #535353;
+  color: #DDD;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 0 5px;
+  max-width: 200px;
+}
+#ui .prop-editor-base .prop-editor-container > input[type=number] {
+  padding-right: 0;
+  line-height: 2;
+}
 #ui .prop-editor-base .prop-editor-container > input[type=color] {
-  width: 50px;
+  padding: 0;
 }
 #ui .prop-editor-base .image-preview {
   min-width: 100px;
@@ -120,6 +137,17 @@ div#ui {
   background-repeat: no-repeat;
   background-position: 50%;
   border: 1px solid;
+}
+#ui .prop-editor-base .number-editor  .prop-editor-container > .unit-selector {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: center;
+  margin-left: -45px;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
 }
 /* array of object editor */
 #ui .prop-editor-base .sub-editors-container .sub-editors {
@@ -134,6 +162,7 @@ div#ui {
   border-right: 1px solid #2F2F2F;
   margin-bottom: 20px;
   padding-bottom: 10px;
+  margin-left: 25px;
 }
 #ui .prop-editor-base .btn {
   width: 90%;

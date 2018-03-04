@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import StringArrayEditor from './StringArrayEditor';
 import ObjectArrayEditor from './ObjectArrayEditor';
+import ObjectEditor from './ObjectEditor';
 import StringEditor from './StringEditor';
 import MulitlineEditor from './MulitlineEditor';
 import BooleanEditor from './BooleanEditor';
@@ -11,6 +12,8 @@ import EnumEditor from './EnumEditor';
 import FileEditor from './FileEditor';
 import ColorEditor from './ColorEditor';
 import ComponentEditor from './ComponentEditor';
+
+const templates = {};
 
 export default class Editor extends React.Component {
   static getItemClass(itemData) {
@@ -25,6 +28,9 @@ export default class Editor extends React.Component {
       switch(itemData.type) {
         case 'array':
           itemClass = StringArrayEditor;
+          break;
+        case 'object':
+          itemClass = ObjectEditor;
           break;
         case 'string':
           itemClass = StringEditor;
@@ -58,6 +64,13 @@ export default class Editor extends React.Component {
     return itemClass;
   }
   static createPropEditors(itemData, componentNames, onBrowse, onChange, idx) {
+    if(templates[itemData.type]) {
+      const name = itemData.name;
+      Object.assign(itemData, templates[itemData.type], {
+        name: name,
+        type: 'object',
+      });
+    }
     // add an id to be used in the template to link several elements together
     itemData.uid = `${Date.now()}_${Math.round(Math.random() * 99999)}`;
     // det which editor for this property
@@ -77,16 +90,22 @@ export default class Editor extends React.Component {
         .map((def, idx) => {
           // clone the definition
           const itemData = JSON.parse(JSON.stringify(def));
-          // compute the value
-          if(typeof this.props.data[itemData.name] === 'undefined')
-            itemData.value = itemData.default;
-          else
-            itemData.value = this.props.data[itemData.name];
-          // create the editor
-          return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
-            this.props.data[itemData.name] = value;
-            this.props.onChange(this.props.data);
-          }, idx);
+          if(itemData.type === 'template') {
+            templates[itemData.name] = itemData;
+            return null;
+          }
+          else {
+            // compute the value
+            if(typeof this.props.data[itemData.name] === 'undefined')
+              itemData.value = itemData.default;
+            else
+              itemData.value = this.props.data[itemData.name];
+            // create the editor
+            return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
+              this.props.data[itemData.name] = value;
+              this.props.onChange(this.props.data);
+            }, idx);
+          }
         });
       return <section className="editor">
         <h1 className="name">{ this.props.definition.name }</h1>

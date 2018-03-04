@@ -43,6 +43,51 @@ props:
       type: boolean
       description: a boolean here
       default: false
+- name: objectval
+  description: object with properties
+  type: object
+  props:
+  - name: field1
+    type: boolean
+    description: a boolean here
+    default: false
+  - name: field2
+    type: number
+    description: a number here
+    default: 12
+  - name: field3
+    type: number
+    description: a number with a unit here
+    default: "12$"
+    unit:
+    - "$"
+    - "€"
+    - "%"
+    - "mm"
+- name: templateobject
+  type: template
+  props:
+  - name: field1
+    type: boolean
+    description: a boolean here
+    default: false
+  - name: field2
+    type: number
+    description: a number here
+    default: 12
+  - name: field3
+    type: number
+    description: a number with a unit here
+    default: "12$"
+    unit:
+    - "$"
+    - "€"
+    - "%"
+    - "mm"
+- name: templateinstance1
+  type: templateobject
+- name: templateinstance2
+  type: templateobject
 - name: stringval
   type: string
   default: 'a default value'
@@ -55,6 +100,15 @@ props:
   type: number
   default: 750
   description: number editor test
+- name: numberunit
+  type: number
+  default: "123$"
+  description: number editor with unit
+  unit:
+  - "$"
+  - "€"
+  - "%"
+  - "mm"
 - name: actionval
   type: action
   description: test of action editor
