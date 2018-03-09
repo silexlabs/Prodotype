@@ -127,3 +127,8 @@ props:
   accept:
   - form
   description: test the component editor
+- name: stringvalreadonly
+  type: string
+  default: 'a read only value'
+  description: a test for string readonly editor
+  readonly: true

@@ -7,6 +7,7 @@ export default class StringEditor extends React.Component {
       <input
         value={ this.props.data.value || '' }
         onChange={(e) => this.props.onChange(e.target.value)}
+        readOnly={ this.props.data.readonly }
       />
     </PropEditorBase>;
   }
