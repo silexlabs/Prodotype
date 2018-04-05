@@ -97,14 +97,15 @@ div#ui {
   flex: 1;
   margin-right: 10px;
   margin-left: 0px;
+  min-width: 40%;
 }
 #ui .prop-editor-base.prop-editor-expand {
   margin-bottom: 20px;
 }
 /* all inputs centered */
 #ui .prop-editor-base .prop-editor-container {
-  text-align: center;
-  padding: 10px;
+  padding: 5px;
+  display: flex;
 }
 #ui .prop-editor-base .prop-editor-container .sub-editors .prop-editor-name {
   text-align: left;

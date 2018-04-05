@@ -9,6 +9,12 @@ export default class ColorEditor extends React.Component {
         onChange={e => this.props.onChange(e.target.value)}
         value={this.props.data.value}
       />
+      <input
+        type="text"
+        onChange={e => this.props.onChange(e.target.value)}
+        value={this.props.data.value}
+        placeholder="#"
+      />
     </PropEditorBase>;
   }
 }

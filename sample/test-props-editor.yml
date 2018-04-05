@@ -52,16 +52,11 @@ props:
   default: 'a default value'
   description: a test for string editor
   type: string
-- name: numberunitNOTEXPANDED
+- name: colorvalNOTEXPANDED
   className: "half-col"
-  type: number
-  default: "123$"
-  description: number editor with unit
-  unit:
-  - "$"
-  - "€"
-  - "%"
-  - "mm"
+  type: color
+  default: "#00FF00"
+  description: test color editor
 - name: numberunitNOTEXPANDED
   className: "half-col"
   type: number
