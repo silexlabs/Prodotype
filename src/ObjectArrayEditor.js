@@ -10,20 +10,7 @@ export default class ObjectArrayEditor extends React.Component {
       return null;
     }
     const editors = this.props.data.value.map((subData, idx) => {
-      const subEditors = this.props.data.type.map((subType, subIdx) => {
-        // clone the definition
-        const itemData = JSON.parse(JSON.stringify(subType));
-        // compute the value
-        if(typeof subData[itemData.name] === 'undefined')
-          itemData.value = itemData.default;
-        else
-          itemData.value = subData[itemData.name];
-        // create the editor
-        return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
-          subData[itemData.name] = value;
-          this.props.onChange(this.props.data.value);
-        }, subIdx);
-      });
+      const subEditors = Editor.getSubEditors(this.props, this.props.data.type, this.props.data.value);
       return <div
         className="sub-editors-container"
         key={idx}

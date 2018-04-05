@@ -63,25 +63,47 @@ export default class Editor extends React.Component {
     }
     return itemClass;
   }
-  static createPropEditors(itemData, componentNames, onBrowse, onChange, idx) {
-    if(templates[itemData.type]) {
-      const name = itemData.name;
-      Object.assign(itemData, templates[itemData.type], {
+  /**
+   * @param {data, componentNames, onBrowse, onChange, idx, ...props} options
+   */
+  static createPropEditors(options) {
+    if(templates[options.data.type]) {
+      const name = options.data.name;
+      Object.assign(options.data, templates[options.data.type], {
         name: name,
         type: 'object',
       });
     }
     // add an id to be used in the template to link several elements together
-    itemData.uid = `${Date.now()}_${Math.round(Math.random() * 99999)}`;
+    options.data.uid = `${Date.now()}_${Math.round(Math.random() * 99999)}`;
+    options.key = options.idx++;
     // det which editor for this property
-    const itemClass = Editor.getItemClass(itemData);
+    const itemClass = Editor.getItemClass(options.data);
     // build the editor
-    return React.createElement(itemClass, {
-      key: idx++,
-      data: itemData,
-      componentNames: componentNames,
-      onBrowse: onBrowse,
-      onChange: onChange,
+    return React.createElement(itemClass, options);
+  }
+  static getSubEditors(parentProps, props, value) {
+    return props.map((prop, idx) => {
+      // clone the definition
+      const itemData = JSON.parse(JSON.stringify(prop));
+      // compute the value
+      if(typeof value[itemData.name] === 'undefined') {
+        itemData.value = itemData.default;
+      }
+      else {
+        itemData.value = value[itemData.name];
+      }
+      // create the editor
+      return Editor.createPropEditors({
+        data: itemData,
+        componentNames: parentProps.componentNames,
+        onBrowse: parentProps.onBrowse,
+        onChange: (value) => {
+          value[itemData.name] = value;
+          parentProps.onChange(value);
+        },
+        idx: idx,
+      });
     });
   }
   render() {
@@ -101,10 +123,16 @@ export default class Editor extends React.Component {
             else
               itemData.value = this.props.data[itemData.name];
             // create the editor
-            return Editor.createPropEditors(itemData, this.props.componentNames, this.props.onBrowse, (value) => {
-              this.props.data[itemData.name] = value;
-              this.props.onChange(this.props.data);
-            }, idx);
+            return Editor.createPropEditors({
+              data: itemData,
+              componentNames: this.props.componentNames,
+              onBrowse: this.props.onBrowse,
+              onChange: (value) => {
+                this.props.data[itemData.name] = value;
+                this.props.onChange(this.props.data);
+              },
+              idx: idx,
+            });
           }
         });
       return <section className="editor">

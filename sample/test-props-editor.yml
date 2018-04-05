@@ -14,7 +14,36 @@ dependencies:
   - rel: stylesheet
     href:   https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/css/unslider.css
 props:
+- name: stringvalNOTEXPANDED
+  className: "full-width"
+  expandable: false
+  default: 'a default value'
+  description: a test for string editor
+  type: string
+- name: numberunitNOTEXPANDED
+  expandable: false
+  className: "half-col"
+  type: number
+  default: "123$"
+  description: number editor with unit
+  unit:
+  - "$"
+  - "€"
+  - "%"
+  - "mm"
+- name: numberunitNOTEXPANDED
+  expandable: false
+  className: "half-col"
+  type: number
+  default: "123$"
+  description: number editor with unit
+  unit:
+  - "$"
+  - "€"
+  - "%"
+  - "mm"
 - name: enumval
+  expandable: true
   default: 'second-value'
   description: test enum editor
   type:
@@ -22,17 +51,39 @@ props:
   - second-value
   - third-value
 - name: boolval
+  expandable: true
   type: boolean
   default: true
   description: test bool editor
 - name: stringarrayval
+  expandable: true
   type: array
   description: 'The options (1 per line).'
   default:
   - first-value
   - second-value
   - third-value
+# - name: tabs
+#   description: tabs
+#   type: tabs
+#   props:
+#   - name: first object
+#     type: boolean
+#     description: a boolean here
+#     default: false
+#   - name: object 2
+#     type: object
+#     props:
+#     - name: field1
+#       type: boolean
+#       description: a boolean here
+#       default: false
+#     - name: field2
+#       type: boolean
+#       description: a boolean here
+#       default: false
 - name: arrayofobjects
+  expandable: true
   description: array of objects
   type:
     - name: field1
@@ -44,6 +95,7 @@ props:
       description: a boolean here
       default: false
 - name: objectval
+  expandable: true
   description: object with properties
   type: object
   props:
@@ -65,6 +117,7 @@ props:
     - "%"
     - "mm"
 - name: templateobject
+  expandable: true
   type: template
   props:
   - name: field1
@@ -85,22 +138,28 @@ props:
     - "%"
     - "mm"
 - name: templateinstance1
+  expandable: true
   type: templateobject
 - name: templateinstance2
+  expandable: true
   type: templateobject
 - name: stringval
+  expandable: true
   type: string
   default: 'a default value'
   description: a test for string editor
 - name: multilineval
+  expandable: true
   type: multiline
   default: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   description: multiline text test
 - name: numberval
+  expandable: true
   type: number
   default: 750
   description: number editor test
 - name: numberunit
+  expandable: true
   type: number
   default: "123$"
   description: number editor with unit
@@ -110,24 +169,29 @@ props:
   - "%"
   - "mm"
 - name: actionval
+  expandable: true
   type: action
   description: test of action editor
 - name: fileval
+  expandable: true
   type: file
   description: test of image editor
   default:
   - url: " data:image/png;base64,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"
     type: image/png
 - name: colorval
+  expandable: true
   type: color
   default: "#00FF00"
   description: test color editor
 - name: componentval
+  expandable: true
   type: component
   accept:
   - form
   description: test the component editor
 - name: stringvalreadonly
+  expandable: true
   type: string
   default: 'a read only value'
   description: a test for string readonly editor

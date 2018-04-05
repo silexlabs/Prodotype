@@ -86,9 +86,17 @@ div#ui {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 }
 #ui .prop-editor-base {
   border-top: 1px solid #2F2F2F;
+  width: 100%;
+}
+#ui .prop-editor-base.half-col {
+  flex: 1;
+  margin-right: 10px;
+  margin-left: 0px;
 }
 #ui .prop-editor-base.prop-editor-expand {
   margin-bottom: 20px;
@@ -96,6 +104,7 @@ div#ui {
 /* all inputs centered */
 #ui .prop-editor-base .prop-editor-container {
   text-align: center;
+  padding: 10px;
 }
 #ui .prop-editor-base .prop-editor-container .sub-editors .prop-editor-name {
   text-align: left;
@@ -120,15 +129,18 @@ div#ui {
   color: #DDD;
   border-radius: 2px;
   box-sizing: border-box;
-  padding: 0 5px;
-  max-width: 200px;
+  padding: 0;
+  line-height: 2;
+  width: 100%;
+  height: 35px;
 }
 #ui .prop-editor-base .prop-editor-container > input[type=number] {
-  padding-right: 0;
-  line-height: 2;
+}
+#ui .prop-editor-base .prop-editor-container > input[type=checkbox] {
+  width: auto;
+  height: auto;
 }
 #ui .prop-editor-base .prop-editor-container > input[type=color] {
-  padding: 0;
 }
 #ui .prop-editor-base .image-preview {
   min-width: 100px;
@@ -138,7 +150,12 @@ div#ui {
   background-position: 50%;
   border: 1px solid;
 }
-#ui .prop-editor-base .number-editor  .prop-editor-container > .unit-selector {
+#ui .prop-editor-base.number-editor .prop-editor-container input {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+#ui .prop-editor-base.number-editor .prop-editor-container .unit-selector {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -148,6 +165,7 @@ div#ui {
   border: none;
   box-shadow: none;
   cursor: pointer;
+  width: auto;
 }
 /* array of object editor */
 #ui .prop-editor-base .sub-editors-container .sub-editors {
