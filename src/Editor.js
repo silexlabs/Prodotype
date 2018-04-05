@@ -9,6 +9,7 @@ import BooleanEditor from './BooleanEditor';
 import NumberEditor from './NumberEditor';
 import ActionEditor from './ActionEditor';
 import EnumEditor from './EnumEditor';
+import ToggleEditor from './ToggleEditor';
 import FileEditor from './FileEditor';
 import ColorEditor from './ColorEditor';
 import ComponentEditor from './ComponentEditor';
@@ -28,6 +29,9 @@ export default class Editor extends React.Component {
       switch(itemData.type) {
         case 'array':
           itemClass = StringArrayEditor;
+          break;
+        case 'toggle':
+          itemClass = ToggleEditor;
           break;
         case 'object':
           itemClass = ObjectEditor;

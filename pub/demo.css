@@ -134,6 +134,34 @@ div#ui {
   width: 100%;
   height: 35px;
 }
+#ui .prop-editor-base .prop-editor-container .toggle-button {
+  min-height: 50px;
+  width: 50px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #2F2F2F;
+  border-color: #2A2A2A;
+  border-style: solid;
+  border-left-style: none;
+  cursor: pointer;
+}
+#ui .prop-editor-base .prop-editor-container .toggle-button:focus {
+  border-left-style: solid;
+  border-radius: 5px 0 0 5px;
+}
+#ui .prop-editor-base .prop-editor-container .toggle-button:first-of-type {
+  border-left-style: solid;
+  border-radius: 5px 0 0 5px;
+}
+#ui .prop-editor-base .prop-editor-container .toggle-button:last-of-type {
+  border-radius: 0 5px 5px 0;
+}
+#ui .prop-editor-base .prop-editor-container .toggle-button:hover {
+  border: 1px solid #535353;
+}
+#ui .prop-editor-base .prop-editor-container .toggle-button[data-selected=true] {
+  background-color: #535353;
+}
 #ui .prop-editor-base .prop-editor-container > input[type=number] {
 }
 #ui .prop-editor-base .prop-editor-container > input[type=checkbox] {
@@ -160,7 +188,7 @@ div#ui {
   -moz-appearance: none;
   appearance: none;
   text-align: center;
-  margin-left: -45px;
+  margin-left: -35px;
   padding: 0;
   border: none;
   box-shadow: none;
