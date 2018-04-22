@@ -10,7 +10,7 @@ export default class ObjectArrayEditor extends React.Component {
       return null;
     }
     const editors = this.props.data.value.map((subData, idx) => {
-      const subEditors = Editor.getSubEditors(this.props, this.props.data.type, this.props.data.value);
+      const subEditors = Editor.getSubEditors(this.props, this.props.data.type, subData, this.props.data.value);
       return <div
         className="sub-editors-container"
         key={idx}

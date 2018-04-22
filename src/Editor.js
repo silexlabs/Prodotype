@@ -86,7 +86,13 @@ export default class Editor extends React.Component {
     // build the editor
     return React.createElement(itemClass, options);
   }
-  static getSubEditors(parentProps, props, value) {
+  /**
+   * @param parentProps, the props of the containing component
+   * @param props, the definition of the sub components, i.e. an array of objects which have name, type...
+   * @param value, the object containing the actual data of each sub component, i.e. an map of objects with a the prop name as a key and the prop value as a value
+   * @param parentValue, optional object to pass to the component's onChange callback, which will contain the value param - defaults to the value param
+   */
+  static getSubEditors(parentProps, props, value, parentValue) {
     return props.map((prop, idx) => {
       // clone the definition
       const itemData = JSON.parse(JSON.stringify(prop));
@@ -102,9 +108,9 @@ export default class Editor extends React.Component {
         data: itemData,
         componentNames: parentProps.componentNames,
         onBrowse: parentProps.onBrowse,
-        onChange: (value) => {
-          value[itemData.name] = value;
-          parentProps.onChange(value);
+        onChange: (newVal) => {
+          value[itemData.name] = newVal;
+          parentProps.onChange(parentValue || value);
         },
         idx: idx,
       });
