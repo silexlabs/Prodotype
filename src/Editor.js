@@ -73,7 +73,11 @@ export default class Editor extends React.Component {
   static createPropEditors(options) {
     if(templates[options.data.type]) {
       const name = options.data.name;
-      Object.assign(options.data, templates[options.data.type], {
+      const templateData = Object.assign({}, templates[options.data.type]); // duplicate the template object in order to be able to modify it
+      if(options.data.props) {
+        templateData.props = options.data.props.concat(templateData.props);
+      }
+      Object.assign(options.data, templateData, {
         name: name,
         type: 'object',
       });
