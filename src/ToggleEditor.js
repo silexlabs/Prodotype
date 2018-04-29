@@ -7,6 +7,7 @@ export default class ToggleEditor extends React.Component {
     return <PropEditorBase data = { this.props.data } >
         <div
           onClick={(e) => {
+            e.preventDefault();// fix bug where a click on toggle button reloads Silex but works in the demo
             const newValue = e.target.getAttribute('data-value');
             if(newValue === this.props.data.value && !this.props.data.default) {
               // untoggle current button, no more value
