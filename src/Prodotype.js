@@ -113,9 +113,16 @@ export default class Prodotype {
    * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    */
   getDependencies(componentNames) {
+    console.log('getDependencies', componentNames)
     return componentNames
       .reduce((prev, current) => {
-        const dependencies = this.componentsDef[current.templateName].dependencies;
+        const componentDefObj = this.componentsDef[current.templateName];
+        if(!componentDefObj) {
+          const msg = `Prodotype error: component ${ current.templateName } not found.`;
+          console.error(msg, this.componentsDef, current.templateName);
+          throw new Error(msg);
+        }
+        const dependencies = componentDefObj.dependencies;
         for(let depType in dependencies) {
           prev[depType] = prev[depType] || [];
           prev[depType] = prev[depType].concat(dependencies[depType]);
