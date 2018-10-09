@@ -14,7 +14,7 @@ export default class NumberEditor extends React.Component {
       return <select
         className="unit-selector"
         onChange={(e) => this.props.onChange(isNaN(currentValue) ? '' : currentValue + e.target.value)}
-        defaultValue = { currentUnit }
+        value = { currentUnit }
         >
         {
           units.map(unit => <option
