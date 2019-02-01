@@ -56,6 +56,7 @@ Then build your templates with this command line, which will generate a `compone
 ```sh
 $ npm run build:templates
 ```
+[All the types of editors here](https://github.com/silexlabs/Prodotype/blob/master/src/Editor.js#L29)
 
 
 
