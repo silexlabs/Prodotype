@@ -48,50 +48,58 @@
   </tr>
   <tr>
     <th>arrayofobjects</th>
-    <th>{<%= arrayofobjects ? JSON.stringify(arrayofobjects) : '' %>}</th>
+    <th><%= arrayofobjects ? JSON.stringify(arrayofobjects) : '' %></th>
   </tr>
   <tr>
     <th>objectval</th>
-    <th>{<%= objectval ? JSON.stringify(objectval) : '' %>}</th>
+    <th><%= objectval ? JSON.stringify(objectval) : '' %></th>
   </tr>
   <tr>
     <th>templateinstance1</th>
-    <th>{<%= templateinstance1 ? JSON.stringify(templateinstance1) : '' %>}</th>
+    <th><%= templateinstance1 ? JSON.stringify(templateinstance1) : '' %></th>
   </tr>
   <tr>
     <th>templateinstance2</th>
-    <th>{<%= templateinstance2 ? JSON.stringify(templateinstance2) : '' %>}</th>
+    <th><%= templateinstance2 ? JSON.stringify(templateinstance2) : '' %></th>
   </tr>
   <tr>
     <th>stringval</th>
-    <th>{<%= stringval %>}</th>
+    <th><%= stringval %></th>
   </tr>
   <tr>
     <th>multilineval</th>
-    <th>{<%- multilineval %>}</th>
+    <th><%- multilineval %></th>
   </tr>
   <tr>
     <th>numberval</th>
-    <th>{<%= numberval %>}</th>
+    <th><%= numberval %></th>
   </tr>
   <tr>
     <th>numberunit</th>
-    <th>{<%= numberunit %>}</th>
+    <th><%= numberunit %></th>
   </tr>
   <tr>
     <th>actionval</th>
-    <th>{<%= actionval %>}</th>
+    <th><%= actionval %></th>
   </tr>
   <tr>
     <th>fileval</th>
-    <th>{<%= fileval %>}</th>
+    <th><%= fileval %></th>
   </tr>
   <tr>
     <th>colorval</th>
-    <th>{<%= colorval %>}</th>
+    <th><%= colorval %></th>
   </tr>
   <tr>
     <th>componentval</th>
-    <th>{<%= componentval %>}</th>
+    <th><%= componentval %></th>
+  </tr>
+  <tr>
+    <th>linkval</th>
+    <th><%= linkval ? linkval.href : '' %></th>
+  </tr>
+  <tr>
+    <th>linkvalexpandable</th>
+    <th><%= linkvalexpandable ? linkvalexpandable.href : '' %></th>
   </tr>
 </table>

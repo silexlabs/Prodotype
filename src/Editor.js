@@ -13,6 +13,7 @@ import ToggleEditor from './ToggleEditor';
 import FileEditor from './FileEditor';
 import ColorEditor from './ColorEditor';
 import ComponentEditor from './ComponentEditor';
+import LinkEditor from './LinkEditor';
 
 const templates = {};
 
@@ -60,6 +61,9 @@ export default class Editor extends React.Component {
         case 'component':
           itemClass = ComponentEditor;
           break;
+        case 'link':
+          itemClass = LinkEditor;
+          break;
         default:
           console.error('Unknown property type:', itemData.type, itemData);
           return null;
@@ -68,7 +72,7 @@ export default class Editor extends React.Component {
     return itemClass;
   }
   /**
-   * @param {data, componentNames, onBrowse, onChange, idx, ...props} options
+   * @param {data, componentNames, onBrowse, onEditLink, onChange, idx, ...props} options
    */
   static createPropEditors(options) {
     if(templates[options.data.type]) {
@@ -112,6 +116,7 @@ export default class Editor extends React.Component {
         data: itemData,
         componentNames: parentProps.componentNames,
         onBrowse: parentProps.onBrowse,
+        onEditLink: parentProps.onEditLink,
         onChange: (newVal) => {
           value[itemData.name] = newVal;
           parentProps.onChange(parentValue || value);
@@ -141,6 +146,7 @@ export default class Editor extends React.Component {
               data: itemData,
               componentNames: this.props.componentNames,
               onBrowse: this.props.onBrowse,
+              onEditLink: this.props.onEditLink,
               onChange: (value) => {
                 this.props.data[itemData.name] = value;
                 this.props.onChange(this.props.data);

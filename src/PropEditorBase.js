@@ -7,7 +7,7 @@ export default class PropEditorBase extends React.Component {
   render() {
     if(this.props.data.expandable) {
       const expand = typeof this.state.expand === 'undefined' ? this.props.expand : this.state.expand || false;
-      return <div className={"prop-editor-base " + (expand ? "prop-editor-expand " : " ") + (this.props.className ? this.props.className + " " : "") + (this.props.data.className ? this.props.data.className + " " : "")}>
+      return <div className={"prop-editor-base prop-editor-expandable " + (expand ? "prop-editor-expand " : " ") + (this.props.className ? this.props.className + " " : "") + (this.props.data.className ? this.props.data.className + " " : "") + ("prop_" + this.props.data.name + " ")}>
         <label
           className="prop-editor-name"
           onClick={e => this.setState({expand:!expand})}
@@ -22,7 +22,7 @@ export default class PropEditorBase extends React.Component {
       </div>;
     }
     else {
-      return <div className={"prop-editor-base " + (this.props.className ? this.props.className + " " : "") + (this.props.data.className ? this.props.data.className + " " : "")}>
+      return <div className={"prop-editor-base prop-editor-no-expandable " + (this.props.className ? this.props.className + " " : "") + (this.props.data.className ? this.props.data.className + " " : "") + ("prop_" + this.props.data.name + " ")}>
         <label
           className="prop-editor-name"
           title={this.props.data.description}

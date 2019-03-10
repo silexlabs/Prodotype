@@ -65,7 +65,7 @@ export default class FileEditor extends React.Component {
       {imagesPreview}
       <div
         onClick={e => {
-          this.props.onBrowse(e, url => {
+          this.props.onBrowse(e, file.url, url => {
             this.changedCustom(url);
           });
           // here the e.preventDefault might have been called

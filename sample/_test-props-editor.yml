@@ -221,3 +221,13 @@ props:
   default: 'a read only value'
   description: a test for string readonly editor
   readonly: true
+- name: linkval
+  expandable: false
+  type: link
+  default:
+  - href: https://lexoyo.me
+  description: a test for link editor
+- name: linkvalexpandable
+  expandable: true
+  type: link
+  description: a test for link editor expandable

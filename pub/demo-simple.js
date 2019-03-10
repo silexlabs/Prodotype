@@ -28,9 +28,16 @@ prodotype.ready(function(err) {
         data = newData;
         stage.innerHTML = html;
       },
-      onBrowse: function(e, cbk) {
+      onBrowse: function(e, url, cbk) {
+        console.log('custom event called, do not prevent default for the demo, let the default editor handle it');
         // e.preventDefault();
-      }
+        cbk(url);
+      },
+      onEditLink: function(e, linkData, cbk) {
+        console.log('custom event called, do not prevent default for the demo, let the default editor handle it');
+        // e.preventDefault();
+        cbk(linkData);
+      },  
     });
   }, 1000);
 });

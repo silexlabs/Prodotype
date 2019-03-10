@@ -62,13 +62,14 @@ export default class Prodotype {
    * @param {Object} data the component's data to edit
    * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    * @param {string} temlateName the type of the component to edit
-   * @param {onChange:function, ?onBrowse:function} events
+   * @param {onChange:function, ?onBrowse:function, ?onEditLink} events
    */
   edit(data, componentNames, templateName, events) {
     events = events || {};
     ReactDOM.render(<Editor
       componentNames = {componentNames}
       onBrowse = {events.onBrowse}
+      onEditLink = {events.onEditLink}
       data = {data}
       definition = {this.componentsDef[templateName]}
       onChange = {(value) => {

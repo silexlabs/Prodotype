@@ -60,9 +60,16 @@ function select(element) {
       element.setAttribute('data-data', JSON.stringify(newData));
       element.innerHTML = html;
     },
-    onBrowse: function(e, cbk) {
+    onBrowse: function(e, url, cbk) {
+      console.log('custom event called, do not prevent default for the demo, let the default editor handle it');
       // e.preventDefault();
-    }
+      cbk(url);
+    },
+    onEditLink: function(e, linkData, cbk) {
+      console.log('custom event called, do not prevent default for the demo, let the default editor handle it', e, cbk);
+      // e.preventDefault();
+      cbk(linkData);
+    },
   });
 }
 
@@ -86,7 +93,7 @@ prodotype.ready(function(err) {
     add(componentSelect.value);
   }
   // var initValue = 'unslider';
-  var initValue = 'test-props-editor';
+  var initValue = componentSelect.childNodes[1].value;
   componentSelect.value = initValue;
   setTimeout(add, 1000);
 });
