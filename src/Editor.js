@@ -1,5 +1,5 @@
+import "@babel/polyfill";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StringArrayEditor from './StringArrayEditor';
 import ObjectArrayEditor from './ObjectArrayEditor';
 import ObjectEditor from './ObjectEditor';

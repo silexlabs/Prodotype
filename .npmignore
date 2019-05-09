@@ -1,0 +1,4 @@
+.sublime*
+pub/**/*.ejs
+pub/**/*.json
+node_modules
