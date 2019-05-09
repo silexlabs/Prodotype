@@ -1,5 +1,5 @@
 import React from 'react';
-import PropEditorBase from './PropEditorBase'
+import "@babel/polyfill"; import PropEditorBase from './PropEditorBase';
 
 export default class ToggleEditor extends React.Component {
   render() {
@@ -20,7 +20,7 @@ export default class ToggleEditor extends React.Component {
           }}
           id = {  "InputValue" + (PropEditorBase.idx++) }
           >
-          { 
+          {
             this.props.data
             .options.map(({value, description, imageUrl}) => <button
               key = { idx++ }
@@ -29,7 +29,7 @@ export default class ToggleEditor extends React.Component {
               title = { description }
               style = {{ backgroundImage: `url(${ imageUrl })` }}
               className = "toggle-button"
-            ></button>) 
+            ></button>)
           }
         </div>
     </PropEditorBase>;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropEditorBase from './PropEditorBase'
+import "@babel/polyfill"; import PropEditorBase from './PropEditorBase';
 
 export default class MultilineEditor extends React.Component {
   render() {

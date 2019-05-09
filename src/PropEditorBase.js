@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import React from 'react';
 
 export default class PropEditorBase extends React.Component {

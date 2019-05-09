@@ -1,6 +1,6 @@
 import React from 'react';
 import Editor from './Editor'
-import PropEditorBase from './PropEditorBase'
+import "@babel/polyfill"; import PropEditorBase from './PropEditorBase';
 
 export default class ObjectArrayEditor extends React.Component {
   render() {

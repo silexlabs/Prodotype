@@ -1,5 +1,5 @@
 import React from 'react';
-import PropEditorBase from './PropEditorBase'
+import "@babel/polyfill"; import PropEditorBase from './PropEditorBase';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/javascript';
