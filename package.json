@@ -1,6 +1,6 @@
 {
   "name": "prodotype",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "author": "lexoyo",
@@ -39,7 +39,7 @@
     "browserify": "^16.2.3",
     "ejs": "^2.6.1",
     "js-yaml": "^3.13.1",
-    "node_modules-path": "^2.0.2",
+    "node_modules-path": "*",
     "nodemon": "^1.19.0",
     "react": "^16.8.6",
     "react-ace": "^6.5.0",
