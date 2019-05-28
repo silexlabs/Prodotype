@@ -33,7 +33,7 @@ export default class LinkEditor extends React.Component {
           }
         }}
       >
-        <input readOnly type='url' value={ this.props.data.value.href ? this.props.data.value.href : '' } />
+        <input readOnly placeholder='Url' type='url' value={ this.props.data.value.href ? this.props.data.value.href : '' } />
         <input type="button" value="Edit Link" />
       </div>
     </PropEditorBase>;

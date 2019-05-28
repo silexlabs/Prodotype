@@ -14,11 +14,13 @@ dependencies:
     href: https://bootswatch.com/slate/bootstrap.css
 props:
 - name: brand
+  expandable: true
   description: Logo or brand name
   type: multiline
   default: Brand
 - name: items
   description: Items of the menu
+  expandable: true
   type:
     - name: text
       type: string
@@ -34,6 +36,7 @@ props:
       type: action
       description: Fires when the user selects this element
 - name: links
+  hideTitle: true
   description: Links of the menu
   type:
     - name: text

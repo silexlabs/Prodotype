@@ -14,7 +14,7 @@ export default class PropEditorBase extends React.Component {
           onClick={e => this.setState({expand:!expand})}
         >
           <span className={"fa fa-fw fa-inverse " + (expand ? "fa-caret-down" : "fa-caret-right")}></span>
-          { this.props.data.name }
+          { this.props.data.displayName || this.props.data.name }
         </label>
         { expand && this.props.data.description ? <p className="prop-editor-description">{this.props.data.description}</p> : "" }
         <div className="prop-editor-container">
@@ -24,12 +24,15 @@ export default class PropEditorBase extends React.Component {
     }
     else {
       return <div className={"prop-editor-base prop-editor-no-expandable " + (this.props.className ? this.props.className + " " : "") + (this.props.data.className ? this.props.data.className + " " : "") + ("prop_" + this.props.data.name + " ")}>
-        <label
-          className="prop-editor-name"
-          title={this.props.data.description}
-        >
-          { this.props.data.name }
-        </label>
+        {
+          this.props.data.hideTitle ? '' :
+            <label
+              className="prop-editor-name"
+              title={this.props.data.description}
+            >
+              { this.props.data.displayName || this.props.data.name }
+            </label>
+        }
         <div className="prop-editor-container">
           { this.props.children }
         </div>

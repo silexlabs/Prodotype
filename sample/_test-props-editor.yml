@@ -171,7 +171,7 @@ props:
 - name: stringval
   expandable: true
   type: string
-  default: 'a default value'
+  placeholder: 'a placeholder value'
   description: a test for string editor
 - name: multilineval
   expandable: true

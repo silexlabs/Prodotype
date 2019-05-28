@@ -157,9 +157,12 @@ export default class Editor extends React.Component {
         });
       return <section className="editor">
         <h1 className="name">{ this.props.definition.name }</h1>
+        { this.props.definition.doc ?
+          <button className="help" onClick={ () => window.open(this.props.definition.doc, '_blank') }>?</button>
+          : ''
+        }
         <div>{ <span className="description-container">
           <p className="description">{ this.props.definition.description }</p>
-          <button className="help" onClick={ () => window.open(this.props.definition.doc,'_blank') }>?</button>
         </span> }
         </div>
         <ul>{ editors }</ul>
