@@ -29,13 +29,14 @@ export default class NumberEditor extends React.Component {
   render() {
     const units = this.props.data.unit;
     const value = this.props.data.value || '';
-    const currentValue = parseFloat(value);
+    const currentValue = parseFloat(value) || '';
     const currentUnit = this.getUnit(value, units);
     const unitSelector = this.getUnitSelector(units, currentValue, currentUnit);
     return <PropEditorBase className="number-editor" onChange={this.props.onChange} data={this.props.data}>
       <input
         className="value"
         type="number"
+        placeholder={ this.props.data.placeholder }
         value={ currentValue }
         onChange={(e) => this.props.onChange(e.target.value === '' ? '' : e.target.value + currentUnit)}
       />
