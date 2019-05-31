@@ -1,5 +1,6 @@
 .sublime*
 pub/prodotype.js
+pub/ejs.min.js
 pub/**/*.ejs
 pub/**/*.json
 node_modules

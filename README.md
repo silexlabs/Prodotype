@@ -14,6 +14,7 @@ $ npm run build
 In your HTML page - e.g. see this [demo page](./pub/index.html)
 
 ```html
+  <script type="text/javascript" src="./ejs.min.js"></script>
   <script type="text/javascript" src="./prodotype.js"></script>
   <div id="stage"></div>
   <div id="ui"></div>

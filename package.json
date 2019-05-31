@@ -14,13 +14,16 @@
     "npm": "5.6.x"
   },
   "scripts": {
-    "prepare": "npm run build:editor",
-    "prepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor",
-    "build": "npm run build:editor && npm run build:templates",
+    "prepare": "npm run build:editor:debug",
+    "prepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor:release",
+    "build": "npm run build:editor:release && npm run build:templates",
+    "build:debug": "npm run build:editor:debug && npm run build:templates",
     "watch": "nodemon --watch 'src' --exec 'npm run build'",
-    "watch:test": "nodemon --watch 'src' --exec 'npm run build && npm test'",
+    "watch:test": "nodemon --watch 'src' --exec 'npm run build:debug && npm test'",
     "reload": "reload -v -b -d pub/ -p 8080",
-    "build:editor": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify ] && cat `node_modules ejs`/ejs/ejs.min.js >> pub/prodotype.js",
+    "build:editor:release": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify ] && npm run cp-ejs",
+    "build:editor:debug": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify --sourceMap ] -d && npm run cp-ejs",
+    "cp-ejs": "cp `node_modules ejs`/ejs/ejs.min.js pub/ejs.min.js",
     "build:templates": "bin/prodotype sample/ pub/sample",
     "start": "http-server .",
     "test": "jest"
