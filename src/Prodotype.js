@@ -116,7 +116,6 @@ export default class Prodotype {
    * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    */
   getDependencies(componentNames) {
-    console.log('getDependencies', componentNames)
     return componentNames
       .reduce((prev, current) => {
         const componentDefObj = this.componentsDef[current.templateName];

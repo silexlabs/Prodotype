@@ -72,7 +72,6 @@ export default class Editor extends React.Component {
   static getTemplateData({templates, data}) {
     if(!!templates && templates[data.type] || (data.type === 'template' && !!data.extends && templates[data.extends])) {
       const agregatedTemplate = Editor.getTemplateData({templates, data: templates[data.extends || data.type]});
-      console.log('getTemplateData', typeof data, typeof agregatedTemplate.props, typeof data.props)
       return {
         ...data,
         type: 'object',
@@ -95,7 +94,6 @@ export default class Editor extends React.Component {
     // det which editor for this property
     const itemClass = Editor.getItemClass(data);
     // build the editor
-    console.log('createPropEditors', typeof options, typeof options.data, typeof data)
     return React.createElement(itemClass, {
       ...options,
       data: {
@@ -173,7 +171,7 @@ export default class Editor extends React.Component {
         onBrowse: this.props.onBrowse,
         onEditLink: this.props.onEditLink,
         onChange: (value) => {
-          this.props.data[itemData.name] = value;
+          this.props.data[data.name] = value;
           this.props.onChange(this.props.data);
         },
         idx: editorsData.idx,
