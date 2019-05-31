@@ -60,8 +60,9 @@ export default class Prodotype {
   /**
    * build the ui for a component
    * and notify me when user changes a property
+   * TODO: componentNames should be arbitrary data
    * @param {Object} data the component's data to edit
-   * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
+   * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the components
    * @param {string} temlateName the type of the component to edit
    * @param {onChange:function, ?onBrowse:function, ?onEditLink} events
    */

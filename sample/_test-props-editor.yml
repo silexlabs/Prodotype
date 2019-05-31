@@ -141,33 +141,23 @@ props:
     - "€"
     - "%"
     - "mm"
-- name: templateobject
-  expandable: true
+- name: TestTemplate2
   type: template
   props:
-  - name: field1
-    type: boolean
-    description: a boolean here
-    default: false
-  - name: field2
+  - name: propTemplate2
     type: number
-    description: a number here
-    default: 12
-  - name: field3
+- name: TestTemplate1
+  type: template
+  extends: TestTemplate2
+  props:
+  - name: propTemplate1
     type: number
-    description: a number with a unit here
-    default: "12$"
-    unit:
-    - "$"
-    - "€"
-    - "%"
-    - "mm"
-- name: templateinstance1
-  expandable: true
-  type: templateobject
-- name: templateinstance2
-  expandable: true
-  type: templateobject
+- name: propMixed
+  type: TestTemplate1
+  props:
+  - name: propComp
+    type: number
+
 - name: stringval
   expandable: true
   type: string

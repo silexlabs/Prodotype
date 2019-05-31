@@ -92,7 +92,7 @@ prodotype.ready(function(err) {
   componentSelect.onchange = function (e) {
     add(componentSelect.value);
   }
-  // var initValue = 'unslider';
+  // var initValue = 'test';
   var initValue = componentSelect.childNodes[1].value;
   componentSelect.value = initValue;
   setTimeout(add, 1000);

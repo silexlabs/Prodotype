@@ -3,7 +3,7 @@ module.exports = function (api) {
   return {
     presets: [
       ["@babel/preset-env", {
-        "debug":true,
+        "debug": false,
         "useBuiltIns": "entry",
         },
       ], [

@@ -15,8 +15,6 @@ import ColorEditor from './ColorEditor';
 import ComponentEditor from './ComponentEditor';
 import LinkEditor from './LinkEditor';
 
-const templates = {};
-
 export default class Editor extends React.Component {
   static getItemClass(itemData) {
     let itemClass = null;
@@ -65,34 +63,43 @@ export default class Editor extends React.Component {
           itemClass = LinkEditor;
           break;
         default:
-          console.error('Unknown property type:', itemData.type, itemData);
-          return null;
+          throw new Error('Unknown property type: ' + itemData.type);
       }
     }
     return itemClass;
+  }
+  static getTemplateData({templates, data}) {
+    if(!!templates && templates[data.type] || (data.type === 'template' && !!data.extends && templates[data.extends])) {
+      const agregatedTemplate = Editor.getTemplateData({templates, data: templates[data.extends || data.type]});
+      return {
+        ...data,
+        type: 'object',
+        props: [
+          ...agregatedTemplate.props,
+          ...data.props,
+        ],
+      }
+    }
+    return data;
   }
   /**
    * @param {data, componentNames, onBrowse, onEditLink, onChange, idx, ...props} options
    */
   static createPropEditors(options) {
-    if(templates[options.data.type]) {
-      const name = options.data.name;
-      const templateData = Object.assign({}, templates[options.data.type]); // duplicate the template object in order to be able to modify it
-      if(options.data.props) {
-        templateData.props = options.data.props.concat(templateData.props);
-      }
-      Object.assign(options.data, templateData, {
-        name: name,
-        type: 'object',
-      });
-    }
+    const data = Editor.getTemplateData(options);
     // add an id to be used in the template to link several elements together
-    options.data.uid = `${Date.now()}_${Math.round(Math.random() * 99999)}`;
-    options.key = options.idx++;
+    data.uid = `${Date.now()}_${Math.round(Math.random() * 99999)}`;
+    data.key = options.idx++;
     // det which editor for this property
-    const itemClass = Editor.getItemClass(options.data);
+    const itemClass = Editor.getItemClass(data);
     // build the editor
-    return React.createElement(itemClass, options);
+    return React.createElement(itemClass, {
+      ...options,
+      data: {
+        ...options.data,
+        ...data,
+      },
+    });
   }
   /**
    * @param parentProps, the props of the containing component
@@ -125,36 +132,54 @@ export default class Editor extends React.Component {
       });
     });
   }
+  parseDefinition({definition, data}) {
+    // TODO: use reduce instead of this strange algo
+    const templates = {};
+    const editorsData = definition.props
+    .map((def, idx) => {
+      // clone the definition
+      const itemData = JSON.parse(JSON.stringify(def));
+      if(itemData.type === 'template') {
+        templates[itemData.name] = itemData;
+        return null;
+      }
+      else {
+        // compute the value
+        if(typeof data[itemData.name] === 'undefined')
+          itemData.value = itemData.default;
+        else
+          itemData.value = data[itemData.name];
+        // create the editor
+        return itemData;
+      }
+    })
+    .filter(e => !!e);
+    return {
+      templates,
+      editorsData,
+    }
+  }
+  // fixme: this method is bullshit
+  createEditors({ templates, editorsData }) {
+    return editorsData.map(data => {
+      return Editor.createPropEditors({
+        templates,
+        data,
+        componentNames: this.props.componentNames,
+        onBrowse: this.props.onBrowse,
+        onEditLink: this.props.onEditLink,
+        onChange: (value) => {
+          this.props.data[itemData.name] = value;
+          this.props.onChange(this.props.data);
+        },
+        idx: idx,
+      })
+    });
+  }
   render() {
     if(this.props.data && this.props.definition) {
-      const editors = this.props.definition.props
-        .map((def, idx) => {
-          // clone the definition
-          const itemData = JSON.parse(JSON.stringify(def));
-          if(itemData.type === 'template') {
-            templates[itemData.name] = itemData;
-            return null;
-          }
-          else {
-            // compute the value
-            if(typeof this.props.data[itemData.name] === 'undefined')
-              itemData.value = itemData.default;
-            else
-              itemData.value = this.props.data[itemData.name];
-            // create the editor
-            return Editor.createPropEditors({
-              data: itemData,
-              componentNames: this.props.componentNames,
-              onBrowse: this.props.onBrowse,
-              onEditLink: this.props.onEditLink,
-              onChange: (value) => {
-                this.props.data[itemData.name] = value;
-                this.props.onChange(this.props.data);
-              },
-              idx: idx,
-            });
-          }
-        });
+      const { templates, editorsData } = this.parseDefinition(this.props);
+      const editors = this.createEditors({ templates, editorsData });
       return <section className="editor">
         <h1 className="name">{ this.props.definition.name }</h1>
         { this.props.definition.doc ?

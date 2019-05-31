@@ -18,10 +18,12 @@
     "prepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor",
     "build": "npm run build:editor && npm run build:templates",
     "watch": "nodemon --watch 'src' --exec 'npm run build'",
+    "watch:test": "nodemon --watch 'src' --exec 'npm run build && npm test'",
     "reload": "reload -v -b -d pub/ -p 8080",
     "build:editor": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify ] && cat `node_modules ejs`/ejs/ejs.min.js >> pub/prodotype.js",
     "build:templates": "bin/prodotype sample/ pub/sample",
-    "start": "http-server ."
+    "start": "http-server .",
+    "test": "jest"
   },
   "bin": {
     "prodotype": "bin/prodotype"
@@ -41,11 +43,13 @@
     "babelify": "^10.0.0",
     "brace": "^0.11.1",
     "browserify": "^16.2.3",
+    "jest": "^24.8.0",
     "nodemon": "^1.19.0",
     "react": "^16.8.6",
     "react-ace": "^6.5.0",
     "react-dom": "^16.8.6",
     "react-tap-event-plugin": "^3.0.3",
+    "react-test-renderer": "^16.8.6",
     "reload": "^3.0.1"
   }
 }
