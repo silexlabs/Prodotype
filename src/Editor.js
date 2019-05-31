@@ -15,6 +15,7 @@ import ColorEditor from './ColorEditor';
 import ComponentEditor from './ComponentEditor';
 import LinkEditor from './LinkEditor';
 
+let INDEX = 0;
 export default class Editor extends React.Component {
   static getItemClass(itemData) {
     let itemClass = null;
@@ -71,12 +72,13 @@ export default class Editor extends React.Component {
   static getTemplateData({templates, data}) {
     if(!!templates && templates[data.type] || (data.type === 'template' && !!data.extends && templates[data.extends])) {
       const agregatedTemplate = Editor.getTemplateData({templates, data: templates[data.extends || data.type]});
+      console.log('getTemplateData', typeof data, typeof agregatedTemplate.props, typeof data.props)
       return {
         ...data,
         type: 'object',
         props: [
           ...agregatedTemplate.props,
-          ...data.props,
+          ...(data.props || []),
         ],
       }
     }
@@ -93,6 +95,7 @@ export default class Editor extends React.Component {
     // det which editor for this property
     const itemClass = Editor.getItemClass(data);
     // build the editor
+    console.log('createPropEditors', typeof options, typeof options.data, typeof data)
     return React.createElement(itemClass, {
       ...options,
       data: {
@@ -149,6 +152,7 @@ export default class Editor extends React.Component {
           itemData.value = itemData.default;
         else
           itemData.value = data[itemData.name];
+        itemData.idx = INDEX++;
         // create the editor
         return itemData;
       }
@@ -172,7 +176,7 @@ export default class Editor extends React.Component {
           this.props.data[itemData.name] = value;
           this.props.onChange(this.props.data);
         },
-        idx: idx,
+        idx: editorsData.idx,
       })
     });
   }
