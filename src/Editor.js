@@ -192,7 +192,7 @@ export default class Editor extends React.Component {
           <p className="description">{ this.props.definition.description }</p>
         </span> }
         </div>
-        <ul>{ editors }</ul>
+        <div>{ editors }</div>
       </section>;
     }
     // nothing selected
