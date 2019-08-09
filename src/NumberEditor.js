@@ -44,7 +44,7 @@ export default class NumberEditor extends React.Component {
         type="number"
         placeholder={ this.props.data.placeholder }
         value={ isNaN(currentValue) ? '' : currentValue }
-        onChange={(e) => this.props.onChange(e.target.value === '' || e.target.value === '0' ? e.target.value : e.target.value + this.select.value)}
+        onChange={(e) => this.props.onChange(!this.select || e.target.value === '' || e.target.value === '0' ? e.target.value : e.target.value + this.select.value)}
       />
       { unitSelector }
     </PropEditorBase>;

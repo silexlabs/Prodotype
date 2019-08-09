@@ -54,7 +54,7 @@ test('Display a value of zero', () => {
   expect(select.value).toBe('')
 })
 
-test('Display a value without unit', () => {
+test('Display a value without unit in it', () => {
   const data = {
     value: '10',
     unit: ['', '%', 'px'],
@@ -71,6 +71,23 @@ test('Display a value without unit', () => {
   expect(select).not.toBeNull()
   expect(input.value).toBe('10')
   expect(select.value).toBe('')
+})
+
+test('Display a value without unit defined', () => {
+  const data = {
+    value: '10',
+  }
+  act(() => {
+    ReactDOM.render(
+      <NumberEditor
+        data={data}
+      />, container)
+  })
+  const input = container.querySelector('.value')
+  const select = container.querySelector('.unit-selector')
+  expect(input).not.toBeNull()
+  expect(select).toBeNull()
+  expect(input.value).toBe('10')
 })
 
 test('Display an empty value without unit', () => {
@@ -181,9 +198,29 @@ test('Change the value to zero', () => {
   expect(component).not.toBeNull()
 
   const input = container.querySelector('.value')
-  const select = container.querySelector('.unit-selector')
 
   ReactTestUtils.Simulate.change(input, {target: {value: '0'}})
   expect(component.props.onChange).toHaveBeenCalledTimes(1)
   expect(component.props.onChange).toHaveBeenCalledWith('0')
+})
+
+test('Change the value when there are no units', () => {
+  const data = {
+    value: '50',
+  }
+  let component = null
+  act(() => {
+    component = ReactDOM.render(
+      <NumberEditor
+        data={data}
+        onChange={jest.fn()}
+      />, container)
+  })
+  expect(component).not.toBeNull()
+
+  const input = container.querySelector('.value')
+
+  ReactTestUtils.Simulate.change(input, {target: {value: '10'}})
+  expect(component.props.onChange).toHaveBeenCalledTimes(1)
+  expect(component.props.onChange).toHaveBeenCalledWith('10')
 })
