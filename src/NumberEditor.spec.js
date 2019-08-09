@@ -35,6 +35,25 @@ test('Display a value', () => {
   expect(select.value).toBe('%')
 })
 
+test('Display a value of zero', () => {
+  const data = {
+    value: '0',
+    unit: ['', '%', 'px'],
+  }
+  act(() => {
+    ReactDOM.render(
+      <NumberEditor
+        data={data}
+      />, container)
+  })
+  const input = container.querySelector('.value')
+  const select = container.querySelector('.unit-selector')
+  expect(input).not.toBeNull()
+  expect(select).not.toBeNull()
+  expect(input.value).toBe('0')
+  expect(select.value).toBe('')
+})
+
 test('Display a value without unit', () => {
   const data = {
     value: '10',
