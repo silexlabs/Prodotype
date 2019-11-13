@@ -13,6 +13,7 @@ import ToggleEditor from './ToggleEditor';
 import FileEditor from './FileEditor';
 import ColorEditor from './ColorEditor';
 import ComponentEditor from './ComponentEditor';
+import DataSourceEditor from './DataSourceEditor';
 import LinkEditor from './LinkEditor';
 
 let INDEX = 0;
@@ -59,6 +60,9 @@ export default class Editor extends React.Component {
           break;
         case 'component':
           itemClass = ComponentEditor;
+          break;
+        case 'data-source':
+          itemClass = DataSourceEditor;
           break;
         case 'link':
           itemClass = LinkEditor;
