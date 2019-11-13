@@ -5,11 +5,11 @@ export default class Renderer {
     this.rootPath = rootPath;
     this.templates = {};
   }
-  render(def, data, templateName) {
+  render(def, data, dataSources, templateName) {
     return new Promise((resolve, reject) => {
       let dataWithDefaults = loadDefaults(def.props, data);
       if(this.templates[templateName]) {
-        this.doRender(dataWithDefaults, this.templates[templateName], resolve, reject);
+        this.doRender(dataWithDefaults, dataSources, this.templates[templateName], resolve, reject);
       }
       else {
         var oReq = new XMLHttpRequest();
@@ -20,16 +20,22 @@ export default class Renderer {
         });
         oReq.addEventListener("load", () => {
           this.templates[templateName] = oReq.responseText;
-          this.doRender(dataWithDefaults, this.templates[templateName], resolve, reject);
+          this.doRender(dataWithDefaults, dataSources, this.templates[templateName], resolve, reject);
         });
       }
     });
   }
-  doRender(data, template, resolve, reject) {
+  doRender(data, dataSources, template, resolve, reject) {
     // uid
     if(!data.uid) data.uid = Date.now() + '_' + Math.round(Math.random() * 1000);
     try {
-      resolve(ejs.render(template, data));
+        ...data,
+        dataSources,
+      })
+      resolve(ejs.render(template, {
+        ...data,
+        dataSources,
+      }));
     }
     catch(e) {
       console.error('could not render the template', e, data, template);

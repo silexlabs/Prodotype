@@ -60,23 +60,22 @@ export default class Prodotype {
   /**
    * build the ui for a component
    * and notify me when user changes a property
-   * TODO: componentNames should be arbitrary data
    * @param {Object} data the component's data to edit
-   * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the components
+   * @param {Object} the data sources
    * @param {string} temlateName the type of the component to edit
    * @param {onChange:function, ?onBrowse:function, ?onEditLink} events
    */
-  edit(data, componentNames, templateName, events) {
+  edit(data, dataSources, templateName, events) {
     events = events || {};
     ReactDOM.render(<Editor
-      componentNames = {componentNames}
+      dataSources= {dataSources}
       onBrowse = {events.onBrowse}
       onEditLink = {events.onEditLink}
       data = {data}
       definition = {this.componentsDef[templateName]}
       onChange = {(value) => {
-        this.edit(value, componentNames, templateName, events);
-        this.decorate(templateName, value)
+        this.edit(value, dataSources, templateName, events);
+        this.decorate(templateName, value, dataSources)
           .then(html => events.onChange(value, html));
       }}
     />, this.container);
@@ -87,8 +86,8 @@ export default class Prodotype {
    * render the HTML for a component
    * with the given data merged with defaults
    */
-  decorate(templateName, data) {
-    return this.renderer.render(this.componentsDef[templateName], data, templateName);
+  decorate(templateName, data, dataSources) {
+    return this.renderer.render(this.componentsDef[templateName], data, dataSources, templateName);
   }
 
 
@@ -103,9 +102,9 @@ export default class Prodotype {
   /**
    * create a unique meaningful name
    */
-  createName(templateName, componentNames) {
+  createName(templateName, components) {
     let idx = 0;
-    while(componentNames.map(compData => compData.name).includes(templateName + (++idx))) {
+    while(components.map(compData => compData.name).includes(templateName + (++idx))) {
     }
     return templateName + idx;
   }
@@ -115,8 +114,8 @@ export default class Prodotype {
    * get the dependencies for the list of components
    * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    */
-  getDependencies(componentNames) {
-    return componentNames
+  getDependencies(components) {
+    return components 
       .reduce((prev, current) => {
         const componentDefObj = this.componentsDef[current.templateName];
         if(!componentDefObj) {
@@ -139,9 +138,9 @@ export default class Prodotype {
    * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    * @return {Array.<Element>} the elements to be added to the site
    */
-  getMissingDependencies(container, componentNames) {
+  getMissingDependencies(container, components) {
     let result = [];
-    const dependencies = this.getDependencies(componentNames);
+    const dependencies = this.getDependencies(components);
     for(let type in dependencies) {
       let depType = dependencies[type];
       for(let idxDep in depType) {
@@ -166,9 +165,9 @@ export default class Prodotype {
    * @param {Array.<Element>} depencies, i.e. scripts and style sheets
    * @param {Array.<{name:string, displayName:string, templateName:string}>} the list of all the component names
    */
-  getUnusedDependencies(dependencyElements, componentNames) {
+  getUnusedDependencies(dependencyElements, components) {
     const result = [];
-    const dependencies = this.getDependencies(componentNames);
+    const dependencies = this.getDependencies(components);
     // remove what is not needed
     for(let elIdx = 0; elIdx < dependencyElements.length; elIdx++) {
       const el = dependencyElements[elIdx];

@@ -84,7 +84,7 @@ export default class Editor extends React.Component {
     return data;
   }
   /**
-   * @param {data, componentNames, onBrowse, onEditLink, onChange, idx, ...props} options
+   * @param {data, dataSources, onBrowse, onEditLink, onChange, idx, ...props} options
    */
   static createPropEditors(options) {
     const data = Editor.getTemplateData(options);
@@ -122,7 +122,7 @@ export default class Editor extends React.Component {
       // create the editor
       return Editor.createPropEditors({
         data: itemData,
-        componentNames: parentProps.componentNames,
+        dataSources: parentProps.dataSources,
         onBrowse: parentProps.onBrowse,
         onEditLink: parentProps.onEditLink,
         onChange: (newVal) => {
@@ -167,7 +167,7 @@ export default class Editor extends React.Component {
       return Editor.createPropEditors({
         templates,
         data,
-        componentNames: this.props.componentNames,
+        dataSources: this.props.dataSources,
         onBrowse: this.props.onBrowse,
         onEditLink: this.props.onEditLink,
         onChange: (value) => {

@@ -55,7 +55,7 @@ function select(element) {
 
   var data = JSON.parse(element.getAttribute('data-data') || '{}');
   var templateName = element.getAttribute('data-template-name');
-  prodotype.edit(data, getCompList(), templateName, {
+  prodotype.edit(data, {components: getCompList()}, templateName, {
     onChange: function(newData, html) {
       element.setAttribute('data-data', JSON.stringify(newData));
       element.innerHTML = html;
