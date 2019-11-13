@@ -29,9 +29,6 @@ export default class Renderer {
     // uid
     if(!data.uid) data.uid = Date.now() + '_' + Math.round(Math.random() * 1000);
     try {
-        ...data,
-        dataSources,
-      })
       resolve(ejs.render(template, {
         ...data,
         dataSources,
