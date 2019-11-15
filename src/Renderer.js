@@ -1,8 +1,7 @@
 
 
 export default class Renderer {
-  constructor(rootPath) {
-    this.rootPath = rootPath;
+  constructor() {
     this.templates = {};
   }
   render(def, data, dataSources, templateName) {
@@ -13,7 +12,7 @@ export default class Renderer {
       }
       else {
         var oReq = new XMLHttpRequest();
-        oReq.open("GET", `${ this.rootPath }/${ templateName }.ejs`);
+        oReq.open("GET", `${ def.rootPath }/${ templateName }.ejs`);
         oReq.send();
         oReq.addEventListener("error", (e) => {
           reject(e);

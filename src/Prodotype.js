@@ -7,10 +7,23 @@ import Renderer from './Renderer';
 export default class Prodotype {
 
   constructor(element, rootPath = '') {
-    this.componentsDef = []
+    this.componentsDef = null;
     this.container = element;
-    this.loadComponentsDef(rootPath);
-    this.renderer = new Renderer(rootPath);
+    if(typeof rootPath === 'string') {
+      this.loadComponentsDef(rootPath)
+      .then((componentsDef) => this.onLoad(componentsDef))
+      .catch(err => this.onLoad(null, err));
+    } else {
+      Promise.all(
+        rootPath.map(path => this.loadComponentsDef(path))
+      )
+      .then((componentsDefArr) => this.onLoad(componentsDefArr.reduce((aggr, next) => ({
+        ...aggr,
+        ...next,
+      }))))
+      .catch(err => this.onLoad(null, err));
+    }
+    this.renderer = new Renderer();
   }
 
   ////////////////////
@@ -31,7 +44,8 @@ export default class Prodotype {
    * Components data loaded
    * call the ready callbacks
    */
-  onLoad(err) {
+  onLoad(componentsDef, err) {
+    this.componentsDef = componentsDef;
     this.isReady = true;
     this.readyCbk.forEach(cbk => cbk(err));
     this.readyCbk = [];
@@ -42,16 +56,32 @@ export default class Prodotype {
    * load the components data
    */
   loadComponentsDef(rootPath) {
-    if(this.isReady) return;
-    let oReq = new XMLHttpRequest();
-    oReq.open("GET", rootPath + '/components.json');
-    oReq.send();
-    oReq.addEventListener("error", (e) => {
-      this.onLoad(e);
-    });
-    oReq.addEventListener("load", () => {
-      this.componentsDef = JSON.parse(oReq.responseText);
-      this.onLoad();
+    return new Promise((resolve, reject) => {
+      if(this.isReady) return;
+      let oReq = new XMLHttpRequest();
+      oReq.open("GET", rootPath + '/components.json');
+      oReq.send();
+      oReq.addEventListener("error", (e) => {
+        reject(e);
+      });
+      oReq.addEventListener("load", () => {
+        if(oReq.status === 200) {
+          try {
+            const componentsDef = JSON.parse(oReq.responseText);
+            Object.keys(componentsDef)
+              .map(name => {
+                componentsDef[name].rootPath = rootPath;
+              });
+            resolve(componentsDef);
+          } catch(e) {
+            console.error('Could not parse component data from', rootPath, oReq.statusText, oReq.status);
+            reject(new Error(`Could not parse component data from ${rootPath}. Error: ${oReq.statusText}(${oReq.status})`));
+          }
+        } else {
+          console.error('Could not load components from', rootPath, oReq.statusText, oReq.status);
+          reject(new Error(`Could not load components from ${rootPath}. Error: ${oReq.statusText}(${oReq.status})`));
+        }
+      });
     });
   }
   ///////////////////

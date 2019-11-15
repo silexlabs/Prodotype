@@ -1,4 +1,12 @@
 
+Prodotype is used in [Silex website builder](https://www.silex.me) to make it possible to create simple components out of 1 html template and 1 file listing the properties. Prodotype then generates the UI to edit the component and exposes a method to render the component.
+
+Features
+
+* build components from 1 template file and 1 definition file per component
+* generate a UI to edit each component, which creates a data object
+* render a component given data object
+* manage dependencies for components
 
 ## Install
 
