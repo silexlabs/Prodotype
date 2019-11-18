@@ -5,7 +5,7 @@ import * as objectPath from 'object-path';
 export default class extends React.Component {
   render() {
     const dataSource = this.props.dataSources[this.props.data.dataSourceName];
-    const root = dataSource ? objectPath.get(dataSource.data, this.props.data.dataRoot) : null;
+    const root = dataSource ? objectPath.get(dataSource, this.props.data.dataRoot) : null;
     const options = root ? Object.keys(root).map(key => {
       return <option
         key = { key }
