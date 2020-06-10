@@ -1,0 +1,101 @@
+<style>
+  #_<%= uid %> th {
+    border: 1px solid lightgrey;
+    padding: 20px;
+    font-weight: 100;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+<table id="_<%= uid %>">
+  <caption>Rendered values</caption>
+  <tr>
+    <th>uid</th>
+    <th><%= uid %></th>
+  </tr>
+  <tr>
+    <th>toggleval</th>
+    <th><%= toggleval %></th>
+  </tr>
+  <tr>
+    <th>togglevalNoDefault</th>
+    <th><%= togglevalNoDefault %></th>
+  </tr>
+  <tr>
+    <th>stringvalNOTEXPANDED</th>
+    <th><%= stringvalNOTEXPANDED %></th>
+  </tr>
+  <tr>
+    <th>colorvalNOTEXPANDED</th>
+    <th><%= colorvalNOTEXPANDED %></th>
+  </tr>
+  <tr>
+    <th>numberunitNOTEXPANDED</th>
+    <th><%= numberunitNOTEXPANDED %></th>
+  </tr>
+  <tr>
+    <th>enumval</th>
+    <th><%= enumval %></th>
+  </tr>
+  <tr>
+    <th>boolval</th>
+    <th><%= boolval %></th>
+  </tr>
+  <tr>
+    <th>stringarrayval</th>
+    <th>[<%= stringarrayval.join(', ') %>]</th>
+  </tr>
+  <tr>
+    <th>arrayofobjects</th>
+    <th><%= arrayofobjects ? JSON.stringify(arrayofobjects) : '' %></th>
+  </tr>
+  <tr>
+    <th>objectval</th>
+    <th><%= objectval ? JSON.stringify(objectval) : '' %></th>
+  </tr>
+  <tr>
+    <th>propMixed</th>
+    <th><%= propMixed ? JSON.stringify(propMixed) : '' %></th>
+  </tr>
+  <tr>
+    <th>stringval</th>
+    <th><%= stringval %></th>
+  </tr>
+  <tr>
+    <th>multilineval</th>
+    <th><%- multilineval %></th>
+  </tr>
+  <tr>
+    <th>numberval</th>
+    <th><%= numberval %></th>
+  </tr>
+  <tr>
+    <th>numberunit</th>
+    <th><%= numberunit %></th>
+  </tr>
+  <tr>
+    <th>actionval</th>
+    <th><%= actionval %></th>
+  </tr>
+  <tr>
+    <th>fileval</th>
+    <th><%= fileval %></th>
+  </tr>
+  <tr>
+    <th>colorval</th>
+    <th><%= colorval %></th>
+  </tr>
+  <tr>
+    <th>componentval</th>
+    <th><%= componentval %></th>
+  </tr>
+  <tr>
+    <th>linkval</th>
+    <th><%= linkval ? linkval.href : '' %></th>
+  </tr>
+  <tr>
+    <th>linkvalexpandable</th>
+    <th><%= linkvalexpandable ? linkvalexpandable.href : '' %></th>
+  </tr>
+</table>

@@ -1,0 +1,26 @@
+<style type="text/css">
+  #id_<%= uid %>:hover > .dropdown-menu {
+    display: block;
+    float: none;
+    position: relative;
+    cursor: pointer;
+  }
+</style>
+<div id="id_<%= uid %>" class="prodotype-force-size dropdown">
+  <a  class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <% if(text) { %>
+    <%- text %> <span class="caret"></span>
+    <% } %>&nbsp;
+  </a>
+  <ul class="dropdown-menu"
+    <% if(onchange) { %>onclick="<%= onchange %>"<% } %>
+  >
+  <% for(var idx in items) { %>
+    <% if(items[idx].text) { %>
+    <li><a href="<%- items[idx].link %>"><%- items[idx].text %></a></li>
+    <% } else { %>
+    <li class="divider"></li>
+    <% } %>
+  <% } %>
+  </ul>
+</div>

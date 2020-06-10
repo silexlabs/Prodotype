@@ -1,0 +1,25 @@
+<!-- Wide card with share menu button -->
+<style>
+.card-<%= uid %>.mdl-card {
+  width: auto;
+}
+.card-<%= uid %> > .mdl-card__title {
+  color: <%= titleColor %>;
+  height: <%= headerHeight %>px;
+  background: <%= headerColor %> url('<% if(image && image.length) { %><%= image[0].url %><% } %>') center / cover;
+}
+</style>
+
+<div class="card-<%= uid %> mdl-card mdl-shadow--2dp ">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text"><%= title %></h2>
+  </div>
+  <div class="mdl-card__supporting-text"><%- text %></div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+      <% if(onclick) { %>onclick="<%= onclick %>"<% } %>
+    >
+      <%= buttonLabel %>
+    </a>
+  </div>
+</div>
