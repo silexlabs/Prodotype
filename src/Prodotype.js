@@ -45,12 +45,16 @@ export default class Prodotype {
    * call the ready callbacks
    */
   onLoad(componentsDef, err) {
-    this.componentsDef = componentsDef;
-    this.isReady = true;
+    if (err) {
+      this.errorLoadingComponents = err;
+      console.error('Prodotype loading error', err)
+    } else {
+      this.componentsDef = componentsDef;
+      this.isReady = true;
+      this.edit();
+    }
     this.readyCbk.forEach(cbk => cbk(err));
     this.readyCbk = [];
-    this.errorLoadingComponents = err;
-    this.edit();
   }
   /**
    * load the components data
