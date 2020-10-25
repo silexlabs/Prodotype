@@ -10,19 +10,19 @@
     "url": "https://github.com/silexlabs/Prodotype.git"
   },
   "engines": {
-    "node": "8.10.x",
-    "npm": "5.6.x"
+    "node": ">8.10",
+    "npm": ">5.6"
   },
   "scripts": {
-    "prepare": "npm run build:editor:debug",
-    "prepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor:release",
-    "build": "npm run build:editor:release && npm run build:templates",
-    "build:debug": "npm run build:editor:debug && npm run build:templates",
+    "prepare": "run-s build:editor:debug cp-ejs",
+    "prepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor:release && npm run cp-ejs",
+    "build": "run-s build:editor:release cp-ejs build:templates",
+    "build:debug": "run-s build:editor:debug cp-ejs build:templates",
     "watch": "nodemon --watch 'src' --exec 'npm run build'",
     "watch:test": "nodemon --watch 'src' --exec 'npm run build:debug && npm test'",
     "reload": "reload -v -b -d pub/ -p 8080",
-    "build:editor:release": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify ] && npm run cp-ejs",
-    "build:editor:debug": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify --sourceMap ] -d && npm run cp-ejs",
+    "build:editor:release": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify ]",
+    "build:editor:debug": "browserify src/Prodotype.js -o pub/prodotype.js -t [ babelify --sourceMap ] -d",
     "cp-ejs": "cp `node_modules ejs`/ejs/ejs.min.js pub/ejs.min.js",
     "build:templates": "bin/prodotype sample/ pub/sample",
     "start": "http-server .",
@@ -49,6 +49,7 @@
     "browserify": "^16.2.3",
     "jest": "^24.8.0",
     "nodemon": "^1.19.0",
+    "npm-run-all": "^4.1.5",
     "react": "^16.8.6",
     "react-ace": "^6.5.0",
     "react-dom": "^16.8.6",
