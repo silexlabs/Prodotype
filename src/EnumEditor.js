@@ -1,5 +1,5 @@
 import React from 'react';
-import "@babel/polyfill"; import PropEditorBase from './PropEditorBase';
+import PropEditorBase from './PropEditorBase';
 
 export default class EnumEditor extends React.Component {
   render() {

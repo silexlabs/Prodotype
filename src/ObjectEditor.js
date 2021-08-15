@@ -1,6 +1,6 @@
 import React from 'react';
 import Editor from './Editor'
-import "@babel/polyfill"; import PropEditorBase from './PropEditorBase';
+import PropEditorBase from './PropEditorBase';
 
 export default class ObjectEditor extends React.Component {
   render() {

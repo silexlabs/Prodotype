@@ -1,5 +1,5 @@
 import React from 'react';
-import "@babel/polyfill"; import PropEditorBase from './PropEditorBase';
+import PropEditorBase from './PropEditorBase';
 
 /**
  * onChange will be called with the link data, e.g.

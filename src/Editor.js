@@ -1,4 +1,3 @@
-import "@babel/polyfill";
 import React from 'react';
 import StringArrayEditor from './StringArrayEditor';
 import ObjectArrayEditor from './ObjectArrayEditor';
