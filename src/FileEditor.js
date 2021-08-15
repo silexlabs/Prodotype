@@ -53,10 +53,17 @@ export default class FileEditor extends React.Component {
     let idx = 0;
     const imagesPreview = this.props.data.value.map(file => {
       if ( /\.(jpe?g|png|gif)$/i.test(file.name) || (file.type && file.type.startsWith('image')) ) {
+        const style = {
+            backgroundImage: 'url(' + file.url + ')',
+            height: '150px',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+        }
         return <div className="image-preview"
           key = {idx++}
           title = {file.name}
-          style = {{backgroundImage: 'url(' + file.url + ')'}}
+          style = {style}
         />
       }
       return null;
