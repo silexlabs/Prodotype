@@ -43,7 +43,7 @@ fs.readdirSync(src).map(function (file) {
 
   // get the component's json definition
   // out of the yml file
-  var json = yaml.safeLoad(fs.readFileSync(ymlSrcFile));
+  var json = yaml.load(fs.readFileSync(ymlSrcFile));
   allComponentsJson[name] = json;
 
   // create the ejs template
