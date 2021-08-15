@@ -86,7 +86,9 @@ $ npm run reload
 
 Create a new version
 
+```sh
 $ npm version patch
 $ git push origin master --follow-tags
 $ npm publish
+```
 
