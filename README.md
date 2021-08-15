@@ -83,3 +83,10 @@ Development (serve, watch, build and live reload):
 $ npm run watch
 $ npm run reload
 ```
+
+Create a new version
+
+$ npm version patch
+$ git push origin master --follow-tags
+$ npm publish
+
