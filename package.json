@@ -25,6 +25,7 @@
     "cp-ejs": "cp `node_modules ejs`/ejs/ejs.min.js pub/ejs.min.js",
     "build:templates": "bin/prodotype sample/ pub/sample",
     "start": "http-server .",
+    "lint": "echo NO LINTER YET",
     "test": "jest"
   },
   "bin": {
