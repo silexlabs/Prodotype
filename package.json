@@ -13,6 +13,7 @@
     "node": ">=8.16.3 <=11.15.0"
   },
   "scripts": {
+    "release": "",
     "prepare": "run-s build:editor:debug cp-ejs",
     "prepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor:release && npm run cp-ejs",
     "build": "run-s build:editor:release cp-ejs build:templates",
