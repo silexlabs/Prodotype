@@ -15,7 +15,7 @@
   "scripts": {
     "release": "",
     "prepare": "run-s build:editor:debug cp-ejs",
-    "prepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor:release && npm run cp-ejs",
+    "manualPrepublishOnly": "git clean -n && read -p \"Continue? (CTRL+C to abort)?\" && git clean -fd && npm run build:editor:release && npm run cp-ejs",
     "build": "run-s build:editor:release cp-ejs build:templates",
     "build:debug": "run-s build:editor:debug cp-ejs build:templates",
     "watch": "nodemon --watch 'src' --exec 'npm run build'",
